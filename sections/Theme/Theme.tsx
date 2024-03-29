@@ -5,60 +5,12 @@
  * https://github.com/saadeghi/daisyui/blob/37bca23444bc9e4d304362c14b7088f9a08f1c74/src/docs/src/routes/theme-generator.svelte
  */
 import SiteTheme, { Font } from "apps/website/components/Theme.tsx";
+// import BrowserLog from "deco-sites/fast-fashion/islands/BrowserLog.tsx";
+import { Page as PageType } from "deco/blocks/page.tsx";
+import { Section } from "deco/blocks/section.ts";
 import Color from "npm:colorjs.io";
-
-export interface ThemeColors {
-  /**
-   * @format color-input
-   * @title Base
-   */
-  "base-100"?: string;
-  /** @format color-input */
-  "primary"?: string;
-  /** @format color-input */
-  "secondary"?: string;
-  /**
-   * @title Accent
-   * @format color-input */
-  "tertiary"?: string;
-  /** @format color-input */
-  "neutral"?: string;
-  /** @format color-input */
-  "success"?: string;
-  /** @format color-input */
-  "warning"?: string;
-  /** @format color-input */
-  "error"?: string;
-  /** @format color-input */
-  "info"?: string;
-}
-
-export interface ComplementaryColors {
-  /** @format color-input */
-  "base-200"?: string;
-  /** @format color-input */
-  "base-300"?: string;
-  /** @format color-input */
-  "base-content"?: string;
-  /** @format color-input */
-  "primary-content"?: string;
-  /** @format color-input */
-  "secondary-content"?: string;
-  /**
-   * @title Accent Content
-   * @format color-input */
-  "tertiary-content"?: string;
-  /** @format color-input */
-  "neutral-content"?: string;
-  /** @format color-input */
-  "success-content"?: string;
-  /** @format color-input */
-  "warning-content"?: string;
-  /** @format color-input */
-  "error-content"?: string;
-  /** @format color-input */
-  "info-content"?: string;
-}
+import { defaultColors } from "./defaultColors.ts";
+import type { ComplementaryColors, ThemeColors } from "./theme.d.ts";
 
 export interface Button {
   /**
@@ -120,26 +72,35 @@ export interface Miscellaneous {
 
 export interface Props {
   /**
-   * @description Set the prefers-color-scheme media query. To support dark mode, create two instances of this block and set this option to light/dark in each instance
-   * @default light
+   * @description Cores principais do tema
    */
-  colorScheme?: "light" | "dark";
-  mainColors?: ThemeColors;
-  /** @description These will be auto-generated to a readable color if not set */
+  colors?: ThemeColors;
+  /**
+   * @description Cores complementares do tema, cores não preenchidas serão
+   */
   complementaryColors?: ComplementaryColors;
+  /**
+   * @description Estilo dos botões
+   */
   buttonStyle?: Button;
+  /**
+   * @description Estilo de outros elementos
+   */
   otherStyles?: Miscellaneous;
+  /**
+   * @description Fonte do tema
+   */
   font?: Font;
+  /**
+   * @description Pagina de exemplo
+   */
+  page?: PageType;
 }
 
-type Theme =
-  & ThemeColors
-  & ComplementaryColors
-  & Button
-  & Miscellaneous;
+type Theme = ThemeColors & ComplementaryColors & Button & Miscellaneous;
 
-const darken = (color: string, percentage: number) =>
-  new Color(color).darken(percentage);
+const lighten = (color: string, percentage: number) =>
+  new Color(color).lighten(percentage);
 
 const isDark = (c: Color) =>
   c.contrast("black", "WCAG21") < c.contrast("white", "WCAG21");
@@ -150,45 +111,110 @@ const contrasted = (color: string, percentage = 0.8) => {
   return isDark(c) ? c.mix("white", percentage) : c.mix("black", percentage);
 };
 
-const toVariables = (
-  t: Theme & Required<ThemeColors>,
-): [string, string][] => {
-  const toValue = (color: string | ReturnType<typeof darken>) => {
+const getBetterContrastingColor = (color: string, ...colors: string[]) => {
+  const c = new Color(color);
+  const [betterColor] = colors.sort((a, b) => {
+    const colorA = new Color(a);
+    const colorB = new Color(b);
+
+    return (
+      Math.abs(colorB.contrast(c, "APCA")) -
+      Math.abs(colorA.contrast(c, "APCA"))
+    );
+  });
+
+  return betterColor;
+};
+
+const toVariables = (t: Theme & Required<ThemeColors>): [string, string][] => {
+  const toValue = (color: string | ReturnType<typeof lighten>) => {
     const [l, c, h] = new Color(color).oklch;
 
     return `${(l * 100).toFixed(0)}% ${c.toFixed(2)} ${(h || 0).toFixed(0)}deg`;
   };
 
+  // console.log("primary", t["primary"]);
+
   const colorVariables = Object.entries({
+    "--primary-500": t["primary"],
+    "--primary-400": t["primaryShades"]?.["400"] ?? lighten(t["primary"], 0.07),
+    "--primary-300": t["primaryShades"]?.["300"] ?? lighten(t["primary"], 0.14),
+    "--primary-200": t["primaryShades"]?.["200"] ?? lighten(t["primary"], 0.21),
+    "--primary-100": t["primaryShades"]?.["100"] ?? lighten(t["primary"], 0.28),
+
+    "--secondary-500": t["secondary"],
+    "--secondary-400": t["secondaryShades"]?.["400"] ??
+      lighten(t["secondary"], 0.07),
+    "--secondary-300": t["secondaryShades"]?.["300"] ??
+      lighten(t["secondary"], 0.14),
+    "--secondary-200": t["secondaryShades"]?.["200"] ??
+      lighten(t["secondary"], 0.21),
+    "--secondary-100": t["secondaryShades"]?.["100"] ??
+      lighten(t["secondary"], 0.28),
+
+    "--neutral-700": t["neutral"],
+    "--neutral-600": t["neutralShades"]?.["600"] ?? lighten(t["neutral"], 0.7),
+    "--neutral-500": t["neutralShades"]?.["500"] ?? lighten(t["neutral"], 1.4),
+    "--neutral-400": t["neutralShades"]?.["400"] ?? lighten(t["neutral"], 2.1),
+    "--neutral-300": t["neutralShades"]?.["300"] ?? lighten(t["neutral"], 2.8),
+    "--neutral-200": t["neutralShades"]?.["200"] ?? lighten(t["neutral"], 3.5),
+    "--neutral-100": t["base"],
+
+    "--danger-500": t["danger"],
+    "--danger-400": t["dangerShades"]?.["400"] ?? lighten(t["danger"], 0.07),
+    "--danger-300": t["dangerShades"]?.["300"] ?? lighten(t["danger"], 0.14),
+    "--danger-200": t["dangerShades"]?.["200"] ?? lighten(t["danger"], 0.21),
+    "--danger-100": t["dangerShades"]?.["100"] ?? lighten(t["danger"], 0.28),
+
+    "--warning-500": t["warning"],
+    "--warning-400": t["warningShades"]?.["400"] ?? lighten(t["warning"], 0.07),
+    "--warning-300": t["warningShades"]?.["300"] ?? lighten(t["warning"], 0.14),
+    "--warning-200": t["warningShades"]?.["200"] ?? lighten(t["warning"], 0.21),
+    "--warning-100": t["warningShades"]?.["100"] ?? lighten(t["warning"], 0.28),
+
+    "--success-500": t["success"],
+    "--success-400": t["successShades"]?.["400"] ?? lighten(t["success"], 0.07),
+    "--success-300": t["successShades"]?.["300"] ?? lighten(t["success"], 0.14),
+    "--success-200": t["successShades"]?.["200"] ?? lighten(t["success"], 0.21),
+    "--success-100": t["successShades"]?.["100"] ?? lighten(t["success"], 0.28),
+
+    "--info-500": t["info"],
+    "--info-400": t["infoShades"]?.["400"] ?? lighten(t["info"], 0.07),
+    "--info-300": t["infoShades"]?.["300"] ?? lighten(t["info"], 0.14),
+    "--info-200": t["infoShades"]?.["200"] ?? lighten(t["info"], 0.21),
+    "--info-100": t["infoShades"]?.["100"] ?? lighten(t["info"], 0.28),
+
     "--p": t["primary"],
-    "--pc": t["primary-content"] ?? contrasted(t["primary"]),
+    "--pc": getBetterContrastingColor(t["primary"], t["neutral"], t["base"]),
 
     "--s": t["secondary"],
-    "--sc": t["secondary-content"] ?? contrasted(t["secondary"]),
+    "--sc": getBetterContrastingColor(t["secondary"], t["neutral"], t["base"]),
 
-    "--a": t["tertiary"],
-    "--ac": t["tertiary-content"] ?? contrasted(t["tertiary"]),
+    "--a": t["secondary"],
+    "--ac": getBetterContrastingColor(t["secondary"], t["neutral"], t["base"]),
 
-    "--n": t["neutral"],
-    "--nc": t["neutral-content"] ?? contrasted(t["neutral"]),
+    "--n": t["neutral"]["600"] ?? lighten(t["neutral"], 0.5),
+    "--nc": t["base"],
 
-    "--b1": t["base-100"],
-    "--b2": t["base-200"] ?? darken(t["base-100"], 0.07),
-    "--b3": t["base-300"] ?? darken(t["base-100"], 0.14),
-    "--bc": t["base-content"] ?? contrasted(t["base-100"]),
+    "--b1": t["base"],
+    "--b2": t["neutralShades"]?.["200"] ?? lighten(t["base"], 0.07),
+    "--b3": t["neutralShades"]?.["300"] ?? lighten(t["base"], 0.14),
+    "--bc": t["neutral"]["600"] ?? lighten(t["neutral"], 0.5),
 
     "--su": t["success"],
-    "--suc": t["success-content"] ?? contrasted(t["success"]),
+    "--suc": getBetterContrastingColor(t["success"], t["neutral"], t["base"]),
 
     "--wa": t["warning"],
-    "--wac": t["warning-content"] ?? contrasted(t["warning"]),
+    "--wac": getBetterContrastingColor(t["secondary"], t["neutral"], t["base"]),
 
-    "--er": t["error"],
-    "--erc": t["error-content"] ?? contrasted(t["error"]),
+    "--er": t["danger"],
+    "--erc": getBetterContrastingColor(t["danger"], t["neutral"], t["base"]),
 
     "--in": t["info"],
-    "--inc": t["info-content"] ?? contrasted(t["info"]),
-  }).map(([key, color]) => [key, toValue(color)] as [string, string]);
+    "--inc": getBetterContrastingColor(t["info"], t["neutral"], t["base"]),
+  }).map(([key, color]) => {
+    return [key, toValue(color)] as [string, string];
+  });
 
   const miscellaneousVariables = Object.entries({
     "--rounded-box": t["--rounded-box"],
@@ -206,16 +232,7 @@ const toVariables = (
 };
 
 const defaultTheme = {
-  "primary": "oklch(1 0 0)",
-  "secondary": "oklch(1 0 0)",
-  "tertiary": "oklch(1 0 0)",
-  "neutral": "oklch(1 0 0)",
-  "base-100": "oklch(1 0 0)",
-  "info": "oklch(1 0 0)",
-  "success": "oklch(0.9054 0.1546 194.7689)",
-  "warning": "oklch(1 0 0)",
-  "error": "oklch(1 0 0)",
-
+  ...defaultColors,
   "--rounded-box": "1rem", // border radius rounded-box utility class, used in card and other large boxes
   "--rounded-btn": "0.2rem" as const, // border radius rounded-btn utility class, used in buttons and similar element
   "--rounded-badge": "1.9rem", // border radius rounded-badge utility class, used in badges and similar
@@ -227,27 +244,17 @@ const defaultTheme = {
   "--tab-radius": "0.5rem", // border radius of tabs
 };
 
-/**
- * This section merges the DESIGN_SYTEM variable with incoming props into a css sheet with variables, i.e.
- * this function transforms props into
- *
- * :root {
- *   --color-primary: #FFFFFF;
- *   --color-secondary: "#161616"
- * }
- */
 function Section({
-  mainColors,
+  colors,
   complementaryColors,
   buttonStyle,
   otherStyles,
   font,
-  colorScheme,
 }: Props) {
   const theme = {
     ...defaultTheme,
+    ...colors,
     ...complementaryColors,
-    ...mainColors,
     ...buttonStyle,
     ...otherStyles,
   };
@@ -259,201 +266,23 @@ function Section({
       font?.family ||
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
     ],
-  ]
-    .map(([name, value]) => ({ name, value }));
+  ].map(([name, value]) => ({ name, value }));
 
   return (
-    <SiteTheme
-      fonts={font ? [font] : undefined}
-      variables={variables}
-      // colorScheme={colorScheme}
-    />
+    <>
+      <SiteTheme fonts={font ? [font] : undefined} variables={variables} />
+    </>
   );
 }
 
 export function Preview(props: Props) {
+  const { page } = props;
+
   return (
-    <>
+    <div>
+      {page && <page.Component {...page.props} />}
       <Section {...props} />
-      <div class="grid grid-flow-row md:grid-flow-col">
-        <div class="flex flex-col gap-4 p-4 bg-base-100 text-base-content">
-          <div class="text-xl">The quick brown fox jumps over the lazy dog</div>
-          {" "}
-          <button class="btn">Default button</button>{" "}
-          <div class="flex flex-col gap-1">
-            <div class="flex flex-wrap gap-1">
-              <button class="btn btn-sm">A</button>{" "}
-              <button class="btn btn-sm btn-primary">A</button>{" "}
-              <button class="btn btn-sm btn-secondary">A</button>{" "}
-              <button class="btn btn-sm btn-accent">A</button>
-              {" "}
-            </div>
-            <div class="flex flex-wrap gap-1">
-              <button class="btn btn-sm btn-outline">A</button>{" "}
-              <button class="btn btn-sm btn-primary btn-outline">A</button>{" "}
-              <button class="btn btn-sm btn-secondary btn-outline">A</button>
-              {" "}
-              <button class="btn btn-sm btn-accent btn-outline">A</button>
-              {" "}
-            </div>
-            {" "}
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="badge">Base</span>{" "}
-            <span class="badge badge-primary">Primary</span>{" "}
-            <span class="badge badge-secondary">Secondary</span>{" "}
-            <span class="badge badge-accent">Accent</span>
-            {" "}
-          </div>{" "}
-          <div class="flex flex-col">
-            <div class="text-base">Content</div>
-            <div class="text-base text-primary">Primary</div>
-            <div class="text-base text-secondary">Secondary</div>
-            <div class="text-base text-accent">Accent</div>
-          </div>
-          {" "}
-        </div>{" "}
-        <div class="flex flex-col gap-4 p-4 bg-base-content text-base-100">
-          <div class="text-xl">The quick brown fox jumps over the lazy dog</div>
-          {" "}
-          <button class="btn">Default button</button>{" "}
-          <div class="flex flex-col gap-1">
-            <div class="flex flex-wrap gap-1">
-              <button class="btn btn-sm">A</button>{" "}
-              <button class="btn btn-sm btn-primary">A</button>{" "}
-              <button class="btn btn-sm btn-secondary">A</button>{" "}
-              <button class="btn btn-sm btn-accent">A</button>
-              {" "}
-            </div>
-            <div class="flex flex-wrap gap-1">
-              <button class="btn btn-sm btn-primary btn-outline">A</button>{" "}
-              <button class="btn btn-sm btn-secondary btn-outline">A</button>
-              {" "}
-              <button class="btn btn-sm btn-accent btn-outline">A</button>
-              {" "}
-            </div>
-            {" "}
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="badge">Base</span>{" "}
-            <span class="badge badge-primary">Primary</span>{" "}
-            <span class="badge badge-secondary">Secondary</span>{" "}
-            <span class="badge badge-accent">Accent</span>
-            {" "}
-          </div>{" "}
-          <div class="flex flex-col">
-            <div class="text-base">Content</div>
-            <div class="text-base text-primary">Primary</div>
-            <div class="text-base text-secondary">Secondary</div>
-            <div class="text-base text-accent">Accent</div>
-          </div>
-          {" "}
-        </div>{" "}
-        <div class="flex flex-col gap-4 p-4 bg-primary text-primary-content">
-          <div class="text-xl">The quick brown fox jumps over the lazy dog</div>
-          {" "}
-          <button class="btn">Default button</button>{" "}
-          <div class="flex flex-col gap-1">
-            <div class="flex flex-wrap gap-1">
-              <button class="btn btn-sm">A</button>{" "}
-              <button class="btn btn-sm btn-secondary">A</button>{" "}
-              <button class="btn btn-sm btn-accent">A</button>
-              {" "}
-            </div>
-            <div class="flex flex-wrap gap-1">
-              <button class="btn btn-sm btn-outline">A</button>{" "}
-              <button class="btn btn-sm btn-secondary btn-outline">A</button>
-              {" "}
-              <button class="btn btn-sm btn-accent btn-outline">A</button>
-              {" "}
-            </div>
-            {" "}
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="badge">Base</span>{" "}
-            <span class="badge badge-secondary">Secondary</span>{" "}
-            <span class="badge badge-accent">Accent</span>
-            {" "}
-          </div>{" "}
-          <div class="flex flex-col">
-            <div class="text-base">Content</div>
-            <div class="text-base text-secondary">Secondary</div>
-            <div class="text-base text-accent">Accent</div>
-          </div>
-          {" "}
-        </div>{" "}
-        <div class="flex flex-col gap-4 p-4 bg-secondary text-secondary-content">
-          <div class="text-xl">The quick brown fox jumps over the lazy dog</div>
-          {" "}
-          <button class="btn">Default button</button>{" "}
-          <div class="flex flex-col gap-1">
-            <div class="flex flex-wrap gap-1">
-              <button class="btn btn-sm">A</button>{" "}
-              <button class="btn btn-sm btn-primary">A</button>{" "}
-              <button class="btn btn-sm btn-accent">A</button>
-              {" "}
-            </div>
-            <div class="flex flex-wrap gap-1">
-              <button class="btn btn-sm btn-outline">A</button>{" "}
-              <button class="btn btn-sm btn-primary btn-outline">A</button>{" "}
-              <button class="btn btn-sm btn-accent btn-outline">A</button>
-              {" "}
-            </div>
-            {" "}
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="badge">Base</span>{" "}
-            <span class="badge badge-primary">Primary</span>{" "}
-            <span class="badge badge-accent">Accent</span>
-            {" "}
-          </div>{" "}
-          <div class="flex flex-col">
-            <div class="text-base">Content</div>
-            <div class="text-base text-primary">Primary</div>
-            <div class="text-base text-accent">Accent</div>
-          </div>
-          {" "}
-        </div>{" "}
-        <div class="flex flex-col gap-4 p-4 bg-accent text-accent-content">
-          <div class="text-xl">The quick brown fox jumps over the lazy dog</div>
-          {" "}
-          <button class="btn">Default button</button>{" "}
-          <div class="flex flex-col gap-1">
-            <div class="flex flex-wrap gap-1">
-              <button class="btn btn-sm">A</button>{" "}
-              <button class="btn btn-sm btn-primary">A</button>{" "}
-              <button class="btn btn-sm btn-secondary">A</button>
-              {" "}
-            </div>
-            <div class="flex flex-wrap gap-1">
-              <button class="btn btn-sm btn-outline">A</button>{" "}
-              <button class="btn btn-sm btn-primary btn-outline">A</button>{" "}
-              <button class="btn btn-sm btn-secondary btn-outline">A</button>
-              {" "}
-            </div>
-            {" "}
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="badge">Base</span>{" "}
-            <span class="badge badge-primary">Primary</span>{" "}
-            <span class="badge badge-secondary">Secondary</span>
-            {" "}
-          </div>{" "}
-          <div class="flex flex-col">
-            <div class="text-base">Content</div>
-            <div class="text-base text-primary">Primary</div>
-            <div class="text-base text-secondary">Secondary</div>
-          </div>
-          {" "}
-        </div>
-        {" "}
-      </div>
-      {props.font?.family && (
-        <div class="text-center py-2">
-          Font: {props.font.family}
-        </div>
-      )}
-    </>
+    </div>
   );
 }
 

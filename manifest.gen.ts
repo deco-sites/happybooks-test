@@ -54,6 +54,8 @@ import * as $$$$$$42 from "./sections/Product/ShelfWithImage.tsx";
 import * as $$$$$$43 from "./sections/Product/Wishlist.tsx";
 import * as $$$$$$44 from "./sections/Social/InstagramPosts.tsx";
 import * as $$$$$$45 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$47 from "./sections/Theme/defaultColors.ts";
+import * as $$$$$$48 from "./sections/Theme/theme.d.ts";
 import * as $$$$$$46 from "./sections/Theme/Theme.tsx";
 
 const manifest = {
@@ -113,6 +115,8 @@ const manifest = {
     "deco-sites/todo-livro/sections/Product/Wishlist.tsx": $$$$$$43,
     "deco-sites/todo-livro/sections/Social/InstagramPosts.tsx": $$$$$$44,
     "deco-sites/todo-livro/sections/Social/WhatsApp.tsx": $$$$$$45,
+    "deco-sites/todo-livro/sections/Theme/defaultColors.ts": $$$$$$47,
+    "deco-sites/todo-livro/sections/Theme/theme.d.ts": $$$$$$48,
     "deco-sites/todo-livro/sections/Theme/Theme.tsx": $$$$$$46,
   },
   "apps": {
