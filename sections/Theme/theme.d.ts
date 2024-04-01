@@ -21,10 +21,10 @@ export interface ComplementaryColors {
   primaryShades?: ColorShades;
   secondaryShades?: ColorShades;
   neutralShades?: ExtendedColorShades;
-  dangerShades?: ColorShades;
-  successShades?: ColorShades;
-  warningShades?: ColorShades;
-  infoShades?: ColorShades;
+  dangerShades?: ExtendedColorShades;
+  successShades?: ExtendedColorShades;
+  warningShades?: ExtendedColorShades;
+  infoShades?: ExtendedColorShades;
 }
 
 export interface ColorShades {
