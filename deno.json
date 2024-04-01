@@ -6,7 +6,7 @@
     "$sdk/": "./sdk/",
     "$components/": "./components/",
     "deco/": "https://cdn.jsdelivr.net/gh/deco-cx/deco@1.60.14/",
-    "apps/": "https://cdn.jsdelivr.net/gh/deco-cx/apps@0.35.26/",
+    "apps/": "https://cdn.jsdelivr.net/gh/deco-cx/apps@0.35.28/",
     "$fresh/": "https://deno.land/x/fresh@1.6.5/",
     "preact": "https://esm.sh/preact@10.19.2",
     "preact/": "https://esm.sh/preact@10.19.2/",
