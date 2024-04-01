@@ -17,6 +17,7 @@ import * as $Header_Cart_vnda from "./islands/Header/Cart/vnda.tsx";
 import * as $Header_Cart_vtex from "./islands/Header/Cart/vtex.tsx";
 import * as $Header_Cart_wake from "./islands/Header/Cart/wake.tsx";
 import * as $Header_CartDrawer from "./islands/Header/CartDrawer.tsx";
+import * as $Header_FreeShippingProgressBar from "./islands/Header/FreeShippingProgressBar.tsx";
 import * as $Header_MenuDrawer from "./islands/Header/MenuDrawer.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Header_SetupMicroHeader from "./islands/Header/SetupMicroHeader.tsx";
@@ -50,6 +51,8 @@ const manifest = {
     "./islands/Header/Cart/vtex.tsx": $Header_Cart_vtex,
     "./islands/Header/Cart/wake.tsx": $Header_Cart_wake,
     "./islands/Header/CartDrawer.tsx": $Header_CartDrawer,
+    "./islands/Header/FreeShippingProgressBar.tsx":
+      $Header_FreeShippingProgressBar,
     "./islands/Header/MenuDrawer.tsx": $Header_MenuDrawer,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
     "./islands/Header/SetupMicroHeader.tsx": $Header_SetupMicroHeader,

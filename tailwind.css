@@ -27,6 +27,11 @@
     overflow: hidden;
     height: 100vh;
   }
+
+  b,
+  strong {
+    font-weight: bold;
+  }
 }
 
 @layer components {

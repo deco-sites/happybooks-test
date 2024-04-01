@@ -11,6 +11,9 @@ export default {
   },
   theme: {
     container: { center: true },
+    maxWidth: {
+      "container": "1220px",
+    },
     colors: {
       "primary-500": " oklch(var(--primary-500))",
       "primary-400": " oklch(var(--primary-400))",
