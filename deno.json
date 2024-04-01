@@ -1,6 +1,10 @@
 {
   "imports": {
     "deco-sites/todo-livro/": "./",
+    "$store/": "./",
+    "$islands/": "./islands/",
+    "$sdk/": "./sdk/",
+    "$components/": "./components/",
     "deco/": "https://cdn.jsdelivr.net/gh/deco-cx/deco@1.57.32/",
     "apps/": "https://cdn.jsdelivr.net/gh/deco-cx/apps@0.35.21/",
     "$fresh/": "https://deno.land/x/fresh@1.6.5/",
@@ -43,10 +47,8 @@
   ],
   "lint": {
     "rules": {
-      "tags": [
-        "fresh",
-        "recommended"
-      ]
+      "tags": ["fresh", "recommended"],
+      "exclude": ["no-window"]
     }
   },
   "nodeModulesDir": true,
