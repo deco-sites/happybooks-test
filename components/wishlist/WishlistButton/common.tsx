@@ -29,7 +29,7 @@ function ButtonCommon({
   return (
     <Button
       class={variant === "icon"
-        ? "btn-circle btn-ghost gap-2"
+        ? "btn-circle btn-ghost gap-2 w-7 h-7 min-w-7 min-h-7 bg-neutral-200"
         : "btn-primary btn-outline gap-2"}
       loading={fetching.value}
       aria-label="Add to wishlist"
@@ -77,8 +77,9 @@ function ButtonCommon({
     >
       <Icon
         id="Heart"
-        size={24}
-        strokeWidth={2}
+        size={14}
+        strokeWidth={1}
+        class="text-neutral-400"
         fill={inWishlist ? "black" : "none"}
       />
       {variant === "icon" ? null : inWishlist ? "Remover" : "Favoritar"}
