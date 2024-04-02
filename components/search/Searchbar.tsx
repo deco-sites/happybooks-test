@@ -65,17 +65,17 @@ function Searchbar({
   const hasTerms = Boolean(searches.length);
 
   return (
-    <div class="flex-1 dropdown dropdown-bottom dropdown-end">
+    <div class="flex-1 dropdown dropdown-bottom dropdown-end w-full">
       <form
         tabIndex={0}
         id={id}
         action={action}
-        class="join w-full rounded-none bg-neutral-200 border border-transparent has-[:focus]:border-primary"
+        class="join w-full rounded-full bg-neutral-200 border border-neutral-200 has-[:focus]:border-success-300 transition-colors group/form"
         role="button"
       >
         <input
           id="search-input"
-          class="input h-10 text-sm placeholder:text-neutral-400 join-item flex-grow border-none focus:outline-none bg-transparent"
+          class="input h-[46px] text-sm placeholder:text-neutral-400 join-item flex-grow border-none focus:outline-none bg-transparent text-neutral-600 pl-[30px]"
           name={name}
           onInput={(e) => {
             const value = e.currentTarget.value;
@@ -94,9 +94,9 @@ function Searchbar({
           aria-haspopup="listbox"
           autocomplete="off"
         />
-        <Button
+        <button
           type="submit"
-          class="join-item btn-ghost btn-square size-10 min-h-10 mx-1.5"
+          class="rounded-full size-12 min-h-12 bg-neutral-300 transition-colors flex items-center border border-neutral-300 justify-center text-success-300 hover:border-success-300 hover:bg-success-300 hover:text-neutral-100 group-has-[:focus]/form:border-success-300"
           aria-label="Search"
           for={id}
           tabIndex={-1}
@@ -106,16 +106,16 @@ function Searchbar({
             : (
               <Icon
                 id="MagnifyingGlass"
-                size={24}
+                size={20}
                 strokeWidth={0.01}
-                class="text-primary"
+                class="text-inherit"
               />
             )}
-        </Button>
+        </button>
       </form>
       <div
         tabIndex={0}
-        class="dropdown-content group/search-bar w-full bg-base-100 border border-solid border-primary border-t-0 !scale-100 py-3 px-4 data-[has-content='false']:!opacity-0 flex flex-col"
+        class="dropdown-content group/search-bar w-full bg-base-100 border border-solid border-success-300 border-t-0 !scale-100 py-3 px-4 data-[has-content='false']:!opacity-0 flex flex-col"
         data-has-products={hasProducts}
         data-has-terms={hasTerms}
         data-has-content={hasProducts || hasTerms}

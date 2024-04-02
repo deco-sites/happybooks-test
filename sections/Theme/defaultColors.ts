@@ -2,6 +2,7 @@ export const defaultColors = {
   base: "rgba(255, 255, 255, 1)",
   primary: "rgba(245, 183, 24, 1)",
   secondary: "rgba(0, 59, 119, 1)",
+  tertiary: "rgba(142, 61, 79, 1)",
   neutral: "rgba(28, 28, 28, 1)",
   danger: "rgba(153, 13, 32, 1)",
   warning: "rgb(255, 189, 17)",

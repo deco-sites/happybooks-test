@@ -1,8 +1,9 @@
 import Icon from "../../components/ui/Icon.tsx";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
+import { Navigation } from "deco-sites/todo-livro/components/header/Header.tsx";
 
 export interface Props {
-  items: SiteNavigationElement[];
+  navigation?: Navigation;
 }
 
 function MenuItem({ item }: { item: SiteNavigationElement }) {
@@ -26,15 +27,17 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
   );
 }
 
-function Menu({ items }: Props) {
+function Menu({ navigation }: Props) {
   return (
     <div class="flex flex-col h-full">
       <ul class="px-4 flex-grow flex flex-col divide-y divide-base-200">
-        {items.map((item) => (
+        {
+          /* {items.map((item) => (
           <li>
             <MenuItem item={item} />
           </li>
-        ))}
+        ))} */
+        }
       </ul>
 
       <ul class="flex flex-col py-2 bg-base-200">

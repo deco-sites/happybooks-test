@@ -152,6 +152,16 @@ const toVariables = (t: Theme & Required<ThemeColors>): [string, string][] => {
     "--secondary-100": t["secondaryShades"]?.["100"] ??
       lighten(t["secondary"], 0.28),
 
+    "--tertiary-500": t["tertiary"],
+    "--tertiary-400": t["tertiaryShades"]?.["400"] ??
+      lighten(t["tertiary"], 0.07),
+    "--tertiary-300": t["tertiaryShades"]?.["300"] ??
+      lighten(t["tertiary"], 0.14),
+    "--tertiary-200": t["tertiaryShades"]?.["200"] ??
+      lighten(t["tertiary"], 0.21),
+    "--tertiary-100": t["tertiaryShades"]?.["100"] ??
+      lighten(t["tertiary"], 0.28),
+
     "--neutral-700": t["neutral"],
     "--neutral-600": t["neutralShades"]?.["600"] ?? lighten(t["neutral"], 0.7),
     "--neutral-500": t["neutralShades"]?.["500"] ?? lighten(t["neutral"], 1.4),
@@ -193,6 +203,9 @@ const toVariables = (t: Theme & Required<ThemeColors>): [string, string][] => {
 
     "--s": t["secondary"],
     "--sc": getBetterContrastingColor(t["secondary"], t["neutral"], t["base"]),
+
+    "--t": t["tertiary"],
+    "--tc": getBetterContrastingColor(t["tertiary"], t["neutral"], t["base"]),
 
     "--a": t["secondary"],
     "--ac": getBetterContrastingColor(t["secondary"], t["neutral"], t["base"]),

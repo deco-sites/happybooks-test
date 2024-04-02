@@ -6,6 +6,8 @@ export interface ThemeColors {
   /** @format color-input */
   secondary: string;
   /** @format color-input */
+  tertiary: string;
+  /** @format color-input */
   neutral: string;
   /** @format color-input */
   danger: string;
@@ -20,6 +22,7 @@ export interface ThemeColors {
 export interface ComplementaryColors {
   primaryShades?: ColorShades;
   secondaryShades?: ColorShades;
+  tertiaryShades?: ColorShades;
   neutralShades?: ExtendedColorShades;
   dangerShades?: ExtendedColorShades;
   successShades?: ExtendedColorShades;

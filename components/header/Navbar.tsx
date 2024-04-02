@@ -14,11 +14,24 @@ import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
 import { Buttons, Logo } from "../../components/header/Header.tsx";
+import { Navigation } from "deco-sites/todo-livro/components/header/Header.tsx";
+import Button from "deco-sites/todo-livro/components/ui/Button.tsx";
+import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+
+const NAV_LINK_STYLE_DICT = {
+  primary: "bg-primary-400 hover:!bg-primary-500",
+  secondary: "bg-secondary-100 hover:!bg-secondary-400 hover:!text-white",
+  tertiary: "bg-tertiary-200 hover:!bg-tertiary-400 hover:!text-white",
+} as const;
 
 // Make it sure to render it on the server only. DO NOT render it on an island
 function Navbar(
-  { items, searchbar, logo, buttons, device }: {
-    items: SiteNavigationElement[];
+  { whatsapp, navigation, searchbar, logo, buttons, device }: {
+    whatsapp?: {
+      number: string;
+      href: string;
+    };
+    navigation?: Navigation;
     searchbar?: SearchbarProps;
     logo?: Logo;
     buttons?: Buttons;
@@ -66,54 +79,154 @@ function Navbar(
 
   // Desktop header
   return (
-    <div class="hidden sm:grid sm:grid-cols-3 items-center border-b border-base-200 w-full max-w-container mx-auto">
-      <div
-        class={`flex justify-start`}
-      >
-        {logo && (
-          <a
-            href="/"
-            aria-label="Store logo"
-            class="block"
-          >
-            <Image
-              src={logo.src}
-              alt={logo.alt}
-              width={logo.width || 100}
-              height={logo.height || 13}
-            />
-          </a>
-        )}
-      </div>
-      <ul
-        class={`flex gap-6 col-span-1 justify-center`}
-      >
-        {items.map((item) => <NavItem item={item} />)}
-      </ul>
-      <div class="flex-none flex items-center justify-end gap-6 col-span-1">
-        <Searchbar searchbar={searchbar} />
-        {!buttons?.hideAccountButton && (
-          <a
-            class="flex items-center text-xs font-thin"
-            href="/account"
-            aria-label="Account"
-          >
-            <div class="flex btn btn-circle btn-sm btn-ghost gap-1">
-              <Icon id="User" size={20} strokeWidth={0.4} />
+    <div class="hidden sm:flex w-full transition-all group-data-[micro-header='true']/header:shadow-[0px_42px_12px_0px_rgba(0,0,0,0.00),0px_27px_11px_0px_rgba(0,0,0,0.01),0px_15px_9px_0px_rgba(0,0,0,0.05),0px_7px_7px_0px_rgba(0,0,0,0.09),0px_2px_4px_0px_rgba(0,0,0,0.10),0px_0px_0px_0px_rgba(0,0,0,0.10)]">
+      <div class="sm:flex w-full flex-col max-w-container mx-auto">
+        <div class="flex items-center justify-between w-full">
+          <div class="flex gap-11">
+            <div
+              class={`flex justify-start`}
+            >
+              {logo && (
+                <a
+                  href="/"
+                  aria-label="Store logo"
+                  class="flex"
+                >
+                  <Image
+                    class="object-contain"
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={logo.width || 100}
+                    height={logo.height || 13}
+                  />
+                </a>
+              )}
             </div>
-            ACCOUNT
-          </a>
-        )}
-        {!buttons?.hideCartButton && (
-          <div class="flex items-center text-xs font-thin">
-            {platform === "vtex" && <CartButtonVTEX />}
-            {platform === "vnda" && <CartButtonVDNA />}
-            {platform === "wake" && <CartButtonWake />}
-            {platform === "linx" && <CartButtonLinx />}
-            {platform === "shopify" && <CartButtonShopify />}
-            {platform === "nuvemshop" && <CartButtonNuvemshop />}
+            <div class="w-[450px] mt-[6px] mb-2">
+              <Searchbar searchbar={searchbar} />
+            </div>
           </div>
-        )}
+          <div class="flex gap-11 items-center justify-end">
+            {whatsapp && (
+              <a
+                class="flex gap-2 items-center text-xs text-neutral-400"
+                href={whatsapp.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Atendimento"
+              >
+                <Icon
+                  id="WhatsApp"
+                  size={24}
+                  strokeWidth={0.4}
+                  class="text-success-300"
+                />
+                <strong>
+                  Atendimento<br />
+                  {whatsapp.number}
+                </strong>
+              </a>
+            )}
+            {!buttons?.hideAccountButton && (
+              <a
+                class="flex gap-2 items-center text-xs text-neutral-400"
+                href="/account"
+                aria-label="Account"
+              >
+                <Icon
+                  id="User"
+                  size={24}
+                  strokeWidth={0.4}
+                  class="text-success-300"
+                />
+                <span>
+                  <strong>Entre</strong> ou<br />
+                  <strong>Cadastre-se</strong>
+                </span>
+                <Icon
+                  id="ChevronDown"
+                  size={10}
+                  strokeWidth={0.4}
+                  class="text-success-400"
+                />
+              </a>
+            )}
+            {!buttons?.hideCartButton && (
+              <div class="flex items-center text-xs font-thin">
+                {platform === "vtex" && <CartButtonVTEX />}
+                {platform === "vnda" && <CartButtonVDNA />}
+                {platform === "wake" && <CartButtonWake />}
+                {platform === "linx" && <CartButtonLinx />}
+                {platform === "shopify" && <CartButtonShopify />}
+                {platform === "nuvemshop" && <CartButtonNuvemshop />}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div
+          class={`h-[50px] w-full flex gap-[22px] max-w-container mx-auto items-center border-t border-t-neutral-200 pt-[7px]`}
+        >
+          {!!navigation?.categories?.length && (
+            <div class="dropdown dropdown-hover h-full flex flex-col group">
+              <div class="text-secondary-400 flex items-center gap-[5px] flex-1 cursor-pointer">
+                <Icon id="Hamburger" size={14} />
+                <span class="text-sm font-bold">Categorias</span>
+                <Icon
+                  id="ChevronDown"
+                  size={16}
+                  class="group-hover:rotate-180 transition-all"
+                />
+              </div>
+              <div class="rounded-full w-full -translate-x-[7px] bg-primary-500 transition-all opacity-0 group-hover:opacity-100 h-2 scale-0 group-hover:scale-100" />
+              <div class="dropdown-content top-full max-w-container bg-base-100 rounded-b-[20px] py-[38px] shadow-[0px_42px_12px_0px_rgba(0,0,0,0.00),0px_27px_11px_0px_rgba(0,0,0,0.01),0px_15px_9px_0px_rgba(0,0,0,0.05),0px_7px_7px_0px_rgba(0,0,0,0.09),0px_2px_4px_0px_rgba(0,0,0,0.10),0px_0px_0px_0px_rgba(0,0,0,0.10)]">
+                <ul class="px-[110px] mr-1 max-h-[316px] flex gap-14 overflow-y-auto overflow-x-hidden">
+                  {navigation?.categories?.map((item) => (
+                    <li class="flex flex-col gap-[14px]">
+                      {item.items.map((subItem) => (
+                        <div class="flex flex-col">
+                          <a
+                            href={subItem.url}
+                            class="text-lg text-secondary-400 font-bold mb-2 text-nowrap"
+                          >
+                            {subItem.title}
+                          </a>
+                          <ul class="flex flex-col gap-[14px]">
+                            {subItem.children.map((child) => (
+                              <li class="flex">
+                                <a
+                                  href={child.url}
+                                  class="text-sm text-neutral-700 hover:font-bold transition-all text-nowrap"
+                                >
+                                  {child.name}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+          {navigation?.navItems?.map((item) => <NavItem item={item} />)}
+          <div class="ml-auto flex self-start gap-2">
+            {navigation?.links?.map((item) => ((
+              <a href={item.url}>
+                <Button
+                  class={clx(
+                    "rounded-full text-neutral-600 px-4 py-0 h-[35px] min-h-[35px] text-sm font-bold whitespace-nowrap",
+                    NAV_LINK_STYLE_DICT[item.style],
+                  )}
+                >
+                  {item.name}
+                </Button>
+              </a>
+            )))}
+          </div>
+        </div>
       </div>
     </div>
   );

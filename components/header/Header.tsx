@@ -4,7 +4,6 @@ import CartDrawer from "$store/islands/Header/CartDrawer.tsx";
 import MenuDrawer from "$store/islands/Header/MenuDrawer.tsx";
 import { usePlatform } from "../../sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import type { SectionProps } from "deco/types.ts";
 import Alert, { AlertItem } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
@@ -23,6 +22,67 @@ export interface Buttons {
   hideAccountButton?: boolean;
   hideCartButton?: boolean;
 }
+/**
+ * @titleBy name
+ */
+export interface CategoryItemChild {
+  name: string;
+  url: string;
+}
+/**
+ * @titleBy title
+ */
+export interface CategoryItem {
+  title: string;
+  url: string;
+  children: CategoryItemChild[];
+}
+export interface CategoryColumn {
+  items: CategoryItem[];
+}
+
+/**
+ * @titleBy name
+ */
+export interface NavItemChild {
+  name: string;
+  url: string;
+  /**
+   * @description Itens destacados terão underline em desktop, e aparecerão primeiro em mobile
+   */
+  highlight?: boolean;
+}
+
+export interface NavColumn {
+  items?: NavItemChild[];
+}
+
+/**
+ * @titleBy name
+ */
+export interface NavItem {
+  name: string;
+  url?: string;
+  /**
+   * @maxItems 2
+   */
+  columns: NavColumn[];
+}
+
+/**
+ * @titleBy title
+ */
+export interface NavigationLinkItem {
+  name: string;
+  url: string;
+  style: "primary" | "secondary" | "tertiary";
+}
+
+export interface Navigation {
+  categories: CategoryColumn[];
+  navItems: NavItem[];
+  links: NavigationLinkItem[];
+}
 
 export interface Props {
   alerts?: AlertItem[];
@@ -35,11 +95,17 @@ export interface Props {
   /** @title Search Bar */
   searchbar?: Omit<SearchbarProps, "platform">;
 
+  /** @title WhatsApp Link */
+  whatsapp?: {
+    number: string;
+    href: string;
+  };
+
   /**
-   * @title Navigation items
-   * @description Navigation items used both on mobile and desktop menus
+   * @title Navigation
+   * @description Navigation used both on mobile and desktop menus
    */
-  navItems?: SiteNavigationElement[] | null;
+  navigation?: Navigation;
 
   /** @title Logo */
   logo?: Logo;
@@ -51,28 +117,8 @@ function Header({
   alerts,
   freeShippingTarget,
   searchbar,
-  navItems = [
-    {
-      "@type": "SiteNavigationElement",
-      name: "Feminino",
-      url: "/",
-    },
-    {
-      "@type": "SiteNavigationElement",
-      name: "Masculino",
-      url: "/",
-    },
-    {
-      "@type": "SiteNavigationElement",
-      name: "Sale",
-      url: "/",
-    },
-    {
-      "@type": "SiteNavigationElement",
-      name: "Linktree",
-      url: "/",
-    },
-  ],
+  whatsapp,
+  navigation,
   logo = {
     src:
       "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2291/986b61d4-3847-4867-93c8-b550cb459cc7",
@@ -84,7 +130,6 @@ function Header({
   device,
 }: SectionProps<typeof loader>) {
   const platform = usePlatform();
-  const items = navItems ?? [];
 
   const isMobile = device === "mobile";
 
@@ -107,7 +152,7 @@ function Header({
           platform={platform}
         > */
         }
-        <div class="flex flex-col bg-base-100 fixed w-full z-10">
+        <div class="flex flex-col bg-base-100 fixed w-full z-50">
           {shouldShowAlerts && (
             <Alert
               alerts={alerts}
@@ -117,14 +162,15 @@ function Header({
           )}
           <Navbar
             device={device}
-            items={items}
+            navigation={navigation}
             searchbar={searchbar && { ...searchbar, platform }}
             logo={logo}
             buttons={buttons}
+            whatsapp={whatsapp}
           />
         </div>
         <CartDrawer platform={platform} />
-        {isMobile && <MenuDrawer menu={{ items }} />}
+        {isMobile && <MenuDrawer menu={{ navigation }} />}
       </header>
       <SetupMicroHeader rootId="main-header" threshold={140} />
     </>
