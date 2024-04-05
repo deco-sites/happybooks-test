@@ -97,10 +97,32 @@ export interface Props {
   page?: PageType;
 }
 
+const CMY_HUES = [180, 300, 60];
+const RGB_HUES = [360, 240, 120, 0];
+
 type Theme = ThemeColors & ComplementaryColors & Button & Miscellaneous;
 
-const lighten = (color: string, percentage: number) =>
-  new Color(color).lighten(percentage);
+function hueShift(hues: Array<number>, hue: number, intensity: number) {
+  const closestHue =
+      hues.sort((a, b) => (Math.abs(a - hue) - Math.abs(b - hue)))[0],
+    hueShift = closestHue - hue;
+  return Math.round(intensity * hueShift * 0.5);
+}
+
+function lighten(hex: string, intensity: number) {
+  if (!hex) {
+    return "";
+  }
+
+  const color = new Color(hex);
+
+  const [h, s, v] = color.hsv;
+  const hue = h + hueShift(CMY_HUES, h, intensity);
+  const saturation = s - Math.round(s * intensity);
+  const value = v + Math.round((100 - v) * intensity);
+
+  return new Color("hsv", [hue, saturation, value]);
+}
 
 const isDark = (c: Color) =>
   c.contrast("black", "WCAG21") < c.contrast("white", "WCAG21");
@@ -111,7 +133,10 @@ const contrasted = (color: string, percentage = 0.8) => {
   return isDark(c) ? c.mix("white", percentage) : c.mix("black", percentage);
 };
 
-const getBetterContrastingColor = (color: string, ...colors: string[]) => {
+const getBetterContrastingColor = (
+  color: string | Color,
+  ...colors: string[]
+) => {
   const c = new Color(color);
   const [betterColor] = colors.sort((a, b) => {
     const colorA = new Color(a);
@@ -126,6 +151,18 @@ const getBetterContrastingColor = (color: string, ...colors: string[]) => {
   return betterColor;
 };
 
+const INTENSITY_MAP: {
+  [key: number]: number;
+} = {
+  50: 0.95,
+  100: 0.9,
+  200: 0.75,
+  300: 0.6,
+  400: 0.3,
+  500: 0.15,
+  600: 0.05,
+};
+
 const toVariables = (t: Theme & Required<ThemeColors>): [string, string][] => {
   const toValue = (color: string | ReturnType<typeof lighten>) => {
     const [l, c, h] = new Color(color).oklch;
@@ -137,66 +174,95 @@ const toVariables = (t: Theme & Required<ThemeColors>): [string, string][] => {
 
   const colorVariables = Object.entries({
     "--primary-500": t["primary"],
-    "--primary-400": t["primaryShades"]?.["400"] ?? lighten(t["primary"], 0.07),
-    "--primary-300": t["primaryShades"]?.["300"] ?? lighten(t["primary"], 0.14),
-    "--primary-200": t["primaryShades"]?.["200"] ?? lighten(t["primary"], 0.21),
-    "--primary-100": t["primaryShades"]?.["100"] ?? lighten(t["primary"], 0.28),
+    "--primary-400": t["primaryShades"]?.["400"] ??
+      lighten(t["primary"], INTENSITY_MAP[400]),
+    "--primary-300": t["primaryShades"]?.["300"] ??
+      lighten(t["primary"], INTENSITY_MAP[300]),
+    "--primary-200": t["primaryShades"]?.["200"] ??
+      lighten(t["primary"], INTENSITY_MAP[200]),
+    "--primary-100": t["primaryShades"]?.["100"] ??
+      lighten(t["primary"], INTENSITY_MAP[100]),
 
     "--secondary-500": t["secondary"],
     "--secondary-400": t["secondaryShades"]?.["400"] ??
-      lighten(t["secondary"], 0.07),
+      lighten(t["secondary"], INTENSITY_MAP[400]),
     "--secondary-300": t["secondaryShades"]?.["300"] ??
-      lighten(t["secondary"], 0.14),
+      lighten(t["secondary"], INTENSITY_MAP[300]),
     "--secondary-200": t["secondaryShades"]?.["200"] ??
-      lighten(t["secondary"], 0.21),
+      lighten(t["secondary"], INTENSITY_MAP[200]),
     "--secondary-100": t["secondaryShades"]?.["100"] ??
-      lighten(t["secondary"], 0.28),
+      lighten(t["secondary"], INTENSITY_MAP[100]),
 
     "--tertiary-500": t["tertiary"],
     "--tertiary-400": t["tertiaryShades"]?.["400"] ??
-      lighten(t["tertiary"], 0.07),
+      lighten(t["tertiary"], INTENSITY_MAP[400]),
     "--tertiary-300": t["tertiaryShades"]?.["300"] ??
-      lighten(t["tertiary"], 0.14),
+      lighten(t["tertiary"], INTENSITY_MAP[300]),
     "--tertiary-200": t["tertiaryShades"]?.["200"] ??
-      lighten(t["tertiary"], 0.21),
+      lighten(t["tertiary"], INTENSITY_MAP[200]),
     "--tertiary-100": t["tertiaryShades"]?.["100"] ??
-      lighten(t["tertiary"], 0.28),
+      lighten(t["tertiary"], INTENSITY_MAP[100]),
 
     "--neutral-700": t["neutral"],
-    "--neutral-600": t["neutralShades"]?.["600"] ?? lighten(t["neutral"], 0.7),
-    "--neutral-500": t["neutralShades"]?.["500"] ?? lighten(t["neutral"], 1.4),
-    "--neutral-400": t["neutralShades"]?.["400"] ?? lighten(t["neutral"], 2.1),
-    "--neutral-300": t["neutralShades"]?.["300"] ?? lighten(t["neutral"], 2.8),
-    "--neutral-200": t["neutralShades"]?.["200"] ?? lighten(t["neutral"], 3.5),
+    "--neutral-600": t["neutralShades"]?.["600"] ??
+      lighten(t["neutral"], INTENSITY_MAP[600]),
+    "--neutral-500": t["neutralShades"]?.["500"] ??
+      lighten(t["neutral"], INTENSITY_MAP[500]),
+    "--neutral-400": t["neutralShades"]?.["400"] ??
+      lighten(t["neutral"], INTENSITY_MAP[400]),
+    "--neutral-300": t["neutralShades"]?.["300"] ??
+      lighten(t["neutral"], INTENSITY_MAP[300]),
+    "--neutral-200": t["neutralShades"]?.["200"] ??
+      lighten(t["neutral"], INTENSITY_MAP[200]),
     "--neutral-100": t["base"],
 
     "--danger-700": t["danger"],
-    "--danger-600": t["dangerShades"]?.["600"] ?? lighten(t["danger"], 0.07),
-    "--danger-500": t["dangerShades"]?.["500"] ?? lighten(t["danger"], 0.14),
-    "--danger-400": t["dangerShades"]?.["400"] ?? lighten(t["danger"], 0.21),
-    "--danger-300": t["dangerShades"]?.["300"] ?? lighten(t["danger"], 0.28),
-    "--danger-200": t["dangerShades"]?.["200"] ?? lighten(t["danger"], 0.35),
+    "--danger-600": t["dangerShades"]?.["600"] ??
+      lighten(t["danger"], INTENSITY_MAP[600]),
+    "--danger-500": t["dangerShades"]?.["500"] ??
+      lighten(t["danger"], INTENSITY_MAP[500]),
+    "--danger-400": t["dangerShades"]?.["400"] ??
+      lighten(t["danger"], INTENSITY_MAP[400]),
+    "--danger-300": t["dangerShades"]?.["300"] ??
+      lighten(t["danger"], INTENSITY_MAP[300]),
+    "--danger-200": t["dangerShades"]?.["200"] ??
+      lighten(t["danger"], INTENSITY_MAP[200]),
 
     "--warning-700": t["warning"],
-    "--warning-600": t["warningShades"]?.["600"] ?? lighten(t["warning"], 0.07),
-    "--warning-500": t["warningShades"]?.["500"] ?? lighten(t["warning"], 0.14),
-    "--warning-400": t["warningShades"]?.["400"] ?? lighten(t["warning"], 0.21),
-    "--warning-300": t["warningShades"]?.["300"] ?? lighten(t["warning"], 0.28),
-    "--warning-200": t["warningShades"]?.["200"] ?? lighten(t["warning"], 0.35),
+    "--warning-600": t["warningShades"]?.["600"] ??
+      lighten(t["warning"], INTENSITY_MAP[600]),
+    "--warning-500": t["warningShades"]?.["500"] ??
+      lighten(t["warning"], INTENSITY_MAP[500]),
+    "--warning-400": t["warningShades"]?.["400"] ??
+      lighten(t["warning"], INTENSITY_MAP[400]),
+    "--warning-300": t["warningShades"]?.["300"] ??
+      lighten(t["warning"], INTENSITY_MAP[300]),
+    "--warning-200": t["warningShades"]?.["200"] ??
+      lighten(t["warning"], INTENSITY_MAP[200]),
 
     "--success-700": t["success"],
-    "--success-600": t["successShades"]?.["600"] ?? lighten(t["success"], 0.07),
-    "--success-500": t["successShades"]?.["500"] ?? lighten(t["success"], 0.14),
-    "--success-400": t["successShades"]?.["400"] ?? lighten(t["success"], 0.21),
-    "--success-300": t["successShades"]?.["300"] ?? lighten(t["success"], 0.28),
-    "--success-200": t["successShades"]?.["200"] ?? lighten(t["success"], 0.35),
+    "--success-600": t["successShades"]?.["600"] ??
+      lighten(t["success"], INTENSITY_MAP[600]),
+    "--success-500": t["successShades"]?.["500"] ??
+      lighten(t["success"], INTENSITY_MAP[500]),
+    "--success-400": t["successShades"]?.["400"] ??
+      lighten(t["success"], INTENSITY_MAP[400]),
+    "--success-300": t["successShades"]?.["300"] ??
+      lighten(t["success"], INTENSITY_MAP[300]),
+    "--success-200": t["successShades"]?.["200"] ??
+      lighten(t["success"], INTENSITY_MAP[200]),
 
     "--info-700": t["info"],
-    "--info-600": t["infoShades"]?.["600"] ?? lighten(t["info"], 0.07),
-    "--info-500": t["infoShades"]?.["500"] ?? lighten(t["info"], 0.14),
-    "--info-400": t["infoShades"]?.["400"] ?? lighten(t["info"], 0.21),
-    "--info-300": t["infoShades"]?.["300"] ?? lighten(t["info"], 0.28),
-    "--info-200": t["infoShades"]?.["200"] ?? lighten(t["info"], 0.35),
+    "--info-600": t["infoShades"]?.["600"] ??
+      lighten(t["info"], INTENSITY_MAP[600]),
+    "--info-500": t["infoShades"]?.["500"] ??
+      lighten(t["info"], INTENSITY_MAP[500]),
+    "--info-400": t["infoShades"]?.["400"] ??
+      lighten(t["info"], INTENSITY_MAP[400]),
+    "--info-300": t["infoShades"]?.["300"] ??
+      lighten(t["info"], INTENSITY_MAP[300]),
+    "--info-200": t["infoShades"]?.["200"] ??
+      lighten(t["info"], INTENSITY_MAP[200]),
 
     "--p": t["primary"],
     "--pc": getBetterContrastingColor(t["primary"], t["neutral"], t["base"]),
@@ -214,9 +280,11 @@ const toVariables = (t: Theme & Required<ThemeColors>): [string, string][] => {
     "--nc": t["base"],
 
     "--b1": t["base"],
-    "--b2": t["neutralShades"]?.["200"] ?? lighten(t["base"], 0.07),
-    "--b3": t["neutralShades"]?.["300"] ?? lighten(t["base"], 0.14),
-    "--bc": t["neutral"]["600"] ?? lighten(t["neutral"], 0.5),
+    "--b2": t["neutralShades"]?.["200"] ??
+      lighten(t["base"], INTENSITY_MAP[200]),
+    "--b3": t["neutralShades"]?.["300"] ??
+      lighten(t["base"], INTENSITY_MAP[300]),
+    "--bc": t["neutral"]["600"] ?? lighten(t["neutral"], INTENSITY_MAP[600]),
 
     "--su": t["success"],
     "--suc": getBetterContrastingColor(t["success"], t["neutral"], t["base"]),
