@@ -44,6 +44,12 @@ export const useSuggestions = (
   loader: Resolved<Suggestion | null>,
 ) => {
   const setQuery = useCallback((query: string) => {
+    if (!query) {
+      payload.value = null;
+      latestQuery = "";
+      return;
+    }
+
     loading.value = true;
     latestQuery = query;
     queue = queue.then(() => doFetch(query, loader));

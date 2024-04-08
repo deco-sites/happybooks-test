@@ -15,6 +15,11 @@ export default {
       "container": "1220px",
     },
     extend: {
+      screens: {
+        // lg: "1025px", // Consider big tablets as mobile
+  
+        xs: "440px",
+      },
       colors: {
         "primary-500": "oklch(var(--primary-500))",
         "primary-400": "oklch(var(--primary-400))",
