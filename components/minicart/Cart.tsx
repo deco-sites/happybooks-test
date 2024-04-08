@@ -1,6 +1,7 @@
 // import { platform } from "../../apps/storefront.ts";
 import { lazy } from "preact/compat";
 import { usePlatform } from "../../sdk/usePlatform.tsx";
+import type { Props as VTEXCartProps } from "./vtex/Cart.tsx";
 
 const CartVTEX = lazy(() => import("./vtex/Cart.tsx"));
 const CartVNDA = lazy(() => import("./vnda/Cart.tsx"));
@@ -9,13 +10,13 @@ const CartLinx = lazy(() => import("./linx/Cart.tsx"));
 const CartShopify = lazy(() => import("./shopify/Cart.tsx"));
 const CartNuvemshop = lazy(() => import("./nuvemshop/Cart.tsx"));
 
-export interface Props {
+export interface Props extends VTEXCartProps {
   platform: ReturnType<typeof usePlatform>;
 }
 
-function Cart({ platform }: Props) {
+function Cart({ platform, ...props }: Props) {
   if (platform === "vtex") {
-    return <CartVTEX />;
+    return <CartVTEX {...props} />;
   }
 
   if (platform === "vnda") {

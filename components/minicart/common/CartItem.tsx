@@ -58,71 +58,71 @@ function CartItem(
   );
 
   return (
-    <div
-      class="grid grid-rows-1 gap-2"
-      style={{
-        gridTemplateColumns: "auto 1fr",
-      }}
-    >
+    <div class="flex items-center">
       <Image
         {...image}
         src={image.src.replace("55-55", "255-255")}
-        style={{ aspectRatio: "108 / 150" }}
-        width={108}
-        height={150}
-        class="h-full object-contain"
+        style={{ aspectRatio: "70 / 70" }}
+        width={70}
+        height={70}
+        class="h-full object-contain mr-4"
       />
 
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2 mr-2">
         <div class="flex justify-between items-center">
-          <span>{name}</span>
-          <Button
+          <strong class="text-sm text-neutral-700 truncate">{name}</strong>
+        </div>
+        <div class="flex gap-4 items-center">
+          <div class="flex flex-col">
+            <span class="line-through text-xs text-neutral-400 font-bold">
+              De: {formatPrice(list, currency, locale)}
+            </span>
+            <span class="">
+              <strong class="text-neutral-700 text-xs">Por:{" "}</strong>
+              <strong class="text-success-300 font-extrabold">
+                {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
+              </strong>
+            </span>
+          </div>
+
+          <QuantitySelector
             disabled={loading || isGift}
-            loading={loading}
-            class="btn-ghost btn-square"
-            onClick={withLoading(async () => {
+            quantity={quantity}
+            onChange={withLoading(async (quantity) => {
               const analyticsItem = itemToAnalyticsItem(index);
+              const diff = quantity - item.quantity;
 
-              await onUpdateQuantity(0, index);
+              await onUpdateQuantity(quantity, index);
 
-              analyticsItem && sendEvent({
-                name: "remove_from_cart",
-                params: { items: [analyticsItem] },
-              });
+              if (analyticsItem) {
+                sendEvent({
+                  name: diff < 0 ? "remove_from_cart" : "add_to_cart",
+                  params: {
+                    items: [{ ...analyticsItem, quantity: Math.abs(diff) }],
+                  },
+                });
+              }
             })}
-          >
-            <Icon id="Trash" size={24} />
-          </Button>
+          />
         </div>
-        <div class="flex items-center gap-2">
-          <span class="line-through text-sm">
-            {formatPrice(list, currency, locale)}
-          </span>
-          <span class="text-sm text-secondary">
-            {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
-          </span>
-        </div>
-
-        <QuantitySelector
-          disabled={loading || isGift}
-          quantity={quantity}
-          onChange={withLoading(async (quantity) => {
-            const analyticsItem = itemToAnalyticsItem(index);
-            const diff = quantity - item.quantity;
-
-            await onUpdateQuantity(quantity, index);
-
-            if (analyticsItem) {
-              sendEvent({
-                name: diff < 0 ? "remove_from_cart" : "add_to_cart",
-                params: {
-                  items: [{ ...analyticsItem, quantity: Math.abs(diff) }],
-                },
-              });
-            }
-          })}
-        />
       </div>
+      <Button
+        disabled={loading || isGift}
+        loading={loading}
+        class="btn-ghost btn-circle ml-auto !text-neutral-400"
+        onClick={withLoading(async () => {
+          const analyticsItem = itemToAnalyticsItem(index);
+
+          await onUpdateQuantity(0, index);
+
+          analyticsItem && sendEvent({
+            name: "remove_from_cart",
+            params: { items: [analyticsItem] },
+          });
+        })}
+      >
+        <Icon id="Trash" size={20} stroke-width={0} />
+      </Button>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { useUI } from "../../sdk/useUI.ts";
 import { usePlatform } from "../../sdk/usePlatform.tsx";
 import type { ComponentChildren } from "preact";
 import { lazy, Suspense } from "preact/compat";
+import type { Props as VTEXCartProps } from "$store/components/minicart/vtex/Cart.tsx";
 
 const Menu = lazy(() => import("../../components/header/Menu.tsx"));
 
@@ -54,10 +55,12 @@ const Aside = (
   </div>
 );
 
-export type CartDrawerProps = Pick<Props, "platform" | "children">;
+export type CartDrawerProps =
+  & Pick<Props, "platform" | "children">
+  & VTEXCartProps;
 
 export function CartDrawer(
-  { platform, children }: CartDrawerProps,
+  { children, ...props }: CartDrawerProps,
 ) {
   const { displayCart } = useUI();
 
@@ -69,8 +72,8 @@ export function CartDrawer(
       aside={
         <Aside // title="Minha sacola"
          // onClose={() => displayCart.value = false}
-        class="">
-          <Cart platform={platform} />
+        class="!bg-transparent">
+          <Cart {...props} />
         </Aside>
       }
     >
