@@ -1,7 +1,13 @@
-import Icon from "../../components/ui/Icon.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
+import SectionTitle from "deco-sites/todo-livro/components/footer/SectionTitle.tsx";
+import ImageOrIcon, {
+  ImageOrIconType,
+} from "deco-sites/todo-livro/components/ui/ImageOrIcon.tsx";
 
+/** @title {{ name }} */
 export interface PaymentItem {
-  label: "Diners" | "Elo" | "Mastercard" | "Pix" | "Visa";
+  name: string;
+  image: ImageOrIconType;
 }
 
 export default function PaymentMethods(
@@ -10,20 +16,22 @@ export default function PaymentMethods(
   return (
     <>
       {content && content.items && content.items.length > 0 && (
-        <div class="flex flex-col gap-4">
-          {content.title && <h3 class="text-lg">{content.title}</h3>}
-          <ul class="flex items-center gap-4 flex-wrap">
+        <div class="flex items-center gap-2.5 py-2.5 pl-10 pr-6 bg-neutral-100 rounded-[10px]">
+          {content.title && <SectionTitle>{content.title}</SectionTitle>}
+          <ul class="flex items-center justify-between flex-wrap gap-x-8 gap-y-2">
             {content.items.map((item) => {
               return (
                 <li
-                  class="border"
-                  title={item.label}
+                  class=""
+                  title={item.name}
                 >
-                  <Icon
-                    width={48}
-                    height={32}
-                    strokeWidth={1}
-                    id={item.label}
+                  <ImageOrIcon
+                    class="!w-auto"
+                    width={40}
+                    height={25}
+                    alt={item.name}
+                    {...item.image}
+                    loading="lazy"
                   />
                 </li>
               );

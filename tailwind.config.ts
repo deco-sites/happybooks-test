@@ -17,7 +17,7 @@ export default {
     extend: {
       screens: {
         // lg: "1025px", // Consider big tablets as mobile
-  
+
         xs: "440px",
       },
       colors: {

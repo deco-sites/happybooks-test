@@ -22,16 +22,16 @@ export default function Benefits(
   const {
     benefits = [{
       icon: {
-        icon: "Truck",
+        icon: { icon: "Truck" },
       },
       label: "Entrega em todo Brasil",
       description: "Consulte o prazo no fechamento da compra.",
     }, {
-      icon: { icon: "Discount" },
+      icon: { icon: { icon: "Discount" } },
       label: "15% na primeira compra",
       description: "Aplicado direto na sacola de compras.",
     }, {
-      icon: { icon: "ArrowsPointingOut" },
+      icon: { icon: { icon: "ArrowsPointingOut" } },
       label: "Devolução grátis",
       description: "Veja as condições para devolver seu produto.",
     }],
@@ -43,9 +43,9 @@ export default function Benefits(
         <div class="flex gap-4 items-center">
           {benefit.icon && (
             <ImageOrIcon
-              {...benefit.icon}
               width={40}
               height={40}
+              {...benefit.icon}
               loading="lazy"
               alt={benefit.label}
               class="text-success-300"

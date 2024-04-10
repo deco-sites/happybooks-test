@@ -5,13 +5,16 @@ import Image, {
 } from "apps/website/components/Image.tsx";
 
 export interface ImageOrIconType {
+  width?: number;
+  height?: number;
   /** @title Image */
   image?: ImageWidget;
   /**
    * @title Icon
-   * @default ""
    */
-  icon?: AvailableIcons;
+  icon?: {
+    icon: AvailableIcons;
+  };
 }
 
 export interface ImageOrIconProps extends ImageOrIconType {
@@ -71,11 +74,11 @@ const ImageOrIcon = (
     );
   }
 
-  if (!icon) {
+  if (!icon?.icon) {
     return null;
   }
 
-  return <Icon id={icon} width={width} height={height} class={_class} />;
+  return <Icon id={icon.icon} width={width} height={height} class={_class} />;
 };
 
 export default ImageOrIcon;

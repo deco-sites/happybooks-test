@@ -26,9 +26,9 @@ function AlertI({ icon, text, href }: AlertItem) {
       {icon &&
         (
           <ImageOrIcon
-            {...icon}
             width={16}
             height={16}
+            {...icon}
             loading="lazy"
             alt={text}
           />
