@@ -7,6 +7,7 @@ export type Item = { label: string; href: string };
 export interface ListSection {
   readonly kind: "list";
 
+  desktopMarginRight?: number;
   items?: Item[];
 }
 
@@ -51,7 +52,14 @@ export default function FooterItems(
             )}
           >
             {sections.map(({ title, content }) => (
-              <li>
+              <li
+                style={{
+                  desktopMarginRight:
+                    (content.kind === "list" && content.desktopMarginRight)
+                      ? `${content.desktopMarginRight}px`
+                      : undefined,
+                }}
+              >
                 <div class="flex flex-col gap-4">
                   <SectionTitle>
                     {title}
