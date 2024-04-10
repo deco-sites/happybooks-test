@@ -42,9 +42,11 @@ async function spritesToSVG(spritesPath: string, outFolder: string) {
 
   for (const s of doc?.querySelectorAll("symbol") ?? []) {
     const symbol = s as Element;
-    const id = (symbol as Element).getAttribute("id");
+    const id = symbol.getAttribute("id");
 
     if (!id) throw new Error(`Missing id for symbol: ${symbol.outerHTML}`);
+    symbol.removeAttribute("width");
+    symbol.removeAttribute("height");
     const content = `<svg ${
       symbol.outerHTML
         .replace(/<symbol id=".+?" /g, "")
@@ -55,7 +57,8 @@ async function spritesToSVG(spritesPath: string, outFolder: string) {
   }
 
   for (const [id, content] of svgMap) {
-    const optimized = optimize(content, config);
+    // const optimized = optimize(content, config);
+    const optimized = optimize(content);
 
     await Deno.writeTextFile(`${outFolder}/${id}.svg`, optimized.data);
   }
