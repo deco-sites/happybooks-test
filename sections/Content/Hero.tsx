@@ -13,6 +13,10 @@ export interface Props {
    * @format html
    */
   title: string;
+
+  /**
+   * @format textarea
+   */
   description: string;
   image?: ImageWidget;
   placement: "left" | "right";
@@ -32,64 +36,53 @@ export default function HeroFlats({
   cta,
 }: Props) {
   return (
-    <div>
-      <div class="mx-auto flex flex-col items-center gap-8">
+    <div class="w-full max-w-container mb-11 mx-auto flex flex-col gap-8">
+      <div class="flex gap-5 md:items-end">
+        {image && (
+          <Image
+            width={374}
+            height={335}
+            class="w-full lg:w-[507px] object-fit"
+            sizes="(max-width: 640px) 100vw, 30vw"
+            src={image}
+            alt={image}
+            decoding="async"
+            loading="lazy"
+          />
+        )}
         <div
-          class={`flex w-full xl:container xl:mx-auto py-20 mx-5 md:mx-10 z-10 ${
-            image
-              ? PLACEMENT[placement]
-              : "flex-col items-center justify-center text-center"
-          } lg:py-36 gap-12 md:gap-20 items-center`}
+          class={`mx-2 w-full lg:flex-1 gap-2 flex flex-col justify-end`}
         >
-          {image && (
-            <Image
-              width={640}
-              class="w-full lg:w-1/2 object-fit"
-              sizes="(max-width: 640px) 100vw, 30vw"
-              src={image}
-              alt={image}
-              decoding="async"
-              loading="lazy"
-            />
-          )}
           <div
-            class={`mx-6 lg:mx-auto lg:w-full space-y-4 gap-4 ${
-              image
-                ? "lg:w-1/2 lg:max-w-xl"
-                : "flex flex-col items-center justify-center lg:max-w-3xl"
-            }`}
+            class="inline-block text-[32px] text-right font-extrabold text-neutral-700"
+            dangerouslySetInnerHTML={{
+              __html: title,
+            }}
           >
-            <div
-              class="inline-block text-[80px] leading-[100%] font-medium tracking-[-2.4px]"
-              dangerouslySetInnerHTML={{
-                __html: title,
-              }}
-            >
-            </div>
-            <p class="text-zinc-400 text-[16px] md:text-[18px] leading-[150%]">
-              {description}
-            </p>
-            <div class="flex flex-col items-center lg:items-start lg:flex-row gap-4">
-              {cta?.map((item) => (
-                <a
-                  key={item?.id}
-                  id={item?.id}
-                  href={item?.href}
-                  target={item?.href.includes("http") ? "_blank" : "_self"}
-                  class={`group relative overflow-hidden rounded-full hover:bg-gradient-to-r px-6 py-2 lg:px-8 lg:py-3 transition-all duration-300 ease-out ${
-                    item.variant === "Reverse"
-                      ? "bg-secondary text-white"
-                      : "bg-accent text-black"
-                  }`}
-                >
-                  <span class="ease absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform bg-white opacity-10 transition-all duration-1000 group-hover:-translate-x-40">
-                  </span>
-                  <span class="relative font-medium lg:text-[20px]">
-                    {item?.text}
-                  </span>
-                </a>
-              ))}
-            </div>
+          </div>
+
+          <p
+            class="text-neutral-700 text-base text-right"
+            dangerouslySetInnerHTML={{
+              __html: description.replace(/\n/g, "<br>"),
+            }}
+          />
+          <div class="flex flex-col items-center lg:items-start justify-end lg:flex-row gap-4">
+            {cta?.map((item) => (
+              <a
+                key={item?.id}
+                id={item?.id}
+                href={item?.href}
+                target={item?.href.includes("http") ? "_blank" : "_self"}
+                class={`group relative overflow-hidden rounded-full hover:bg-gradient-to-r transition-all duration-300 ease-out flex items-center justify-center px-7 h-[42px] text-neutral-100 bg-neutral-400`}
+              >
+                <span class="ease absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform bg-white opacity-10 transition-all duration-1000 group-hover:-translate-x-40">
+                </span>
+                <span class="relative font-extrabold">
+                  {item?.text}
+                </span>
+              </a>
+            ))}
           </div>
         </div>
       </div>

@@ -50,6 +50,7 @@ export type AvailableIcons =
   | "House"
   | "Lock"
   | "OpenBook"
+  | "Newsletter"
   | "Hamburger"
   | "share";
 
