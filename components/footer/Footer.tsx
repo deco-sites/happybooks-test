@@ -19,6 +19,8 @@ import DeliveryOptions, {
 import Security, {
   SecurityItem,
 } from "deco-sites/todo-livro/components/footer/Security.tsx";
+import PoweredByAgenciaEPlus from "deco-sites/todo-livro/components/footer/PoweredByAgenciaEPlus.tsx";
+import PoweredByVTEX from "deco-sites/todo-livro/components/footer/PoweredByVTEX.tsx";
 
 export interface Props {
   social?: {
@@ -110,7 +112,7 @@ function Footer({
 
   const content = (
     <>
-      <div class="flex flex-col w-full max-w-container mx-auto px-6 gap-6">
+      <div class="flex flex-col w-full max-w-container mx-auto px-6 gap-6 pb-3">
         <Social {...social} />
         <div class="w-full flex gap-6 lg:gap-8 justify-center">
           <FooterItems sections={sections} justify={false} />
@@ -119,6 +121,18 @@ function Footer({
         <div class="flex items-center justify-between gap-3">
           <PaymentMethods content={payments} />
           <DeliveryOptions items={deliveryOptions} />
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 justify-center p-1.5 bg-secondary-400 rounded-[10px] max-md:max-w-[430px] self-center">
+          {copyright && (
+            <div
+              class="text-neutral-100 text-xs text-center w-full max-w-[430px]"
+              dangerouslySetInnerHTML={{ __html: copyright }}
+            />
+          )}
+          <PoweredByAgenciaEPlus width={108} color="White" />
+          <PoweredByVTEX width={55} color="White" />
+          <PoweredByDeco width={77} color="White" />
         </div>
       </div>
     </>

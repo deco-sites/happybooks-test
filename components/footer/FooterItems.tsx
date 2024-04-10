@@ -54,7 +54,7 @@ export default function FooterItems(
             {sections.map(({ title, content }) => (
               <li
                 style={{
-                  desktopMarginRight:
+                  marginRight:
                     (content.kind === "list" && content.desktopMarginRight)
                       ? `${content.desktopMarginRight}px`
                       : undefined,
