@@ -124,15 +124,15 @@ async function generateIconsTypes(spritesPath: string, outFile: string) {
   await Deno.writeTextFile(
     outFile,
     `
-import { asset } from '$fresh/runtime.ts'
-import type { JSX } from 'preact'
+import { asset } from '$fresh/runtime.ts';
+import type { JSX } from 'preact';
 
-export type AvailableIcons = ${formatted}
+export type AvailableIcons = ${formatted};
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
 	id: AvailableIcons
 	size?: number
-}
+};
 
 function Icon(
 	{ id, strokeWidth = 16, size, width, height, ...otherProps }: Props,
@@ -145,12 +145,12 @@ function Icon(
 			strokeWidth={strokeWidth}
 		>
 			<use href={asset(\`/sprites.svg#\$\{id\}\`)} />
-            <title>{id}</title>
+      {/* <title>{id}</title> */}
 		</svg>
-	)
+	);
 }
 
-export default Icon
+export default Icon;
 `.trim(),
   );
 }
