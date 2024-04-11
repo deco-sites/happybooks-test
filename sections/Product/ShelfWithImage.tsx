@@ -51,7 +51,7 @@ export default function ShelfWithImage(
       <div
         id={id}
         class={clx(
-          "w-full grid",
+          "w-full grid relative",
           "grid-cols-[0px_1fr_0px]",
           // "px-0 md:px-5",
         )}
@@ -76,6 +76,8 @@ export default function ShelfWithImage(
         </Slider>
 
         <Buttons />
+
+        <Dots quantity={products.length} />
         {
           /* <div class="relative block z-10 col-start-1 row-start-3">
           <Slider.PrevButton class="absolute w-12 h-12 flex justify-center items-center">
@@ -135,6 +137,23 @@ function Buttons() {
         </Slider.NextButton>
       </div>
     </>
+  );
+}
+
+function Dots({ quantity }: { quantity: number }) {
+  return (
+    <ul class="flex gap-2 absolute w-full left-0 top-[calc(100%+28px)] justify-center [&_li]:hidden sm:[&_li:nth-child(5n-4)]:flex">
+      {Array.from({ length: quantity }).map((_, index) => (
+        <li class="">
+          <Slider.Dot index={index}>
+            <div class="py-2">
+              <div class="w-2 min-w-2 h-2 min-h-2 rounded-full group-disabled:w-7 group-disabled:min-w-7 group-disabled:bg-neutral-400 bg-transparent transition-all border border-neutral-400" // style={{ animationDuration: `${interval}s` }}
+              />
+            </div>
+          </Slider.Dot>
+        </li>
+      ))}
+    </ul>
   );
 }
 
