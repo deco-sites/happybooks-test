@@ -94,12 +94,12 @@ function Searchbar({
         id={id}
         action={action}
         data-filled={query !== "" ? "true" : "undefined"}
-        class="join z-[2] w-full rounded-full bg-neutral-200 border border-neutral-200 has-[:focus]:border-success-300 transition-colors group/form relative has-[:focus]:bg-white data-[filled='true']:bg-white"
+        class="join z-[2] w-full rounded-full bg-neutral-200 border border-success-300 md:border-neutral-200 md:has-[:focus]:border-success-300 transition-colors group/form relative has-[:focus]:bg-white data-[filled='true']:bg-white"
         role="button"
       >
         <input
           id="search-input"
-          class="input h-[46px] text-sm placeholder:text-neutral-400 join-item flex-grow border-none focus:outline-none bg-transparent text-neutral-600 pl-[30px]"
+          class="input h-[46px] text-sm placeholder:text-neutral-400 join-item flex-grow border-none focus:outline-none bg-transparent text-neutral-600 pl-2.5 md:pl-[30px] max-md:pr-0 max-[400px]:w-[inherit] focus:placeholder:text-transparent"
           name={name}
           ref={searchInputRef}
           onInput={(e) => {
@@ -144,7 +144,7 @@ function Searchbar({
         </button>
         <button
           type="submit"
-          class="rounded-full size-12 min-h-12 bg-neutral-300 transition-colors flex items-center border border-neutral-300 justify-center text-success-300 hover:border-success-300 hover:bg-success-300 hover:text-neutral-100 group-has-[:focus]/form:border-success-300"
+          class="rounded-full size-12 min-h-12 min-w-12 bg-neutral-300 transition-colors flex items-center border border-success-300 md:border-neutral-300 justify-center text-success-300 hover:border-success-300 hover:bg-success-300 hover:text-neutral-100 group-has-[:focus]/form:border-success-300"
           aria-label="Search"
           for={id}
           tabIndex={-1}

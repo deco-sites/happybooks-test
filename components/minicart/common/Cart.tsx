@@ -63,7 +63,7 @@ function Cart({
           </Button>
 
           <Button
-            class="rounded-full px-4 h-[35px] flex bg-success-300 hover:bg-success-400 gap-1 text-neutral-100 transition-colors items-center min-w-[156px] cursor-default"
+            class="rounded-full px-4 h-[35px] min-h-[35px] flex bg-success-300 hover:bg-success-400 gap-1 text-neutral-100 transition-colors items-center min-w-[156px] cursor-default"
             aria-label="open cart"
             loading={loading}
           >
