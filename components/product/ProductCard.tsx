@@ -105,7 +105,7 @@ function ProductCard({
     <a
       href={url && relative(url)}
       aria-label="view product"
-      class="w-full flex items-center justify-center py-[10px] rounded-full bg-success-300 hover:!bg-success-400 !text-neutral-100 text-base font-extrabold transition-colors"
+      class="w-full flex items-center justify-center py-[10px] rounded-full bg-success-300 hover:!bg-success-400 !text-neutral-100 font-extrabold transition-colors text-sm md:text-base"
     >
       {l?.basics?.ctaText || "Adicionar ao carrinho"}
     </a>
@@ -298,14 +298,14 @@ function ProductCard({
             ""
           )
           : (
-            <div class="flex flex-col gap-0">
+            <div class="flex flex-col gap-0 mb-3 sm:mb-0">
               {l?.hide?.productName
                 ? (
                   ""
                 )
                 : (
                   <h2
-                    class="line-clamp-2 text-base font-bold text-neutral-700 h-11"
+                    class="line-clamp-3 sm:line-clamp-2 text-base font-bold text-neutral-700 h-[66px] sm:h-11"
                     dangerouslySetInnerHTML={{ __html: name ?? "" }}
                   />
                 )}
@@ -378,7 +378,7 @@ function ProductCard({
         {!l?.hide?.cta
           ? (
             <div
-              class={`flex-auto flex items-end ${
+              class={`flex-auto flex items-end mt-2 sm:mt-0 ${
                 l?.onMouseOver?.showCta ? "lg:hidden" : ""
               }`}
             >

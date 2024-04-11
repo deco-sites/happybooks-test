@@ -38,7 +38,7 @@ export default function ShelfWithImage(
   }
 
   return (
-    <div class="max-w-container mx-auto flex flex-col lg:flex-row gap-4 md:pb-10 md:mb-8">
+    <div class="max-w-container mx-auto flex flex-col lg:flex-row gap-4 pb-[74px] md:pb-10 relative mb-8">
       <div class={clx("flex", isMobile ? "w-[414px]" : "min-w-[287px]")}>
         <Image
           src={isMobile ? image.srcMobile : image.srcDesktop}
@@ -51,17 +51,17 @@ export default function ShelfWithImage(
       <div
         id={id}
         class={clx(
-          "w-full grid relative",
+          "w-full grid px-2 md:px-0",
           "grid-cols-[0px_1fr_0px]",
           // "px-0 md:px-5",
         )}
       >
-        <Slider class="carousel carousel-center sm:carousel-end gap-4 row-start-2 row-end-5">
+        <Slider class="carousel sm:carousel-end gap-4 row-start-2 row-end-5">
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
               class={clx(
-                "carousel-item w-[calc(50%-1rem)] lg:w-[calc(25%-0.75rem)]",
+                "carousel-item w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]",
               )}
             >
               <ProductCard
@@ -116,8 +116,8 @@ export default function ShelfWithImage(
 function Buttons() {
   return (
     <>
-      <div class="relative block z-10 col-start-1 row-start-3">
-        <Slider.PrevButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-[rgba(255,255,255,0.5)] border-0 outline-none">
+      <div class="md:relative block z-10 col-start-1 row-start-3">
+        <Slider.PrevButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 md:!bg-[rgba(255,255,255,0.5)] border-0 outline-none md:static absolute bottom-0 md:bottom-[unset]">
           <Icon
             class="text-neutral-400"
             size={17}
@@ -126,8 +126,8 @@ function Buttons() {
           />
         </Slider.PrevButton>
       </div>
-      <div class="relative block z-10 col-start-3 row-start-3">
-        <Slider.NextButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-[rgba(255,255,255,0.5)] border-0 outline-none absolute right-0">
+      <div class="md:relative block z-10 col-start-3 row-start-3">
+        <Slider.NextButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 md:!bg-[rgba(255,255,255,0.5)] border-0 outline-none absolute right-2 bottom-0 md:bottom-[unset]">
           <Icon
             class="text-neutral-400"
             size={17}
@@ -142,12 +142,12 @@ function Buttons() {
 
 function Dots({ quantity }: { quantity: number }) {
   return (
-    <ul class="flex gap-2 absolute w-full left-0 top-[calc(100%+28px)] justify-center [&_li]:hidden sm:[&_li:nth-child(5n-4)]:flex">
+    <ul class="flex gap-2 absolute w-full left-0 bottom-3 md:bottom-[unset] md:top-[calc(100%+28px)] justify-center [&_li]:hidden [&_li:nth-child(2n-1)]:flex md:[&_li:nth-child(5n-4)]:flex">
       {Array.from({ length: quantity }).map((_, index) => (
         <li class="">
           <Slider.Dot index={index}>
             <div class="py-2">
-              <div class="w-2 min-w-2 h-2 min-h-2 rounded-full group-disabled:w-7 group-disabled:min-w-7 group-disabled:bg-neutral-400 bg-transparent transition-all border border-neutral-400" // style={{ animationDuration: `${interval}s` }}
+              <div class="w-2 min-w-2 h-2 min-h-2 rounded-full group-disabled:w-7 group-disabled:min-w-7 md:group-disabled:bg-neutral-400 group-disabled:bg-secondary-400 group-disabled:border-secondary-400 bg-transparent transition-all border border-neutral-400" // style={{ animationDuration: `${interval}s` }}
               />
             </div>
           </Slider.Dot>
