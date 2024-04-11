@@ -170,7 +170,7 @@ function Header({
           />
         </div>
         <CartDrawer platform={platform} />
-        {isMobile && <MenuDrawer menu={{ navigation }} />}
+        {isMobile && <MenuDrawer menu={{ navigation, logo, alerts }} />}
       </header>
       <SetupMicroHeader rootId="main-header" threshold={140} />
     </>

@@ -32,6 +32,14 @@
   strong {
     font-weight: bold;
   }
+
+  .custom-collapse[open],
+  .custom-collapse
+    > input[type="checkbox"]:checked
+    ~ .collapse-title
+    .custom-collapse-arrow {
+    @apply rotate-0;
+  }
 }
 
 @layer components {

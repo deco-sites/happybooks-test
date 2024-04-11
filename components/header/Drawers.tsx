@@ -100,7 +100,7 @@ export function MenuDrawer(
          //   displayMenu.value = false;
         // }}
         // title={displayMenu.value ? "Menu" : "Buscar"}
-        class="relative">
+        class="relative !bg-transparent !max-w-[440px] w-full !block">
           {displayMenu.value && <Menu {...menu} />}
         </Aside>
       }

@@ -12,17 +12,11 @@ import { usePlatform } from "../../sdk/usePlatform.tsx";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
-import { navbarHeight } from "./constants.ts";
+import { NAV_LINK_STYLE_DICT, navbarHeight } from "./constants.ts";
 import { Buttons, Logo } from "../../components/header/Header.tsx";
 import { Navigation } from "deco-sites/todo-livro/components/header/Header.tsx";
 import Button from "deco-sites/todo-livro/components/ui/Button.tsx";
 import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
-
-const NAV_LINK_STYLE_DICT = {
-  primary: "bg-primary-400 hover:!bg-primary-500",
-  secondary: "bg-secondary-100 hover:!bg-secondary-400 hover:!text-white",
-  tertiary: "bg-tertiary-200 hover:!bg-tertiary-400 hover:!text-white",
-} as const;
 
 // Make it sure to render it on the server only. DO NOT render it on an island
 function Navbar(
