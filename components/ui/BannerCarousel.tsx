@@ -8,6 +8,7 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
+import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
 
 /**
  * @title {{ alt }} ({{ href }})
@@ -38,10 +39,12 @@ export interface BannerSizes {
   mobile: {
     width: number;
     height: number;
+    preserveHeight?: boolean;
   };
   desktop: {
     width: number;
     height: number;
+    preserveHeight?: boolean;
   };
 }
 
@@ -85,14 +88,16 @@ const DEFAULT_PROPS = {
     desktop: {
       width: 1920,
       height: 470,
+      preserveHeight: false,
     },
     mobile: {
       width: 768,
       height: 470,
+      preserveHeight: true,
     },
   },
   preload: true,
-};
+} satisfies Props;
 
 function BannerItem(
   { image, lcp, id, sizes }: {
@@ -134,7 +139,14 @@ function BannerItem(
           height={sizes.desktop.height / 2}
         />
         <img
-          class="object-cover w-full h-full"
+          class={clx(
+            "object-cover w-full h-full",
+            sizes.mobile.preserveHeight &&
+              "max-md:h-[var(--banner-height-mobile)]",
+            sizes.desktop.preserveHeight &&
+              "md:h-[var(--banner-height-desktop)]",
+          )}
+          style={{}}
           loading={lcp ? "eager" : "lazy"}
           src={desktop}
           width={sizes.desktop.width}
@@ -226,65 +238,86 @@ function BannerCarousel(props: Props) {
     ...props,
   };
 
+  const style = (sizes.desktop.preserveHeight || sizes.mobile.preserveHeight)
+    ? (
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        #${id} {
+          --banner-height-desktop: ${sizes.desktop.height}px;
+          --banner-height-mobile: ${sizes.mobile.height}px;
+        }
+      `,
+        }}
+      />
+    )
+    : null;
+
   if (images?.length === 1) {
     const params = { promotion_name: images[0].alt };
 
     return (
       <>
-        <BannerItem
-          image={images[0]}
-          lcp={preload}
-          id={`${id}::0`}
-          sizes={sizes}
-        />
-        <SendEventOnClick
-          id={`${id}::0`}
-          event={{ name: "select_promotion", params }}
-        />
-        <SendEventOnView
-          id={`${id}::0`}
-          event={{ name: "view_promotion", params }}
-        />
+        {style}
+        <div id={id} class="flex">
+          <BannerItem
+            image={images[0]}
+            lcp={preload}
+            id={`${id}::0`}
+            sizes={sizes}
+          />
+          <SendEventOnClick
+            id={`${id}::0`}
+            event={{ name: "select_promotion", params }}
+          />
+          <SendEventOnView
+            id={`${id}::0`}
+            event={{ name: "view_promotion", params }}
+          />
+        </div>
       </>
     );
   }
 
   return (
-    <div
-      id={id}
-      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[calc(50vw-562px)_1fr_calc(50vw-562px)] grid-rows-[64px_1fr_48px_1fr_64px]"
-    >
-      <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
-        {images?.map((image, index) => {
-          const params = { promotion_name: image.alt };
+    <>
+      {style}
+      <div
+        id={id}
+        class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[calc(50vw-562px)_1fr_calc(50vw-562px)] grid-rows-[64px_1fr_48px_1fr_64px]"
+      >
+        <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
+          {images?.map((image, index) => {
+            const params = { promotion_name: image.alt };
 
-          return (
-            <Slider.Item index={index} class="carousel-item w-full">
-              <BannerItem
-                image={image}
-                lcp={index === 0 && preload}
-                id={`${id}::${index}`}
-                sizes={sizes}
-              />
-              <SendEventOnClick
-                id={`${id}::${index}`}
-                event={{ name: "select_promotion", params }}
-              />
-              <SendEventOnView
-                id={`${id}::${index}`}
-                event={{ name: "view_promotion", params }}
-              />
-            </Slider.Item>
-          );
-        })}
-      </Slider>
+            return (
+              <Slider.Item index={index} class="carousel-item w-full">
+                <BannerItem
+                  image={image}
+                  lcp={index === 0 && preload}
+                  id={`${id}::${index}`}
+                  sizes={sizes}
+                />
+                <SendEventOnClick
+                  id={`${id}::${index}`}
+                  event={{ name: "select_promotion", params }}
+                />
+                <SendEventOnView
+                  id={`${id}::${index}`}
+                  event={{ name: "view_promotion", params }}
+                />
+              </Slider.Item>
+            );
+          })}
+        </Slider>
 
-      <Buttons />
+        <Buttons />
 
-      <Dots images={images} interval={interval} />
+        <Dots images={images} interval={interval} />
 
-      <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
-    </div>
+        <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
+      </div>
+    </>
   );
 }
 
