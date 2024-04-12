@@ -1,6 +1,7 @@
 import ImageOrIcon, {
   ImageOrIconType,
 } from "$store/components/ui/ImageOrIcon.tsx";
+import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
 
 /** @title {{ name }} */
 export interface SocialItem {
@@ -18,9 +19,9 @@ export default function Social(
   if (!items?.length) return null;
 
   return (
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center py-5 md:py-0 bg-secondary-400 md:bg-transparent">
       {title && <h4 class="text-lg text-neutral-700 mb-4">{title}</h4>}
-      <ul class="flex gap-3.5">
+      <ul class="flex gap-6 md:gap-3.5">
         {items.map((item) => {
           return (
             <li>
@@ -29,7 +30,7 @@ export default function Social(
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${item.name} Logo`}
-                class="flex text-neutral-500"
+                class="flex text-neutral-100 md:text-neutral-500"
               >
                 <ImageOrIcon
                   alt={item.name}
@@ -37,6 +38,10 @@ export default function Social(
                   // optimize
                   height={30}
                   {...item.image}
+                  class={clx(
+                    "md:size-[30px] size-[35px]",
+                    item.image.image && "brightness-[10]",
+                  )}
                 />
               </a>
             </li>

@@ -112,9 +112,9 @@ function Footer({
 
   const content = (
     <>
-      <div class="flex flex-col w-full max-w-container mx-auto px-6 gap-6 pb-3">
+      <div class="flex flex-col w-full max-w-container mx-auto md:px-6 gap-6 pb-3">
         <Social {...social} />
-        <div class="w-full flex gap-6 lg:gap-8 justify-center">
+        <div class="w-full flex flex-col md:flex-row gap-6 lg:gap-8 justify-center">
           <FooterItems sections={sections} justify={false} />
           <Security items={securityItems} />
         </div>
