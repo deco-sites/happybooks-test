@@ -101,7 +101,7 @@ function Newsletter(
 ) {
   const errors = useSignal<Record<string, string>>({});
   const loading = useSignal(false);
-  const success = useSignal(false);
+  const success = useSignal(true);
 
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -146,21 +146,22 @@ function Newsletter(
 
   if (success.value) {
     return (
-      <div class="mx-auto max-w-container flex bg-secondary-500 rounded-[10px] px-8 lg:h-[145px] justify-center text-neutral-100 lg:mb-[44px]">
-        <div class="flex flex-col gap-2 justify-center items-center">
-          <div class="flex gap-2 items-center">
+      <div class="mx-auto max-w-container flex flex-col lg:flex-row bg-secondary-500 lg:rounded-[10px] px-2 lg:px-8 h-[400px] lg:h-[145px] justify-center text-neutral-100 lg:mb-[44px]">
+        <div class="flex flex-col gap-5 lg:gap-2 justify-center items-center">
+          <div class="flex lg:gap-2 lg:items-center">
             <Icon
               id="Newsletter"
               width={50}
               height={20}
               strokeWidth={0}
+              class="min-w-[50px] mt-[13px]"
             />
-            <strong class="text-[32px] font-extrabold">
+            <strong class="text-[32px] font-extrabold max-lg:text-center">
               Inscrição realizada com sucesso!
             </strong>
           </div>
           <Button
-            class="btn btn-primary rounded-full min-h-[41px] h-[41px] px-7 min-w-[unset] w-[120px]"
+            class="btn btn-primary rounded-full min-h-[41px] h-[41px] px-7 min-w-[unset] w-full max-w-[400px] lg:w-[120px]"
             onClick={() => {
               success.value = false;
             }}
@@ -173,32 +174,34 @@ function Newsletter(
   }
 
   return (
-    <div class="mx-auto max-w-container flex bg-secondary-500 rounded-[10px] px-8 lg:h-[145px] pt-6 text-neutral-100 lg:mb-[44px]">
-      <Icon
-        id="Newsletter"
-        width={50}
-        height={20}
-        strokeWidth={0}
-        class="mt-2 mr-2"
-      />
-      <div class="flex flex-col mr-[60px]">
-        <h3
-          class="max-w-[300px] text-[32px] font-extrabold"
-          style={{
-            lineHeight: "31px",
-          }}
-        >
-          {title}
-        </h3>
+    <div class="mx-auto max-w-container flex flex-col lg:flex-row bg-secondary-500 lg:rounded-[10px] px-6 lg:px-8 h-[400px] lg:h-[145px] justify-center text-neutral-100 lg:mb-[44px] pt-4 lg:pt-6">
+      <div class="flex flex-col lg:mr-[60px] max-lg:text-center">
+        <div class="flex max-lg:items-center">
+          <Icon
+            id="Newsletter"
+            width={50}
+            height={20}
+            strokeWidth={0}
+            class="lg:mt-2 mr-2 min-w-[50px]"
+          />
+          <h3
+            class="max-w-[300px] text-[32px] font-extrabold"
+            style={{
+              lineHeight: "31px",
+            }}
+          >
+            {title}
+          </h3>
+        </div>
         <p
-          class="text-lg"
+          class="text-lg lg:ml-[58px]"
           dangerouslySetInnerHTML={{
             __html: description.replace(/\n/g, "<br>"),
           }}
         />
       </div>
 
-      <div class="flex justify-center flex-1 mt-4 mr-24">
+      <div class="flex justify-center flex-1 mt-4 lg:mr-24">
         {form
           ? (
             <form
@@ -207,7 +210,7 @@ function Newsletter(
               class="flex flex-col gap-6 md:gap-4 w-full"
               noValidate
             >
-              <div class="flex flex-col md:flex-row gap-3">
+              <div class="flex flex-col md:flex-row gap-7 lg:gap-3">
                 <Input
                   type="text"
                   label="Nome"
@@ -227,7 +230,7 @@ function Newsletter(
                     error={errors.value["email"]}
                   />
                   <Button
-                    class="btn btn-primary rounded-full min-h-[41px] h-[41px] px-7 min-w-[unset] absolute right-0 bottom-0 !translate-x-1/2 !opacity-100"
+                    class="btn btn-primary rounded-full min-h-[41px] h-[41px] px-7 min-w-[unset] lg:absolute lg:right-0 lg:bottom-0 lg:!translate-x-1/2 !opacity-100 max-lg:w-full max-lg:mt-7"
                     loading={loading.value}
                     type="submit"
                   >
