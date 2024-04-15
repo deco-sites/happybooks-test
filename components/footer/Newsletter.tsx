@@ -101,7 +101,7 @@ function Newsletter(
 ) {
   const errors = useSignal<Record<string, string>>({});
   const loading = useSignal(false);
-  const success = useSignal(true);
+  const success = useSignal(false);
 
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();

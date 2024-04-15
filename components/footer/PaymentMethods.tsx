@@ -16,9 +16,9 @@ export default function PaymentMethods(
   return (
     <>
       {content && content.items && content.items.length > 0 && (
-        <div class="flex items-center gap-2.5 py-2.5 pl-10 pr-6 bg-neutral-100 rounded-[10px]">
+        <div class="flex flex-col md:flex-row md:items-center gap-2.5 py-2.5 px-5 md:pl-10 md:pr-6 bg-neutral-100 rounded-[10px]">
           {content.title && <SectionTitle>{content.title}</SectionTitle>}
-          <ul class="flex items-center justify-between flex-wrap gap-x-8 gap-y-2">
+          <ul class="flex items-center justify-center md:justify-between flex-wrap gap-x-8 gap-y-2">
             {content.items.map((item) => {
               return (
                 <li

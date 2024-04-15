@@ -112,18 +112,18 @@ function Footer({
 
   const content = (
     <>
-      <div class="flex flex-col w-full max-w-container mx-auto md:px-6 gap-6 pb-3">
+      <div class="flex flex-col w-full max-w-container mx-auto md:px-6 md:gap-6 pb-3">
         <Social {...social} />
-        <div class="w-full flex flex-col md:flex-row gap-6 lg:gap-8 justify-center">
+        <div class="w-full flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-8 justify-center">
           <FooterItems sections={sections} justify={false} />
           <Security items={securityItems} />
         </div>
-        <div class="flex items-center justify-between gap-3">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-3 mx-5 md:mx-0 mt-4 md:mt-0">
           <PaymentMethods content={payments} />
           <DeliveryOptions items={deliveryOptions} />
         </div>
 
-        <div class="flex flex-wrap items-center gap-6 justify-center p-1.5 bg-secondary-400 rounded-[10px] max-md:max-w-[430px] self-center">
+        <div class="flex flex-wrap items-center gap-4 md:gap-6 justify-center md:p-1.5 md:bg-secondary-400 md:rounded-[10px] max-md:max-w-[430px] self-center mt-4 md:mt-0 px-5 md:px-0">
           {copyright && (
             <div
               class="text-neutral-100 text-xs text-center w-full max-w-[430px]"

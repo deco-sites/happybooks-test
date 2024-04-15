@@ -14,9 +14,9 @@ function DeliveryOptions({ items }: { items?: DeliveryOption[] }) {
   return (
     <>
       {items && items.length > 0 && (
-        <div class="flex items-center gap-2.5 px-4 bg-neutral-100 rounded-[10px]">
+        <div class="flex items-center flex-wrap md:flex-nowrap gap-2 md:gap-2.5 pl-2 pr-1 md:px-4 bg-neutral-100 rounded-[10px] py-0.5">
           <SectionTitle>Formas de entrega</SectionTitle>
-          <ul class="flex items-center justify-between flex-wrap gap-2.5">
+          <ul class="flex items-center justify-between flex-wrap gap-2 md:gap-2.5 ">
             {items.map((item) => {
               return (
                 <li
