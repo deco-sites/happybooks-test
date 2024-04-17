@@ -40,6 +40,31 @@
     .custom-collapse-arrow {
     @apply rotate-0;
   }
+
+
+  .prose.plp-seo {
+    @apply text-neutral-500;
+  }
+  /* .prose.plp-seo p {
+    @apply text-lg;
+  } */
+  .prose.plp-seo p + p {
+    @apply mt-5;
+  }
+  .prose.plp-seo a {
+    @apply link;
+  }
+  .prose.plp-seo h1,
+  .prose.plp-seo h2 {
+    @apply font-bold text-[32px] text-neutral-700;
+  }
+  .prose.plp-seo h1 {
+    @apply font-extrabold mb-2;
+  }
+  .prose.plp-seo b,
+  .prose.plp-seo strong {
+    @apply font-bold;
+  }
 }
 
 @layer components {
