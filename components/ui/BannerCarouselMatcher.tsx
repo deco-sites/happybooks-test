@@ -16,6 +16,13 @@ export interface MatcherItem {
 }
 
 export interface Props extends Omit<BannerCarouselProps, "images"> {
+  /**
+   * @title Combinar resultados
+   * @description Imagens de todos os itens que combinarem com a regra serão exibidas.
+   * @default false
+   */
+  mergeMatched?: boolean;
+
   items: MatcherItem[];
 }
 
@@ -26,11 +33,10 @@ function BannerCarouselMatcher(props: SectionProps<typeof loader>) {
 }
 
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
-  const { items, ...rest } = props;
-
-  // const matched = matchUrlLoader(items, req);
+  const { items, mergeMatched, ...rest } = props;
 
   const matched = await filterByMatcher({
+    mergeMatched: !!mergeMatched,
     ctx,
     request: req,
     items: items ?? [],

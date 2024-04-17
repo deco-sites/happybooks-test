@@ -12,11 +12,15 @@ export interface Props {
    */
   url: string;
 
+  /**
+   * @title Aplicar a categorias filhas
+   * @description Se marcado, o matcher será aplicado a todas as categorias filhas da categoria selecionada.
+   */
   applyToChildren?: boolean;
 }
 
 /**
- * @title Category Matcher
+ * @title Category Matcher (BROKEN)
  */
 export default function CategoryMatcher(
   // props: Props,
@@ -36,7 +40,8 @@ export default function CategoryMatcher(
           ? new URL(lastBreadcrumb.item).pathname.startsWith(url)
           : new URL(lastBreadcrumb.item).pathname === url);
     }
-  } catch {
+  } catch (err) {
+    console.log(err);
     return false;
   }
 

@@ -10,10 +10,11 @@ type Params<T extends Matchable> = {
   items: T[];
   request: Request;
   ctx: AppContext;
+  mergeMatched?: boolean;
 };
 
 export async function filterByMatcher<T extends Matchable>(
-  { items = [], request, ctx }: Params<T>,
+  { items = [], request, ctx, mergeMatched = true }: Params<T>,
 ) {
   const matchPromises = items.map(({ rule }) => {
     return new Promise<boolean>((resolve) => {
@@ -35,7 +36,13 @@ export async function filterByMatcher<T extends Matchable>(
 
   const matches = await Promise.all(matchPromises);
 
-  return items.filter((_, index) => matches[index]);
+  if (mergeMatched) {
+    return items.filter((_, index) => matches[index]);
+  }
+
+  const matched = items.find((_, index) => matches[index]);
+
+  return matched ? [matched] : [];
 }
 
 export function testCanonical(matcher: string, canonical: string) {

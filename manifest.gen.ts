@@ -11,6 +11,7 @@ import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
 import * as $$$$$$$0 from "./matchers/canonical.ts";
 import * as $$$$$$$1 from "./matchers/category.ts";
+import * as $$$$$$$2 from "./matchers/categoryUrl.ts";
 import * as $$$$$$0 from "./sections/Animation/Animation.tsx";
 import * as $$$$$$1 from "./sections/Cards/IconCardsCarousel.tsx";
 import * as $$$$$$2 from "./sections/Cards/IconCardsCarouselWithImage.tsx";
@@ -130,6 +131,7 @@ const manifest = {
   "matchers": {
     "deco-sites/todo-livro/matchers/canonical.ts": $$$$$$$0,
     "deco-sites/todo-livro/matchers/category.ts": $$$$$$$1,
+    "deco-sites/todo-livro/matchers/categoryUrl.ts": $$$$$$$2,
   },
   "apps": {
     "deco-sites/todo-livro/apps/decohub.ts": $$$$$$$$$$$0,
