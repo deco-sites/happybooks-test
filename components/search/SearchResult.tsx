@@ -75,7 +75,6 @@ function Result({
           <SearchControls
             sortOptions={sortOptions}
             filters={filters}
-            breadcrumb={breadcrumb}
             displayFilter={layout?.variant === "drawer"}
           />
         )}

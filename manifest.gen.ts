@@ -58,11 +58,12 @@ import * as $$$$$$42 from "./sections/Product/ProductShelfTabbed.tsx";
 import * as $$$$$$43 from "./sections/Product/SearchResult.tsx";
 import * as $$$$$$44 from "./sections/Product/ShelfWithImage.tsx";
 import * as $$$$$$45 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$46 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$47 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$49 from "./sections/Theme/defaultColors.ts";
-import * as $$$$$$50 from "./sections/Theme/theme.d.ts";
-import * as $$$$$$48 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$46 from "./sections/Search/Breadcrumb.tsx";
+import * as $$$$$$47 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$48 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$50 from "./sections/Theme/defaultColors.ts";
+import * as $$$$$$51 from "./sections/Theme/theme.d.ts";
+import * as $$$$$$49 from "./sections/Theme/Theme.tsx";
 
 const manifest = {
   "loaders": {
@@ -122,11 +123,12 @@ const manifest = {
     "deco-sites/todo-livro/sections/Product/SearchResult.tsx": $$$$$$43,
     "deco-sites/todo-livro/sections/Product/ShelfWithImage.tsx": $$$$$$44,
     "deco-sites/todo-livro/sections/Product/Wishlist.tsx": $$$$$$45,
-    "deco-sites/todo-livro/sections/Social/InstagramPosts.tsx": $$$$$$46,
-    "deco-sites/todo-livro/sections/Social/WhatsApp.tsx": $$$$$$47,
-    "deco-sites/todo-livro/sections/Theme/defaultColors.ts": $$$$$$49,
-    "deco-sites/todo-livro/sections/Theme/theme.d.ts": $$$$$$50,
-    "deco-sites/todo-livro/sections/Theme/Theme.tsx": $$$$$$48,
+    "deco-sites/todo-livro/sections/Search/Breadcrumb.tsx": $$$$$$46,
+    "deco-sites/todo-livro/sections/Social/InstagramPosts.tsx": $$$$$$47,
+    "deco-sites/todo-livro/sections/Social/WhatsApp.tsx": $$$$$$48,
+    "deco-sites/todo-livro/sections/Theme/defaultColors.ts": $$$$$$50,
+    "deco-sites/todo-livro/sections/Theme/theme.d.ts": $$$$$$51,
+    "deco-sites/todo-livro/sections/Theme/Theme.tsx": $$$$$$49,
   },
   "matchers": {
     "deco-sites/todo-livro/matchers/canonical.ts": $$$$$$$0,
