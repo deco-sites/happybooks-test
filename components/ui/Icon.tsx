@@ -9,6 +9,7 @@ export type AvailableIcons =
     | 'AlertWarning'
     | 'ArrowsPointingOut'
     | 'Bars3'
+    | 'Check'
     | 'ChevronDown'
     | 'ChevronLeft'
     | 'ChevronRight'

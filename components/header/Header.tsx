@@ -10,7 +10,7 @@ import Navbar from "./Navbar.tsx";
 import { SetupMicroHeader } from "deco-sites/todo-livro/islands/Header/SetupMicroHeader.tsx";
 
 const HEADER_HEIGHT_DESKTOP = 144;
-const HEADER_HEIGHT_MOBILE = 174; //
+const HEADER_HEIGHT_MOBILE = 177; //
 
 export interface Logo {
   src: ImageWidget;

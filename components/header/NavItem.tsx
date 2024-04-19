@@ -1,5 +1,5 @@
 import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
-import { headerHeight } from "./constants.ts";
+import { headerHeight, SCROLLBAR_CLASSES } from "./constants.ts";
 import { Navigation } from "deco-sites/todo-livro/components/header/Header.tsx";
 
 function NavItemColumn(
@@ -58,7 +58,9 @@ function NavItem({ item }: { item: Navigation["navItems"][number] }) {
     <div class="dropdown dropdown-hover h-full flex flex-col group">
       {label}
       <div class="dropdown-content min-w-[138px] top-full left-1/2 -translate-x-1/2 bg-base-100 rounded-b-[20px] pt-[18px] pb-7 shadow-[0px_42px_12px_0px_rgba(0,0,0,0.00),0px_27px_11px_0px_rgba(0,0,0,0.01),0px_15px_9px_0px_rgba(0,0,0,0.05),0px_7px_7px_0px_rgba(0,0,0,0.09),0px_2px_4px_0px_rgba(0,0,0,0.10),0px_0px_0px_0px_rgba(0,0,0,0.10)]">
-        <ul class="px-6 mr-1 max-h-[316px] flex gap-8 overflow-y-auto overflow-x-hidden">
+        <ul
+          class={`px-6 mr-1 max-h-[316px] flex gap-8 overflow-y-auto overflow-x-hidden scrollbar`}
+        >
           {!!columns[0]?.items?.length && <NavItemColumn column={columns[0]} />}
           {!!columns[1]?.items?.length && <NavItemColumn column={columns[1]} />}
         </ul>

@@ -208,7 +208,9 @@ function Searchbar({
             </ul>
           </div>
         )}
-        <div class="flex flex-col overflow-y-auto mt-2.5 xs:mt-3 px-2.5 xs:px-7 mr-2.5 xs:mr-1 scrollbar max-h-[151px] xs:max-h-[163px] gap-2 xs:gap-3">
+        <div
+          class={`flex flex-col overflow-y-auto mt-2.5 xs:mt-3 px-2.5 xs:px-7 mr-2.5 xs:mr-1 scrollbar max-h-[151px] xs:max-h-[163px] gap-2 xs:gap-3 scrollbar`}
+        >
           {products.map((product, index) => {
             const offer = product.offers?.offers?.[0];
             const price = offer?.price;
