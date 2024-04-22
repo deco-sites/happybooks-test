@@ -1,12 +1,11 @@
 import Icon from "../../components/ui/Icon.tsx";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import { Navigation } from "deco-sites/todo-livro/components/header/Header.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
 import CloseMenuButton from "./Buttons/CloseMenu.tsx";
 import Image from "apps/website/components/Image.tsx";
 import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
 import type { ComponentChildren } from "preact";
-import { NAV_LINK_STYLE_DICT } from "deco-sites/todo-livro/components/header/constants.ts";
+import { NAV_LINK_STYLE_DICT } from "deco-sites/todo-livro/components/header/constants.tsx";
 import { AlertItem } from "deco-sites/todo-livro/components/header/Alert.tsx";
 import ImageOrIcon from "deco-sites/todo-livro/components/ui/ImageOrIcon.tsx";
 

@@ -28,7 +28,7 @@ function TotalPagesSelector(props: TotalPagesSelectorProps) {
   return (
     <div class="flex gap-2 items-center text-neutral-400 text-sm font-bold">
       <span>Exibir</span>
-      <div class="group relative h-6 px-3 flex items-center justify-center border border-neutral-400 text-neutral-600 rounded-[2px]">
+      <div class="group relative h-6 px-3 flex items-center justify-center border border-neutral-400 text-neutral-600 rounded-[2px] select-none">
         <span>{recordsPerPage}</span>
         <div class="opacity-0 invisible group-hover:opacity-100 group-hover:visible !p-0 absolute -top-[1px] -left-[1px] border border-neutral-400 rounded-[2px] transition-all w-[calc(100%+2px)] flex flex-col z-[1] bg-neutral-100">
           <SelectorItem value={24} {...props} />

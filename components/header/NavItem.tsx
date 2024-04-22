@@ -1,5 +1,5 @@
 import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
-import { headerHeight, SCROLLBAR_CLASSES } from "./constants.ts";
+import { headerHeight } from "./constants.tsx";
 import { Navigation } from "deco-sites/todo-livro/components/header/Header.tsx";
 
 function NavItemColumn(

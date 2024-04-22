@@ -12,11 +12,12 @@ import { usePlatform } from "../../sdk/usePlatform.tsx";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
-import { NAV_LINK_STYLE_DICT, navbarHeight } from "./constants.ts";
+import { NAV_LINK_STYLE_DICT, navbarHeight } from "./constants.tsx";
 import { Buttons, Logo } from "../../components/header/Header.tsx";
 import { Navigation } from "deco-sites/todo-livro/components/header/Header.tsx";
 import Button from "deco-sites/todo-livro/components/ui/Button.tsx";
 import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
 
 // Make it sure to render it on the server only. DO NOT render it on an island
 function Navbar(
@@ -63,12 +64,13 @@ function Navbar(
               aria-label="Store logo"
               class="flex overflow-hidden"
             >
-              <Image
+              <CustomImage
                 class="object-contain mb-4"
                 src={logo.src}
                 alt={logo.alt}
                 width={logo.width || 100}
                 height={logo.height || 13}
+                factors={[1]}
               />
             </a>
           </div>
@@ -92,12 +94,13 @@ function Navbar(
                   aria-label="Store logo"
                   class="flex"
                 >
-                  <Image
+                  <CustomImage
                     class="object-contain"
                     src={logo.src}
                     alt={logo.alt}
                     width={logo.width || 100}
                     height={logo.height || 13}
+                    factors={[1]}
                   />
                 </a>
               )}
