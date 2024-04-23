@@ -142,7 +142,7 @@ function Buttons() {
 
 function Dots({ quantity }: { quantity: number }) {
   return (
-    <ul class="flex gap-2 absolute w-full left-0 bottom-3 md:bottom-[unset] md:top-[calc(100%+28px)] justify-center [&_li]:hidden [&_li:nth-child(2n-1)]:flex md:[&_li:nth-child(5n-4)]:flex">
+    <ul class="flex gap-2 absolute w-full left-0 bottom-3 md:bottom-[unset] md:top-[calc(100%+28px)] justify-center [&_li]:hidden max-md:[&_li:nth-child(2n-1)]:flex md:[&_li:nth-child(5n-4)]:flex">
       {Array.from({ length: quantity }).map((_, index) => (
         <li class="">
           <Slider.Dot index={index}>
