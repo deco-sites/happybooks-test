@@ -61,25 +61,29 @@ function SearchControls(
         </>
       }
     >
-      <div class="flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] sm:border-b sm:border-base-200">
-        <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none w-full">
-          <strong class="text-neutral-400 text-sm w-[90px]">
-            {quantity ? `${quantity} Produtos` : ""}
-          </strong>
+      <div class="lg:flex flex-row items-center justify-between border-b border-base-200 lg:gap-4 lg:gap-y-0 gap-y-2 lg:pb-0 pb-2 w-full grid md:grid-cols-[repeat(3,auto)] grid-cols-[repeat(2,auto)]">
+        <strong class="text-neutral-400 text-sm w-[90px]">
+          {quantity ? `${quantity} Produtos` : ""}
+        </strong>
+        <div class="col-span-2 row-start-3 sm:col-span-1 md:col-span-3 sm:row-start-2 mx-auto sm:m-0 lg:m-0 md:mx-auto">
           <Pagination url={url} {...pagination} />
-          <TotalPagesSelector url={url} {...totalPagesSelector} />
-          <Button
-            class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
-            onClick={() => {
-              open.value = true;
-            }}
-          >
-            Filtrar
-            <Icon id="FilterList" width={16} height={16} />
-          </Button>
-          {/* {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />} */}
-          {sortOptions.length > 0 && <OrderBy url={url} />}
         </div>
+        <div class="col-start-2 row-start-1 sm:row-start-2 md:row-start-1">
+          <TotalPagesSelector url={url} {...totalPagesSelector} />
+        </div>
+        <Button
+          class={displayFilter
+            ? "btn-ghost"
+            : "btn-ghost sm:hidden !px-0 min-w-[unset] w-[unset] min-h-[36px] h-[36px]"}
+          onClick={() => {
+            open.value = true;
+          }}
+        >
+          Filtrar
+          <Icon id="FilterList" width={16} height={16} />
+        </Button>
+        {/* {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />} */}
+        {sortOptions.length > 0 && <OrderBy url={url} />}
       </div>
     </Drawer>
   );

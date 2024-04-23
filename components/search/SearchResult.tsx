@@ -88,9 +88,9 @@ function Result({
 
   return (
     <>
-      <BrowserLog payload={{ filters, products, pageInfo }} />
-      <div class="max-w-container mx-auto mt-4 mb-8">
-        <div class="flex flex-row gap-16">
+      <BrowserLog payload={{ filters, products, pageInfo, breadcrumb }} />
+      <div class="max-w-container px-2 container:px-0 mx-auto mt-4 mb-8">
+        <div class="flex flex-row gap-8 md:gap-16">
           {layout?.variant === "aside" && filters.length > 0 &&
             (isFirstPage || !isPartial) && (
             <aside class="hidden sm:block w-min min-w-[240px] rounded-[20px] border border-neutral-300 h-fit">
@@ -129,10 +129,12 @@ function Result({
               url={url}
             />
             {format == "Pagination" && (
-              <Pagination
-                url={_url}
-                {...pagination}
-              />
+              <div class="mx-auto">
+                <Pagination
+                  url={_url}
+                  {...pagination}
+                />
+              </div>
               // <div class="flex justify-center my-4">
               //   <div class="join">
               //     <a

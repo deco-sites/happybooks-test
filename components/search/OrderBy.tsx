@@ -48,23 +48,33 @@ export default function OrderBy({ url: urlStr }: Props) {
   // OPTIONS[0];
 
   return (
-    <div class="group/order-by flex flex-col justify-between lg:gap-4 md:flex-row">
-      <div>
-        <h3 class="flex items-center gap-5 text-sm text-neutral-600 font-bold">
-          {foundOption?.label ?? "Ordenar por"}{" "}
+    <div class="group relative h-[36px] w-[174px] flex items-center justify-center border border-secondary-100 bg-secondary-100 text-neutral-600 rounded-full select-none text-sm">
+      <div class="flex items-center gap-2">
+        <strong>
+          {foundOption?.label ?? "Ordenar por"}
+        </strong>
+        <Icon
+          class=""
+          id="ChevronDown"
+          size={16}
+        />
+      </div>
+      <div class="flex flex-col items-center opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute -top-[1px] -left-[1px] border border-success-300 rounded-[20px] transition-all w-[calc(100%+2px)] z-20 bg-neutral-100 text-neutral-400 pb-2.5">
+        <div class="flex items-center gap-2 h-[36px] mb-1 mx-3.5 border-b border-b-neutral-200">
+          <strong>Ordenar por</strong>
           <Icon
-            class=""
-            id="ChevronDown"
-            size={12}
+            class="text-neutral-600"
+            id="ChevronUp"
+            size={16}
           />
-        </h3>
-        <ul class="flex flex-col gap-4 absolute z-20 bg-neutral-200 p-4 duration-150 opacity-0 invisible group-hover/order-by:visible group-hover/order-by:opacity-100">
+        </div>
+        <ul class="flex flex-col w-full">
           {OPTIONS.map(({ value, label }) => {
             url.searchParams.set("sort", value);
 
             return (
-              <li class="text-sm text-neutral-600 hover:font-bold">
-                <a href={url.toString()}>{label}</a>
+              <li class="hover:font-bold transition-all text-center w-full">
+                <a href={url.toString()} class="block py-1 w-full">{label}</a>
               </li>
             );
           })}
@@ -72,4 +82,30 @@ export default function OrderBy({ url: urlStr }: Props) {
       </div>
     </div>
   );
+
+  // return (
+  //   <div class="group/order-by flex flex-col justify-between lg:gap-4 md:flex-row">
+  //     <div>
+  //       <h3 class="flex items-center gap-5 text-sm text-neutral-600 font-bold">
+  //         {foundOption?.label ?? "Ordenar por"}{" "}
+  //         <Icon
+  //           class=""
+  //           id="ChevronDown"
+  //           size={12}
+  //         />
+  //       </h3>
+  //       <ul class="flex flex-col gap-4 absolute z-20 bg-neutral-200 p-4 duration-150 opacity-0 invisible group-hover/order-by:visible group-hover/order-by:opacity-100">
+  //         {OPTIONS.map(({ value, label }) => {
+  //           url.searchParams.set("sort", value);
+
+  //           return (
+  //             <li class="text-sm text-neutral-600 hover:font-bold">
+  //               <a href={url.toString()}>{label}</a>
+  //             </li>
+  //           );
+  //         })}
+  //       </ul>
+  //     </div>
+  //   </div>
+  // );
 }

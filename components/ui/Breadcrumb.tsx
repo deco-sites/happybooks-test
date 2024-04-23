@@ -10,7 +10,7 @@ function Breadcrumb({ itemListElement = [] }: Props) {
 
   return (
     <div class="w-full bg-neutral-200 text-neutral-400 py-2 text-sm mt-4">
-      <ul class="flex gap-2 items-center max-w-container mx-2 md:mx-auto">
+      <ul class="flex gap-2 items-center max-w-container mx-2 container:mx-auto">
         <li>
           <a href="/" class="flex items-center gap-1">
             <Icon id="House" size={16} />
