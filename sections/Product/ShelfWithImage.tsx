@@ -51,7 +51,7 @@ export default function ShelfWithImage(
       <div
         id={id}
         class={clx(
-          "w-full grid px-2 md:px-0",
+          "w-full grid px-2 md:px-0 md:relative",
           "grid-cols-[0px_1fr_0px]",
           // "px-0 md:px-5",
         )}
