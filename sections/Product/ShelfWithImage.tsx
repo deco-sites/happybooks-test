@@ -91,7 +91,7 @@ export default function ShelfWithImage(
         </div> */
         }
 
-        <SliderJS rootId={id} />
+        <SliderJS rootId={id} infinite />
         <SendEventOnView
           id={id}
           event={{
@@ -117,7 +117,7 @@ function Buttons() {
   return (
     <>
       <div class="md:relative block z-10 col-start-1 row-start-3">
-        <Slider.PrevButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 md:!bg-[rgba(255,255,255,0.5)] border-0 outline-none md:static absolute bottom-0 md:bottom-[unset]">
+        <Slider.PrevButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 md:!bg-[rgba(255,255,255,0.5)] hover:!bg-neutral-100 border-0 outline-none md:static absolute bottom-0 md:bottom-[unset]">
           <Icon
             class="text-neutral-400"
             size={17}
@@ -127,7 +127,7 @@ function Buttons() {
         </Slider.PrevButton>
       </div>
       <div class="md:relative block z-10 col-start-3 row-start-3">
-        <Slider.NextButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 md:!bg-[rgba(255,255,255,0.5)] border-0 outline-none absolute right-2 bottom-0 md:bottom-[unset]">
+        <Slider.NextButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 md:!bg-[rgba(255,255,255,0.5)] hover:!bg-neutral-100 border-0 outline-none absolute right-2 bottom-0 md:bottom-[unset]">
           <Icon
             class="text-neutral-400"
             size={17}

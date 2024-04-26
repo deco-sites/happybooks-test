@@ -78,7 +78,12 @@ function FreeShippingProgressBar({
         />
       </div>
       {total >= 0 && (
-        <span class="absolute inset-0 xl:right-[calc(50vw-610px)] text-neutral-600 flex items-center justify-center gap-x-1 text-sm">
+        <span
+          class={clx(
+            "absolute inset-0 text-neutral-600 flex items-center justify-center gap-x-1 text-sm",
+            layout === "header" && "xl:right-[calc(50vw-610px)]",
+          )}
+        >
           {total === 0
             ? (
               <span class="text-neutral-600 flex items-center justify-center gap-x-2 text-sm">

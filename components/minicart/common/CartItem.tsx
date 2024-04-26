@@ -68,11 +68,11 @@ function CartItem(
         class="h-full object-contain mr-4"
       />
 
-      <div class="flex flex-col gap-2 mr-2">
+      <div class="flex flex-col min-w-[248px] max-w-[248px] gap-2 mr-2">
         <div class="flex justify-between items-center">
           <strong class="text-sm text-neutral-700 truncate">{name}</strong>
         </div>
-        <div class="flex gap-4 items-center">
+        <div class="flex gap-4 items-center justify-between pr-5">
           <div class="flex flex-col">
             <span class="line-through text-xs text-neutral-400 font-bold">
               De: {formatPrice(list, currency, locale)}

@@ -72,7 +72,7 @@ export function CartDrawer(
       aside={
         <Aside // title="Minha sacola"
          // onClose={() => displayCart.value = false}
-        class="!bg-transparent">
+        class="!bg-transparent pt-12 lg:pt-[30px] group-data-[micro-header='true']/header:!pt-0 transition-all">
           <Cart {...props} />
         </Aside>
       }

@@ -12,7 +12,7 @@ function NavItemColumn(
           <a
             href={item.url}
             data-highlight={item.highlight ? "true" : undefined}
-            class="text-sm text-neutral-700 hover:font-bold transition-all text-nowrap data-[highlight='true']:font-bold  data-[highlight='true']:underline"
+            class="text-sm text-neutral-700 hover:font-bold hover:underline transition-all text-nowrap data-[highlight='true']:font-bold data-[highlight='true']:underline"
           >
             {item.name}
           </a>
@@ -32,7 +32,7 @@ function NavItem({ item }: { item: Navigation["navItems"][number] }) {
   const label = (
     <>
       <div class="text-neutral-700 flex items-center gap-[5px] flex-1 cursor-pointer">
-        <span class="text-sm transition-all">{name}</span>
+        <span class="text-sm group-hover:font-bold transition-all">{name}</span>
         {hasChildren && (
           <Icon
             id="ChevronDown"
@@ -42,7 +42,7 @@ function NavItem({ item }: { item: Navigation["navItems"][number] }) {
         )}
       </div>
 
-      <div class="rounded-full w-full -translate-x-[7px] bg-primary-500 transition-all opacity-0 group-hover:opacity-100 h-2 scale-0 group-hover:scale-100" />
+      <div class="rounded-full w-full group-data-[has-children='true']:-translate-x-[7px] bg-primary-500 transition-all opacity-0 group-hover:opacity-100 h-2 scale-0 group-hover:scale-100" />
     </>
   );
 
@@ -55,7 +55,10 @@ function NavItem({ item }: { item: Navigation["navItems"][number] }) {
   }
 
   return (
-    <div class="dropdown dropdown-hover h-full flex flex-col group">
+    <div
+      data-has-children={hasChildren ? "true" : undefined}
+      class="dropdown dropdown-hover h-full flex flex-col group"
+    >
       {label}
       <div class="dropdown-content min-w-[138px] top-full left-1/2 -translate-x-1/2 bg-base-100 rounded-b-[20px] pt-[18px] pb-7 shadow-[0px_42px_12px_0px_rgba(0,0,0,0.00),0px_27px_11px_0px_rgba(0,0,0,0.01),0px_15px_9px_0px_rgba(0,0,0,0.05),0px_7px_7px_0px_rgba(0,0,0,0.09),0px_2px_4px_0px_rgba(0,0,0,0.10),0px_0px_0px_0px_rgba(0,0,0,0.10)]">
         <ul

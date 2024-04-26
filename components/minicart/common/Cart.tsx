@@ -45,7 +45,7 @@ function Cart({
 
   return (
     <div
-      class="flex flex-col justify-center items-center overflow-hidden bg-base-100 h-screen max-h-[600px] xs:max-h-[750px]"
+      class="flex flex-col justify-center items-center overflow-hidden bg-base-100 h-screen max-h-[600px] xs:max-h-[750px] shadow-[0px_-2px_4px_0px_rgba(0,0,0,0.1)] rounded-[10px]"
       style={{
         minWidth: "calc(min(100vw, 415px))",
         maxWidth: "415px",
@@ -54,16 +54,16 @@ function Cart({
       <div class="px-7 w-full">
         <div class="flex justify-between items-center py-4 border-b border-b-neutral-300 w-full">
           <Button
-            class="btn-circle bg-base-100 size-[35px] min-h-[35px] min-w-[35px] text-neutral-400 !-translate-x-2"
+            class="btn-circle bg-base-100 size-[35px] min-h-[35px] min-w-[35px] text-neutral-400 !-translate-x-2 !border-none"
             onClick={() => {
               displayCart.value = false;
             }}
           >
-            <Icon id="XMark" size={32} strokeWidth={2} />
+            <Icon id="XMark" size={16} strokeWidth={0} />
           </Button>
 
           <Button
-            class="rounded-full px-4 h-[35px] min-h-[35px] flex bg-success-300 hover:bg-success-400 gap-1 text-neutral-100 transition-colors items-center min-w-[156px] cursor-default"
+            class="rounded-full px-4 h-[35px] min-h-[35px] flex !bg-success-300 !border-none gap-1 text-neutral-100 transition-colors items-center min-w-[156px] cursor-default"
             aria-label="open cart"
             loading={loading}
           >
@@ -94,7 +94,7 @@ function Cart({
               </p>
             </div>
             <Button
-              class="btn-outline rounded-full h-[42px] min-h-[42px] w-full max-w-[260px] mt-[152px] mx-auto text-base text-neutral-400 font-extrabold"
+              class="btn-outline rounded-full h-[42px] min-h-[42px] w-full max-w-[260px] mt-[152px] mx-auto text-base text-neutral-400 border-neutral-400 hover:text-neutral-100 hover:bg-neutral-500 hover:border-neutral-500 font-extrabold"
               onClick={() => {
                 displayCart.value = false;
               }}
@@ -119,7 +119,7 @@ function Cart({
             {/* Cart Items */}
             <ul
               role="list"
-              class={`mt-4 pl-4 pr-2 mr-1 flex-grow overflow-y-auto flex flex-col gap-6 w-full scrollbar`}
+              class={`mt-4 pl-4 pr-2 mr-1 flex-grow overflow-y-auto flex flex-col w-full scrollbar`}
             >
               {items.map((item, index) => (
                 <li
@@ -182,7 +182,7 @@ function Cart({
 
               <div class="flex gap-2">
                 <Button
-                  class="btn-outline rounded-full h-[42px] min-h-[42px] w-full max-w-[unset] text-base text-neutral-400 font-extrabold flex-1 px-0"
+                  class="btn-outline rounded-full h-[42px] min-h-[42px] w-full max-w-[unset] text-base text-neutral-400 border-neutral-400 hover:text-neutral-100 hover:bg-neutral-500 hover:border-neutral-500 font-extrabold flex-1 px-0"
                   onClick={() => {
                     displayCart.value = false;
                   }}
@@ -192,7 +192,7 @@ function Cart({
                 <a class="flex w-full flex-1" href={checkoutHref}>
                   <Button
                     data-deco="buy-button"
-                    class="rounded-full bg-success-300 hover:bg-success-400 text-neutral-100 font-extrabold h-[42px] min-h-[42px] w-full px-0"
+                    class="rounded-full bg-success-300 hover:bg-success-500 text-neutral-100 font-extrabold h-[42px] min-h-[42px] w-full px-0 !border-none text-base"
                     disabled={loading || isEmpty}
                     onClick={() => {
                       sendEvent({

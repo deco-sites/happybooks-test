@@ -74,7 +74,7 @@ function ProductCard({
   const productGroupID = isVariantOf?.productGroupID;
   const description = product.description || isVariantOf?.description;
   const [front, back] = images ?? [];
-  const { listPrice, price, installments } = useOffer(offers);
+  const { listPrice, price, installments, availability } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
@@ -105,7 +105,7 @@ function ProductCard({
     <a
       href={url && relative(url)}
       aria-label="view product"
-      class="w-full flex items-center justify-center py-[10px] rounded-full bg-success-300 hover:!bg-success-400 !text-neutral-100 font-extrabold transition-colors text-sm md:text-base"
+      class="w-full flex items-center justify-center py-[10px] rounded-full bg-success-300 hover:!bg-success-500 !text-neutral-100 font-extrabold transition-colors text-sm md:text-base"
     >
       {l?.basics?.ctaText || "Adicionar ao carrinho"}
     </a>
@@ -119,8 +119,11 @@ function ProductCard({
 
   return (
     <div
+      data-unavailable={availability === "https://schema.org/OutOfStock"
+        ? "true"
+        : undefined}
       id={id}
-      class={`card card-compact group w-full border border-neutral-300 hover:border-neutral-400 rounded-[10px] p-3 pb-6 transition-all bg-neutral-100 ${
+      class={`card card-compact group w-full border border-neutral-300 data-[unavailable='true']:hover:border-neutral-400 hover:border-success-300 rounded-[10px] p-3 pb-6 transition-all bg-neutral-100 ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
