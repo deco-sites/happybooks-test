@@ -173,7 +173,6 @@ function ProductDescription({
                   name="description_tabs"
                   id="reviews"
                   class="hidden peer"
-                  checked
                 />
                 <label
                   htmlFor="reviews"

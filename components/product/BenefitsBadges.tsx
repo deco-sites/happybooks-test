@@ -26,6 +26,7 @@ export default function BenefitsBadges({ badges }: Props) {
             width={74}
             height={74}
             factors={[1]}
+            fit="contain"
             loading="lazy"
           />
         </li>
