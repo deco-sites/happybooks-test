@@ -5,22 +5,25 @@ import Button, { Props as BtnProps } from "./common.tsx";
 export interface Props extends Omit<BtnProps, "onAddItem"> {
   productID: string;
   additionalProperty: PropertyValue[];
+  quantity?: number;
 }
 
 function AddToCartButton(
-  { productID, additionalProperty, eventParams }: Props,
+  { productID, additionalProperty, eventParams, variant, quantity = 1 }: Props,
 ) {
   const { addItem } = useCart();
   const onAddItem = () =>
     addItem({
-      quantity: 1,
+      quantity,
       itemId: productID,
       attributes: Object.fromEntries(
         additionalProperty.map(({ name, value }) => [name, value]),
       ),
     });
 
-  return <Button onAddItem={onAddItem} eventParams={eventParams} />;
+  return (
+    <Button onAddItem={onAddItem} eventParams={eventParams} variant={variant} />
+  );
 }
 
 export default AddToCartButton;

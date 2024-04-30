@@ -52,20 +52,21 @@ import * as $$$$$$36 from "./sections/Newsletter/Newsletter.tsx";
 import * as $$$$$$37 from "./sections/Product/ImageGalleryFrontBack.tsx";
 import * as $$$$$$38 from "./sections/Product/NotFound.tsx";
 import * as $$$$$$39 from "./sections/Product/NotFoundChallenge.tsx";
-import * as $$$$$$40 from "./sections/Product/ProductDetails.tsx";
-import * as $$$$$$41 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$42 from "./sections/Product/ProductShelfTabbed.tsx";
-import * as $$$$$$43 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$44 from "./sections/Product/ShelfWithImage.tsx";
-import * as $$$$$$45 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$46 from "./sections/Search/Breadcrumb.tsx";
-import * as $$$$$$47 from "./sections/Search/TextSEO.tsx";
-import * as $$$$$$48 from "./sections/Search/TextSEOMatcher.tsx";
-import * as $$$$$$49 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$50 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$52 from "./sections/Theme/defaultColors.ts";
-import * as $$$$$$53 from "./sections/Theme/theme.d.ts";
-import * as $$$$$$51 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$40 from "./sections/Product/PdpDescription.tsx";
+import * as $$$$$$41 from "./sections/Product/ProductDetails.tsx";
+import * as $$$$$$42 from "./sections/Product/ProductShelf.tsx";
+import * as $$$$$$43 from "./sections/Product/ProductShelfTabbed.tsx";
+import * as $$$$$$44 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$45 from "./sections/Product/ShelfWithImage.tsx";
+import * as $$$$$$46 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$47 from "./sections/Search/Breadcrumb.tsx";
+import * as $$$$$$48 from "./sections/Search/TextSEO.tsx";
+import * as $$$$$$49 from "./sections/Search/TextSEOMatcher.tsx";
+import * as $$$$$$50 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$51 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$53 from "./sections/Theme/defaultColors.ts";
+import * as $$$$$$54 from "./sections/Theme/theme.d.ts";
+import * as $$$$$$52 from "./sections/Theme/Theme.tsx";
 
 const manifest = {
   "loaders": {
@@ -119,20 +120,21 @@ const manifest = {
       $$$$$$37,
     "deco-sites/todo-livro/sections/Product/NotFound.tsx": $$$$$$38,
     "deco-sites/todo-livro/sections/Product/NotFoundChallenge.tsx": $$$$$$39,
-    "deco-sites/todo-livro/sections/Product/ProductDetails.tsx": $$$$$$40,
-    "deco-sites/todo-livro/sections/Product/ProductShelf.tsx": $$$$$$41,
-    "deco-sites/todo-livro/sections/Product/ProductShelfTabbed.tsx": $$$$$$42,
-    "deco-sites/todo-livro/sections/Product/SearchResult.tsx": $$$$$$43,
-    "deco-sites/todo-livro/sections/Product/ShelfWithImage.tsx": $$$$$$44,
-    "deco-sites/todo-livro/sections/Product/Wishlist.tsx": $$$$$$45,
-    "deco-sites/todo-livro/sections/Search/Breadcrumb.tsx": $$$$$$46,
-    "deco-sites/todo-livro/sections/Search/TextSEO.tsx": $$$$$$47,
-    "deco-sites/todo-livro/sections/Search/TextSEOMatcher.tsx": $$$$$$48,
-    "deco-sites/todo-livro/sections/Social/InstagramPosts.tsx": $$$$$$49,
-    "deco-sites/todo-livro/sections/Social/WhatsApp.tsx": $$$$$$50,
-    "deco-sites/todo-livro/sections/Theme/defaultColors.ts": $$$$$$52,
-    "deco-sites/todo-livro/sections/Theme/theme.d.ts": $$$$$$53,
-    "deco-sites/todo-livro/sections/Theme/Theme.tsx": $$$$$$51,
+    "deco-sites/todo-livro/sections/Product/PdpDescription.tsx": $$$$$$40,
+    "deco-sites/todo-livro/sections/Product/ProductDetails.tsx": $$$$$$41,
+    "deco-sites/todo-livro/sections/Product/ProductShelf.tsx": $$$$$$42,
+    "deco-sites/todo-livro/sections/Product/ProductShelfTabbed.tsx": $$$$$$43,
+    "deco-sites/todo-livro/sections/Product/SearchResult.tsx": $$$$$$44,
+    "deco-sites/todo-livro/sections/Product/ShelfWithImage.tsx": $$$$$$45,
+    "deco-sites/todo-livro/sections/Product/Wishlist.tsx": $$$$$$46,
+    "deco-sites/todo-livro/sections/Search/Breadcrumb.tsx": $$$$$$47,
+    "deco-sites/todo-livro/sections/Search/TextSEO.tsx": $$$$$$48,
+    "deco-sites/todo-livro/sections/Search/TextSEOMatcher.tsx": $$$$$$49,
+    "deco-sites/todo-livro/sections/Social/InstagramPosts.tsx": $$$$$$50,
+    "deco-sites/todo-livro/sections/Social/WhatsApp.tsx": $$$$$$51,
+    "deco-sites/todo-livro/sections/Theme/defaultColors.ts": $$$$$$53,
+    "deco-sites/todo-livro/sections/Theme/theme.d.ts": $$$$$$54,
+    "deco-sites/todo-livro/sections/Theme/Theme.tsx": $$$$$$52,
   },
   "matchers": {
     "deco-sites/todo-livro/matchers/canonical.ts": $$$$$$$0,

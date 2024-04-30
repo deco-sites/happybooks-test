@@ -1,19 +1,63 @@
+import Icon from "$store/components/ui/Icon.tsx";
+import Slider from "$store/components/ui/Slider.tsx";
+import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
+import SliderJS from "$store/islands/SliderJS.tsx";
+import { useId } from "$store/sdk/useId.ts";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
-import Icon from "../../../components/ui/Icon.tsx";
-import Slider from "../../../components/ui/Slider.tsx";
-import ProductImageZoom from "../../../islands/ProductImageZoom.tsx";
-import SliderJS from "../../../islands/SliderJS.tsx";
-import { useId } from "../../../sdk/useId.ts";
+import ZoomableImage from "$store/islands/ZoomableImage.tsx";
+import type { Props as ZoomableImageProps } from "$store/components/ui/ZoomableImage.tsx";
+import {
+  getOptimizedMediaUrl,
+  getSrcSet,
+} from "apps/website/components/Image.tsx";
+import { Head } from "$fresh/runtime.ts";
 
 export interface Props {
   /** @title Integration */
   page: ProductDetailsPage | null;
+  isMobile: boolean;
+}
 
-  layout?: {
-    width: number;
-    height: number;
+function SliderImage(props: ZoomableImageProps) {
+  const { preload } = props;
+
+  if (!props.height) {
+    console.warn(
+      `Missing height. This image will NOT be optimized: ${props.src}`,
+    );
+  }
+
+  const srcSet = getSrcSet(props.src, props.width, props.height, props.fit);
+  const linkProps = {
+    imagesrcset: srcSet,
+    imagesizes: props.sizes,
+    fetchpriority: props.fetchPriority,
+    media: props.media,
   };
+
+  const zoomSrc = getOptimizedMediaUrl({
+    originalSrc: props.src,
+    width: 1600,
+    height: 1600,
+    fit: props.fit,
+    factor: 1,
+  });
+
+  return (
+    <>
+      {preload && (
+        <Head>
+          <link as="image" rel="preload" href={props.src} {...linkProps} />
+        </Head>
+      )}
+      <ZoomableImage
+        {...props}
+        srcSet={srcSet}
+        zoomSrc={zoomSrc}
+      />
+    </>
+  );
 }
 
 /**
@@ -30,73 +74,46 @@ export default function GallerySlider(props: Props) {
   }
 
   const {
-    page: { product: { image: images = [] } },
-    layout,
+    page: {
+      product: { image: images = [] },
+      product,
+    },
+    isMobile,
   } = props;
-
-  const { width, height } = layout || { width: 300, height: 370 };
-
+  const width = 550;
+  const height = 550;
   const aspectRatio = `${width} / ${height}`;
 
   return (
-    <div id={id} class="grid grid-flow-row sm:grid-flow-col">
-      {/* Image Slider */}
-      <div class="relative order-1 sm:order-2">
-        <Slider class="carousel carousel-center gap-6 w-screen sm:w-[40vw]">
-          {images.map((img, index) => (
-            <Slider.Item
-              index={index}
-              class="carousel-item w-full"
-            >
-              <Image
-                class="w-full"
-                sizes="(max-width: 640px) 100vw, 40vw"
-                style={{ aspectRatio }}
-                src={img.url!}
-                alt={img.alternateName}
-                width={width}
-                height={height}
-                // Preload LCP image for better web vitals
-                preload={index === 0}
-                loading={index === 0 ? "eager" : "lazy"}
-              />
-            </Slider.Item>
-          ))}
-        </Slider>
-
-        <Slider.PrevButton
-          class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
-          disabled
-        >
-          <Icon size={24} id="ChevronLeft" strokeWidth={3} />
-        </Slider.PrevButton>
-
-        <Slider.NextButton
-          class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
-          disabled={images.length < 2}
-        >
-          <Icon size={24} id="ChevronRight" strokeWidth={3} />
-        </Slider.NextButton>
-
-        <div class="absolute top-2 right-2 bg-base-100 rounded-full">
-          <ProductImageZoom
-            images={images}
-            width={700}
-            height={Math.trunc(700 * height / width)}
-          />
-        </div>
-      </div>
-
+    <div
+      id={id}
+      class="lg:flex items-start h-fit"
+    >
       {/* Dots */}
-      <ul class="carousel carousel-center gap-1 px-4 sm:px-0 sm:flex-col order-2 sm:order-1">
+      {
+        /* {isMobile
+        ? (
+          <ul class="flex justify-center absolute bottom-12 left-1/2 -translate-x-1/2 z-30">
+            {images?.map((_, index) => (
+              <li class="carousel-item">
+                <Slider.Dot index={index}>
+                  <div class="size-2 m-1 bg bg-neutral-400 rounded-full group-disabled:bg-primary" />
+                </Slider.Dot>
+              </li>
+            ))}
+          </ul>
+        )
+        : ( */
+      }
+      <ul class="carousel carousel-center gap-3 flex-col min-w-[100px] max-lg:hidden ">
         {images.map((img, index) => (
-          <li class="carousel-item min-w-[63px] sm:min-w-[100px]">
+          <li class="carousel-item max-w-[100px] sm:max-w-[100px]">
             <Slider.Dot index={index}>
               <Image
                 style={{ aspectRatio }}
-                class="group-disabled:border-base-300 border rounded "
+                class="group-disabled:border-primary-400 opacity-50 group-disabled:opacity-100 group-disabled:border-2 border border-neutral-300 object-cover w-full h-full transition rounded-[10px]"
                 width={100}
-                height={123}
+                height={100}
                 src={img.url!}
                 alt={img.alternateName}
               />
@@ -104,6 +121,69 @@ export default function GallerySlider(props: Props) {
           </li>
         ))}
       </ul>
+      {/* )} */}
+
+      {/* Image Slider */}
+      <div class="lg:flex items-center gap-1 relative lg:px-6 px-3 lg:ml-[90px]">
+        <Slider.PrevButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 hover:!bg-neutral-100 border-0 outline-none absolute left-0 top-1/2 !-translate-y-1/2 z-10">
+          <Icon
+            class="text-neutral-400"
+            size={17}
+            id="ChevronLeft"
+            strokeWidth={0}
+          />
+        </Slider.PrevButton>
+        <div className="flex-1 flex flex-col">
+          <Slider
+            class="carousel carousel-center gap-6 w-full border border-neutral-300 rounded-[15px]"
+            style={{
+              aspectRatio: `${width} / ${height}`,
+              maxWidth: width,
+            }}
+          >
+            {images.map((img, index) => (
+              <Slider.Item
+                index={index}
+                class="carousel-item w-full flex justify-center"
+              >
+                <SliderImage
+                  type={isMobile ? "click" : "hover"}
+                  factor={2}
+                  class="w-full object-contain"
+                  sizes="(max-width: 640px) 100vw, 30vw"
+                  style={{
+                    aspectRatio: `${width} / ${height}`,
+                    maxWidth: width,
+                  }}
+                  src={img.url!}
+                  alt={img.alternateName}
+                  width={width}
+                  height={height}
+                  fit="contain"
+                  // Preload LCP image for better web vitals
+
+                  preload={index === 0}
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+              </Slider.Item>
+            ))}
+          </Slider>
+          <p class="flex justify-center items-center gap-1 text-neutral-400 text-sm mt-3">
+            <Icon id="Zoom" size={20} /> {isMobile
+              ? "Clique na imagem para dar zoom"
+              : "Passe o mouse para dar zoom"}
+          </p>
+        </div>
+
+        <Slider.NextButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 hover:!bg-neutral-100 border-0 outline-none absolute top-1/2 right-0 !-translate-y-1/2 z-10">
+          <Icon
+            class="text-neutral-400"
+            size={17}
+            id="ChevronRight"
+            strokeWidth={0}
+          />
+        </Slider.NextButton>
+      </div>
 
       <SliderJS rootId={id} />
     </div>

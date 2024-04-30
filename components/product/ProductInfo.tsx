@@ -1,12 +1,11 @@
 import { SendEventOnView } from "../../components/Analytics.tsx";
-import Breadcrumb from "../../components/ui/Breadcrumb.tsx";
+import OutOfStock from "../../islands/OutOfStock.tsx";
 import AddToCartButtonLinx from "../../islands/AddToCartButton/linx.tsx";
 import AddToCartButtonShopify from "../../islands/AddToCartButton/shopify.tsx";
 import AddToCartButtonVNDA from "../../islands/AddToCartButton/vnda.tsx";
 import AddToCartButtonVTEX from "../../islands/AddToCartButton/vtex.tsx";
 import AddToCartButtonWake from "../../islands/AddToCartButton/wake.tsx";
 import AddToCartButtonNuvemshop from "../../islands/AddToCartButton/nuvemshop.tsx";
-import OutOfStock from "../../islands/OutOfStock.tsx";
 import ShippingSimulation from "../../islands/ShippingSimulation.tsx";
 import WishlistButtonVtex from "../../islands/WishlistButton/vtex.tsx";
 import WishlistButtonWake from "../../islands/WishlistButton/wake.tsx";
@@ -17,9 +16,16 @@ import { usePlatform } from "../../sdk/usePlatform.tsx";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductSelector from "./ProductVariantSelector.tsx";
+import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
+import AddToCartButton from "$islands/AddToCartButton/AddToCartButton.tsx";
+import ProductActions from "deco-sites/todo-livro/components/product/Actions/ProductActions.tsx";
+import BenefitsBadges, {
+  BenefitBadge,
+} from "deco-sites/todo-livro/components/product/BenefitsBadges.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
+  benefitBadges?: BenefitBadge[];
   layout?: {
     /**
      * @title Product Name
@@ -30,7 +36,7 @@ interface Props {
   };
 }
 
-function ProductInfo({ page, layout }: Props) {
+function ProductInfo({ page, layout, benefitBadges }: Props) {
   const platform = usePlatform();
   const id = useId();
 
@@ -47,7 +53,6 @@ function ProductInfo({ page, layout }: Props) {
     isVariantOf,
     additionalProperty = [],
   } = product;
-  const description = product.description || isVariantOf?.description;
   const {
     price = 0,
     listPrice,
@@ -69,16 +74,18 @@ function ProductInfo({ page, layout }: Props) {
     listPrice,
   });
 
+  const discountPercentage = (listPrice && price)
+    ? Math.round(
+      ((listPrice - price) / listPrice) * 100,
+    )
+    : 0;
+
   return (
-    <div class="flex flex-col px-4" id={id}>
-      <Breadcrumb itemListElement={breadcrumb.itemListElement} />
+    <div class="flex flex-col flex-1" id={id}>
       {/* Code and name */}
-      <div class="mt-4 sm:mt-8">
-        <div>
-          {gtin && <span class="text-sm text-base-300">Cod. {gtin}</span>}
-        </div>
+      <div class="">
         <h1>
-          <span class="font-medium text-xl capitalize">
+          <span class="font-bold text-2xl capitalize text-neutral-700 line-clamp-2">
             {layout?.name === "concat"
               ? `${isVariantOf?.name} ${name}`
               : layout?.name === "productGroup"
@@ -86,104 +93,131 @@ function ProductInfo({ page, layout }: Props) {
               : name}
           </span>
         </h1>
+        {gtin && <span class="text-base-400 mt-2">Cód.: {gtin}</span>}
       </div>
-      {/* Prices */}
-      <div class="mt-4">
-        <div class="flex flex-row gap-2 items-center">
-          {(listPrice ?? 0) > price && (
-            <span class="line-through text-base-300 text-xs">
-              {formatPrice(listPrice, offers?.priceCurrency)}
-            </span>
-          )}
-          <span class="font-medium text-xl text-secondary">
-            {formatPrice(price, offers?.priceCurrency)}
-          </span>
+      {/* Badges */}
+      <div class="mt-4 flex gap-2 flex-wrap">
+        <div class="flex items-center px-2.5 h-[26px] rounded-full text-xs font-bold text-neutral-700 bg-tertiary-200">
+          Pronta Entrega
         </div>
-        <span class="text-sm text-base-300">{installments}</span>
+        <div class="flex items-center px-2.5 h-[26px] rounded-full text-xs font-bold text-neutral-600 bg-secondary-100">
+          Frete Grátis
+        </div>
+        <div class="flex items-center px-2.5 h-[26px] rounded-full text-xs font-bold text-neutral-100 bg-neutral-600">
+          Black Friday
+        </div>
       </div>
-      {/* Sku Selector */}
-      <div class="mt-4 sm:mt-6">
-        <ProductSelector product={product} />
-      </div>
-      {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-        {availability === "https://schema.org/InStock"
-          ? (
-            <>
-              {platform === "vtex" && (
-                <>
-                  <AddToCartButtonVTEX
-                    eventParams={{ items: [eventItem] }}
-                    productID={productID}
-                    seller={seller}
-                  />
-                  <WishlistButtonVtex
-                    variant="full"
-                    productID={productID}
-                    productGroupID={productGroupID}
-                  />
-                </>
-              )}
-              {platform === "wake" && (
-                <>
-                  <AddToCartButtonWake
-                    eventParams={{ items: [eventItem] }}
-                    productID={productID}
-                  />
-                  <WishlistButtonWake
-                    variant="full"
-                    productID={productID}
-                    productGroupID={productGroupID}
-                  />
-                </>
-              )}
-              {platform === "linx" && (
-                <AddToCartButtonLinx
-                  eventParams={{ items: [eventItem] }}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                />
-              )}
-              {platform === "vnda" && (
-                <AddToCartButtonVNDA
-                  eventParams={{ items: [eventItem] }}
-                  productID={productID}
-                  additionalProperty={additionalProperty}
-                />
-              )}
-              {platform === "shopify" && (
-                <AddToCartButtonShopify
-                  eventParams={{ items: [eventItem] }}
-                  productID={productID}
-                />
-              )}
-              {platform === "nuvemshop" && (
-                <AddToCartButtonNuvemshop
-                  productGroupID={productGroupID}
-                  eventParams={{ items: [eventItem] }}
-                  additionalProperty={additionalProperty}
-                />
-              )}
-            </>
-          )
-          : <OutOfStock productID={productID} />}
-      </div>
-      {/* Shipping Simulation */}
-      <div class="mt-8">
+      {/* Wishlist & Reviews */}
+      <div class="mt-4 flex flex-row gap-2.5 items-center">
         {platform === "vtex" && (
-          <ShippingSimulation
-            items={[
-              {
-                id: Number(product.sku),
-                quantity: 1,
-                seller: seller,
-              },
-            ]}
-          />
+          <>
+            <WishlistButtonVtex
+              variant="full"
+              productID={productID}
+              productGroupID={productGroupID}
+            />
+            <span class="text-xs text-neutral-400 font-bold">|</span>
+          </>
         )}
+        {platform === "wake" && (
+          <>
+            <WishlistButtonWake
+              variant="full"
+              productID={productID}
+              productGroupID={productGroupID}
+            />
+            <span class="text-xs text-neutral-400 font-bold">|</span>
+          </>
+        )}
+        <div class="flex gap-1 h-4 w-full text-primary-500">
+          <Icon size={16} id="Star" />
+          <Icon size={16} id="Star" />
+          <Icon size={16} id="Star" />
+          <Icon size={16} id="Star" />
+          <Icon size={16} id="Star" />
+          <span class="text-xs text-neutral-400 font-bold">(10)</span>
+        </div>
       </div>
+
+      {/* Available */}
+
+      {availability === "https://schema.org/InStock"
+        ? (
+          <>
+            <div class="mt-4 flex items-center gap-4">
+              <span class="font-extrabold text-2xl text-success-300">
+                {formatPrice(price, offers?.priceCurrency)}
+              </span>
+              {(listPrice ?? 0) > price && (
+                <>
+                  <span class="line-through text-neutral-400 text-sm font-bold">
+                    {formatPrice(listPrice, offers?.priceCurrency)}
+                  </span>
+                  <div class="rounded-full bg-primary-400 h-[26px] px-2.5">
+                    <span class="text-neutral-600 text-xs font-bold">
+                      -{discountPercentage}%
+                    </span>
+                  </div>
+                </>
+              )}
+            </div>
+            {/* Benefits */}
+            <div class="mt-4 p-4 w-full rounded-[10px] bg-[#F9F9F9]">
+              <ul class="list-disc flex flex-col gap-2.5 pl-4">
+                <li class="list-item font-bold text-neutral-500 text-sm">
+                  Trabalha Inteligência Emocional
+                </li>
+                <li class="list-item font-bold text-neutral-500 text-sm">
+                  Valores Familiares
+                </li>
+                <li class="list-item font-bold text-neutral-500 text-sm">
+                  Companheiro perfeito para o<br /> desenvolvimento do seu filho
+                </li>
+              </ul>
+            </div>
+            {/* Sku Selector */}
+            {
+              /* <div class="mt-4 sm:mt-6">
+                <ProductSelector product={product} />
+              </div> */
+            }
+            {/* Add to Cart and Favorites button */}
+            <div class="mt-4 pb-4 border-b border-b-neutral-200">
+              <ProductActions
+                eventItem={eventItem}
+                productID={productID}
+                seller={seller}
+                variant="plp"
+              />
+            </div>
+            {!!benefitBadges?.length && (
+              <div class="">
+                <BenefitsBadges
+                  additionalProperty={additionalProperty}
+                  badges={benefitBadges}
+                />
+              </div>
+            )}
+            {/* Shipping Simulation */}
+            {platform === "vtex" && (
+              <div class="mt-4">
+                <ShippingSimulation
+                  items={[
+                    {
+                      id: Number(product.sku),
+                      quantity: 1,
+                      seller: seller,
+                    },
+                  ]}
+                />
+              </div>
+            )}
+          </>
+        )
+        : <OutOfStock productID={productID} />}
       {/* Description card */}
-      <div class="mt-4 sm:mt-6">
+      {
+        /* <div class="mt-4 sm:mt-6">
         <span class="text-sm">
           {description && (
             <details>
@@ -195,7 +229,8 @@ function ProductInfo({ page, layout }: Props) {
             </details>
           )}
         </span>
-      </div>
+      </div> */
+      }
       {/* Analytics Event */}
       <SendEventOnView
         id={id}

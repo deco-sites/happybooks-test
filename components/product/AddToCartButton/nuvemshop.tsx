@@ -5,13 +5,14 @@ import { PropertyValue } from "apps/commerce/types.ts";
 export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
   additionalProperty: PropertyValue[];
   productGroupID: string;
+  quantity?: number;
 }
 
-function AddToCartButton(props: Props) {
+function AddToCartButton({ quantity = 1, ...props }: Props) {
   const { addItems } = useCart();
   const onAddItem = () =>
     addItems({
-      quantity: 1,
+      quantity,
       itemId: Number(props.productGroupID),
       add_to_cart_enhanced: "1",
       attributes: props.additionalProperty

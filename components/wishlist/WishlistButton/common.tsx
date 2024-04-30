@@ -2,6 +2,7 @@ import { useSignal } from "@preact/signals";
 import Icon from "../../../components/ui/Icon.tsx";
 import Button from "../../../components/ui/Button.tsx";
 import { sendEvent } from "../../../sdk/analytics.tsx";
+import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
 
 export interface Props {
   productID: string;
@@ -28,9 +29,10 @@ function ButtonCommon({
 
   return (
     <Button
-      class={variant === "icon"
-        ? "btn-circle btn-ghost gap-2 w-7 h-7 min-w-7 min-h-7 bg-neutral-200"
-        : "btn-primary btn-outline gap-2"}
+      class={clx(
+        "!bg-transparent !border-none !outline-none min-h-[unset] min-w-[unset] w-[unset] h-[unset] !p-0 group",
+        variant === "icon" ? "gap-2" : "gap-1",
+      )}
       loading={fetching.value}
       aria-label="Add to wishlist"
       onClick={async (e) => {
@@ -75,14 +77,22 @@ function ButtonCommon({
         }
       }}
     >
-      <Icon
-        id="Heart"
-        size={14}
-        strokeWidth={1}
-        class="text-neutral-400"
-        fill={inWishlist ? "black" : "none"}
-      />
-      {variant === "icon" ? null : inWishlist ? "Remover" : "Favoritar"}
+      <div class="relative w-7 h-7 min-w-7 min-h-7 bg-neutral-200 rounded-full flex items-center justify-center">
+        <Icon
+          id="Heart"
+          size={14}
+          strokeWidth={1}
+          class="text-neutral-400"
+          fill={inWishlist ? "black" : "none"}
+        />
+      </div>
+      {variant === "icon"
+        ? null
+        : (
+          <span class="text-neutral-400 text-xs font-bold">
+            {inWishlist ? "Remover dos Favoritos" : "Adicionar aos Favoritos"}
+          </span>
+        )}
     </Button>
   );
 }

@@ -8,6 +8,7 @@ export interface Props {
   /** @description: sku name */
   eventParams: AddToCartParams;
   onAddItem: () => Promise<void>;
+  variant: "plp" | "pdp";
 }
 
 const useAddToCart = ({ eventParams, onAddItem }: Props) => {
@@ -41,8 +42,11 @@ export default function AddToCartButton(props: Props) {
   const btnProps = useAddToCart(props);
 
   return (
-    <Button {...btnProps} class="btn-primary">
-      Adicionar à Sacola
+    <Button
+      {...btnProps}
+      class="w-full !bg-success-300 hover:!bg-success-500 text-neutral-100 font-extrabold text-base !p-0 !border-none !outline-none min-w-[unset] min-h-[42px] h-[42px] rounded-full"
+    >
+      Adicionar ao carrinho
     </Button>
   );
 }

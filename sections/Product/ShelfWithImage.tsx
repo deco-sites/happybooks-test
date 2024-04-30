@@ -38,8 +38,10 @@ export default function ShelfWithImage(
   }
 
   return (
-    <div class="max-w-container mx-auto flex flex-col lg:flex-row gap-4 pb-[74px] md:pb-10 relative mb-8">
-      <div class={clx("flex", isMobile ? "w-[414px]" : "min-w-[287px]")}>
+    <div class="max-w-container container:mx-auto flex flex-col lg:flex-row gap-4 pb-[74px] md:pb-10 relative mb-8">
+      <div
+        class={clx("flex", isMobile ? "w-full max-w-[414px]" : "min-w-[287px]")}
+      >
         <Image
           src={isMobile ? image.srcMobile : image.srcDesktop}
           class="object-cover"

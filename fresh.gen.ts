@@ -3,6 +3,7 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $_app from "./routes/_app.tsx";
+import * as $AddToCartButton_AddToCartButton from "./islands/AddToCartButton/AddToCartButton.tsx";
 import * as $AddToCartButton_linx from "./islands/AddToCartButton/linx.tsx";
 import * as $AddToCartButton_nuvemshop from "./islands/AddToCartButton/nuvemshop.tsx";
 import * as $AddToCartButton_shopify from "./islands/AddToCartButton/shopify.tsx";
@@ -25,6 +26,7 @@ import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Header_SetupMicroHeader from "./islands/Header/SetupMicroHeader.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
+import * as $ProductActions_vtex from "./islands/ProductActions/vtex.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
 import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
@@ -32,6 +34,7 @@ import * as $ShowMore from "./islands/ShowMore.tsx";
 import * as $SliderJS from "./islands/SliderJS.tsx";
 import * as $WishlistButton_vtex from "./islands/WishlistButton/vtex.tsx";
 import * as $WishlistButton_wake from "./islands/WishlistButton/wake.tsx";
+import * as $ZoomableImage from "./islands/ZoomableImage.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -39,6 +42,8 @@ const manifest = {
     "./routes/_app.tsx": $_app,
   },
   islands: {
+    "./islands/AddToCartButton/AddToCartButton.tsx":
+      $AddToCartButton_AddToCartButton,
     "./islands/AddToCartButton/linx.tsx": $AddToCartButton_linx,
     "./islands/AddToCartButton/nuvemshop.tsx": $AddToCartButton_nuvemshop,
     "./islands/AddToCartButton/shopify.tsx": $AddToCartButton_shopify,
@@ -62,6 +67,7 @@ const manifest = {
     "./islands/Header/SetupMicroHeader.tsx": $Header_SetupMicroHeader,
     "./islands/Newsletter.tsx": $Newsletter,
     "./islands/OutOfStock.tsx": $OutOfStock,
+    "./islands/ProductActions/vtex.tsx": $ProductActions_vtex,
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,
     "./islands/SearchControls.tsx": $SearchControls,
     "./islands/ShippingSimulation.tsx": $ShippingSimulation,
@@ -69,6 +75,7 @@ const manifest = {
     "./islands/SliderJS.tsx": $SliderJS,
     "./islands/WishlistButton/vtex.tsx": $WishlistButton_vtex,
     "./islands/WishlistButton/wake.tsx": $WishlistButton_wake,
+    "./islands/ZoomableImage.tsx": $ZoomableImage,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
