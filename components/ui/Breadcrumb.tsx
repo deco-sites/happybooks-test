@@ -1,15 +1,24 @@
 import type { BreadcrumbList } from "apps/commerce/types.ts";
 import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
+import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
 
 interface Props {
   itemListElement: BreadcrumbList["itemListElement"];
+
+  isNotFound?: boolean;
 }
 
-function Breadcrumb({ itemListElement = [] }: Props) {
+function Breadcrumb({ itemListElement = [], isNotFound }: Props) {
   const items = itemListElement;
 
   return (
-    <div class="w-full bg-neutral-200 text-neutral-400 py-2 text-sm mt-4">
+    <div
+      key="breadcrumb-container"
+      class={clx(
+        "w-full bg-neutral-200 text-neutral-400 py-2 text-sm mt-4 transition-colors",
+        isNotFound && "bg-secondary-100",
+      )}
+    >
       <ul class="flex gap-2 items-center max-w-container mx-2 container:mx-auto">
         <li>
           <a href="/" class="flex items-center gap-1">

@@ -10,6 +10,9 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import BrowserLog from "deco-sites/todo-livro/islands/BrowserLog.tsx";
 import Pagination from "deco-sites/todo-livro/components/search/Pagination.tsx";
+import NotFound, {
+  Props as NotFoundProps,
+} from "deco-sites/todo-livro/components/search/NotFound.tsx";
 
 export type Format = "Show More" | "Pagination";
 
@@ -36,14 +39,9 @@ export interface Props {
 
   /** @description 0 for ?page=0 as your first page */
   startingPage?: 0 | 1;
-}
 
-function NotFound() {
-  return (
-    <div class="w-full flex justify-center items-center py-10">
-      <span>Not Found!</span>
-    </div>
-  );
+  /** @title Busca vazia */
+  notFoundProps: NotFoundProps;
 }
 
 function Result({
@@ -52,7 +50,7 @@ function Result({
   cardLayout,
   startingPage = 0,
   url: _url,
-}: Omit<Props, "page"> & {
+}: Omit<Props, "page" | "notFoundProps"> & {
   page: ProductListingPage;
   url: string;
 }) {
@@ -186,10 +184,13 @@ function Result({
 }
 
 function SearchResult(
-  { page, ...props }: ReturnType<typeof loader>,
+  { page, notFoundProps, ...props }: ReturnType<typeof loader>,
 ) {
-  if (!page) {
-    return <NotFound />;
+  const { searchParams } = new URL(props.url ?? "http://example.com"); // Bug
+  const term = searchParams.get("q") ?? undefined;
+
+  if (!page || page.products.length === 0) {
+    return <NotFound {...notFoundProps} term={term} />;
   }
 
   return <Result {...props} page={page} />;
