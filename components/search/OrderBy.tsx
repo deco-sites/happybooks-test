@@ -48,38 +48,44 @@ export default function OrderBy({ url: urlStr }: Props) {
   // OPTIONS[0];
 
   return (
-    <div class="group relative h-[36px] w-[174px] flex items-center justify-center border border-secondary-100 bg-secondary-100 text-neutral-600 rounded-full select-none text-sm">
-      <div class="flex items-center gap-2">
-        <strong>
-          {foundOption?.label ?? "Ordenar por"}
-        </strong>
-        <Icon
-          class=""
-          id="ChevronDown"
-          size={16}
-        />
-      </div>
-      <div class="flex flex-col items-center opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute -top-[1px] -left-[1px] border border-success-300 rounded-[20px] transition-all w-[calc(100%+2px)] z-20 bg-neutral-100 text-neutral-400 pb-2.5">
-        <div class="flex items-center gap-2 h-[36px] mb-1 mx-3.5 border-b border-b-neutral-200">
-          <strong>Ordenar por</strong>
+    <div class="flex">
+      <label
+        htmlFor="order-by"
+        class="group relative h-[36px] w-[174px] flex items-center justify-center border border-secondary-100 bg-secondary-100 text-neutral-600 rounded-full select-none text-sm hover:border-success-300 hover:bg-neutral-100 transition-colors cursor-pointer"
+      >
+        <input type="checkbox" id="order-by" class="hidden" />
+        <div class="flex items-center gap-2">
+          <strong>
+            {foundOption?.label ?? "Ordenar por"}
+          </strong>
           <Icon
-            class="text-neutral-600"
-            id="ChevronUp"
+            class=""
+            id="ChevronDown"
             size={16}
           />
         </div>
-        <ul class="flex flex-col w-full">
-          {OPTIONS.map(({ value, label }) => {
-            url.searchParams.set("sort", value);
+        <div class="flex flex-col items-center opacity-0 invisible group-has-[input:checked]:opacity-100 group-has-[input:checked]:visible absolute -top-[1px] -left-[1px] border border-success-300 rounded-[20px] transition-all w-[calc(100%+2px)] z-20 bg-neutral-100 text-neutral-400 pb-2.5 cursor-default">
+          <div class="flex items-center gap-2 h-[36px] mb-1 mx-3.5 border-b border-b-neutral-200">
+            <strong>Ordenar por</strong>
+            <Icon
+              class="text-neutral-600"
+              id="ChevronUp"
+              size={16}
+            />
+          </div>
+          <ul class="flex flex-col w-full">
+            {OPTIONS.map(({ value, label }) => {
+              url.searchParams.set("sort", value);
 
-            return (
-              <li class="hover:font-bold transition-all text-center w-full">
-                <a href={url.toString()} class="block py-1 w-full">{label}</a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+              return (
+                <li class="hover:font-bold transition-all text-center w-full">
+                  <a href={url.toString()} class="block py-1 w-full">{label}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </label>
     </div>
   );
 
