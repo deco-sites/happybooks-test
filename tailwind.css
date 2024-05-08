@@ -41,6 +41,17 @@
     @apply rotate-0;
   }
 
+  .prose ul {
+    @apply py-4 pl-10 list-disc;
+  }
+  .prose ol {
+    @apply py-4 pl-10 list-decimal;
+  }
+  .prose b,
+  .prose strong {
+    @apply font-bold;
+  }
+
 
   .prose.plp-seo {
     @apply text-neutral-500;
@@ -61,9 +72,66 @@
   .prose.plp-seo h1 {
     @apply font-extrabold mb-2;
   }
-  .prose.plp-seo b,
-  .prose.plp-seo strong {
-    @apply font-bold;
+
+
+  .prose.inst-text {
+    @apply text-neutral-500;
+  }
+  /* .prose.inst-text p {
+    @apply text-lg;
+  } */
+  .prose.inst-text p + p {
+    @apply mt-5;
+  }
+  .prose.inst-text a {
+    @apply link;
+  }
+  .prose.inst-text h1 {
+    @apply font-bold text-2xl text-neutral-700 pb-4 border-b border-b-neutral-200 mb-4;
+  }
+  .prose.inst-text h2,
+  .prose.inst-text h3 {
+    @apply font-bold text-lg text-neutral-700 py-5;
+  }
+
+
+  
+  .prose.locale-info {
+    @apply text-neutral-500 text-sm;
+  }
+  .prose.locale-info h1,
+  .prose.locale-info h2 {
+    @apply font-bold text-2xl text-neutral-700 mb-4;
+  }
+  .prose.locale-info h3 {
+    @apply font-bold text-base mt-4 mb-2;
+  }
+  .prose.inst-text p + p {
+    @apply mt-1;
+  }
+  .prose.inst-text h2 + h3 {
+    @apply mt-0;
+  }
+
+
+  
+  .slider-hero .prose.inst-text h1 {
+    @apply pb-2 mb-6;
+  }
+
+  .coverflow-slide {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .coverflow-slide .card-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: scaleY(calc(1 + var(--abs-offset) * -0.3))
+      translateZ(calc(var(--abs-offset) * -10.5rem))
+      translateX(calc(var(--direction) * -13rem));
+    transition: all 0.3s ease-out;
   }
 }
 
