@@ -123,7 +123,7 @@ function Footer({
           <DeliveryOptions items={deliveryOptions} />
         </div>
 
-        <div class="flex flex-wrap items-center gap-4 md:gap-6 justify-center md:p-1.5 md:bg-secondary-400 md:rounded-[10px] max-md:max-w-[430px] self-center mt-4 md:mt-0 px-5 md:px-0">
+        <div class="flex flex-wrap items-center gap-4 md:gap-6 justify-center md:p-1.5 md:bg-secondary-400 md:rounded-[10px] max-md:max-w-[430px] self-center mt-4 md:mt-0 px-5 md:px-1.5">
           {copyright && (
             <div
               class="text-neutral-100 text-xs text-center w-full max-w-[430px]"
@@ -150,9 +150,9 @@ function Footer({
   }
 
   return (
-    <footer class="relative w-full flex-col">
-      <div class="absolute bottom-0 left-0 -z-10">
-        <BackgroundDesktop class="w-full h-auto" />
+    <footer class="relative w-full flex-col overflow-x-clip">
+      <div class="absolute bottom-0 -z-10 left-1/2 -translate-x-1/2 min-[1920px]:w-full min-[1920px]:left-0 min-[1920px]:translate-x-0">
+        <BackgroundDesktop class="h-auto min-[1920px]:w-full" />
       </div>
       {content}
     </footer>
