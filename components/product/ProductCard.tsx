@@ -11,6 +11,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import Image from "apps/website/components/Image.tsx";
 import { relative } from "../../sdk/url.ts";
 import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
+import ProductActions from "deco-sites/todo-livro/components/product/Actions/ProductActions.tsx";
 
 export interface Layout {
   basics?: {
@@ -74,7 +75,8 @@ function ProductCard({
   const productGroupID = isVariantOf?.productGroupID;
   const description = product.description || isVariantOf?.description;
   const [front, back] = images ?? [];
-  const { listPrice, price, installments, availability } = useOffer(offers);
+  const { listPrice, seller = "1", price, installments, availability } =
+    useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
@@ -84,32 +86,55 @@ function ProductCard({
       ? "left"
       : "center";
   const relativeUrl = relative(url);
-  const skuSelector = variants.map(([value, link]) => {
-    const relativeLink = relative(link);
-    return (
-      <li>
-        <a href={relativeLink}>
-          <Avatar
-            variant={relativeLink === relativeUrl
-              ? "active"
-              : relativeLink
-              ? "default"
-              : "disabled"}
-            content={value}
-          />
-        </a>
-      </li>
+  const skuSelector = (!l?.hide?.skuSelector || l?.onMouseOver?.showSkuSelector)
+    ? variants.map(([value, link]) => {
+      const relativeLink = relative(link);
+      return (
+        <li>
+          <a href={relativeLink}>
+            <Avatar
+              variant={relativeLink === relativeUrl
+                ? "active"
+                : relativeLink
+                ? "default"
+                : "disabled"}
+              content={value}
+            />
+          </a>
+        </li>
+      );
+    })
+    : [];
+
+  const isUniqueSku = (isVariantOf?.hasVariant?.length ?? 0) <= 1;
+
+  const eventItem = isUniqueSku
+    ? mapProductToAnalyticsItem({
+      product,
+      price,
+      listPrice,
+    })
+    : undefined;
+
+  const cta = isUniqueSku
+    ? (
+      <ProductActions
+        eventItem={eventItem!}
+        productID={product.productID}
+        seller={seller}
+        variant="plp"
+        quantitySelector={false}
+      />
+    )
+    : (
+      <a
+        href={url && relative(url)}
+        aria-label="view product"
+        class="w-full flex items-center justify-center py-[10px] rounded-full bg-success-300 hover:!bg-success-500 !text-neutral-100 font-extrabold transition-colors text-sm md:text-base"
+      >
+        {l?.basics?.ctaText || "Adicionar ao carrinho"}
+      </a>
     );
-  });
-  const cta = (
-    <a
-      href={url && relative(url)}
-      aria-label="view product"
-      class="w-full flex items-center justify-center py-[10px] rounded-full bg-success-300 hover:!bg-success-500 !text-neutral-100 font-extrabold transition-colors text-sm md:text-base"
-    >
-      {l?.basics?.ctaText || "Adicionar ao carrinho"}
-    </a>
-  );
 
   const discountPercentage = (listPrice && price)
     ? Math.round(

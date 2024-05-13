@@ -28,7 +28,8 @@ export default function ProductActionVTEX({
   return (
     <div
       class={clx(
-        "flex items-center justify-between gap-2",
+        "flex items-center justify-center gap-2 w-full",
+        quantitySelector && "!justify-between",
       )}
     >
       {quantitySelector && (

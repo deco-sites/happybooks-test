@@ -187,7 +187,8 @@ function ProductInfo({ page, layout, benefitBadges }: Props) {
                 eventItem={eventItem}
                 productID={productID}
                 seller={seller}
-                variant="plp"
+                variant="pdp"
+                quantitySelector
               />
             </div>
             {!!benefitBadges?.length && (
