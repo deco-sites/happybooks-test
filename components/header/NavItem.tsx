@@ -1,6 +1,6 @@
 import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
 import { headerHeight } from "./constants.tsx";
-import { Navigation } from "deco-sites/todo-livro/components/header/Header.tsx";
+import { Navigation } from "deco-sites/todo-livro/loaders/headerNavigation.ts";
 
 function NavItemColumn(
   { column }: { column: Navigation["navItems"][number]["columns"][number] },
@@ -12,7 +12,7 @@ function NavItemColumn(
           <a
             href={item.url}
             data-highlight={item.highlight ? "true" : undefined}
-            class="text-sm text-neutral-700 hover:font-bold hover:underline transition-all text-nowrap data-[highlight='true']:font-bold data-[highlight='true']:underline"
+            class="text-sm text-neutral-700 hover:font-bold before-bold hover:underline transition-all text-nowrap data-[highlight='true']:font-bold data-[highlight='true']:underline"
           >
             {item.name}
           </a>
@@ -32,7 +32,12 @@ function NavItem({ item }: { item: Navigation["navItems"][number] }) {
   const label = (
     <>
       <div class="text-neutral-700 flex items-center gap-[5px] flex-1 cursor-pointer">
-        <span class="text-sm group-hover:font-bold transition-all">{name}</span>
+        <span
+          class="text-sm group-hover:font-bold before-bold transition-all"
+          title={name}
+        >
+          {name}
+        </span>
         {hasChildren && (
           <Icon
             id="ChevronDown"

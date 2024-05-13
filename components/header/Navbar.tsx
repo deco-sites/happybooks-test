@@ -201,7 +201,8 @@ function Navbar(
                               <li class="flex">
                                 <a
                                   href={child.url}
-                                  class="text-sm text-neutral-700 hover:font-bold hover:underline transition-all text-nowrap"
+                                  class="text-sm text-neutral-700 hover:font-bold before-bold hover:underline transition-all text-nowrap"
+                                  title={child.name}
                                 >
                                   {child.name}
                                 </a>

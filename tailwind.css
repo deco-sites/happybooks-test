@@ -150,6 +150,10 @@
     @apply border-l border-transparent duration-200 whitespace-pre-line text-center;
     @apply flex flex-col items-center justify-start gap-8 py-10 px-8 lg:px-12;
   }
+  
+  .before-bold::before {
+    @apply whitespace-nowrap font-bold block h-0 overflow-hidden invisible content-[attr(title)];
+  }
 
   /* width */
   ::-webkit-scrollbar {

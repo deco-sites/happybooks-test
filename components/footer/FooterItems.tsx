@@ -71,7 +71,8 @@ export default function FooterItems(
                           <li>
                             <a
                               href={item.href}
-                              class="block hover:underline hover:font-bold transition-all"
+                              class="block hover:underline hover:font-bold before-bold transition-all"
+                              title={item.label}
                             >
                               {item.label}
                             </a>
