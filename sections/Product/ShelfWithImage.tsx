@@ -40,11 +40,11 @@ export default function ShelfWithImage(
   return (
     <div class="max-w-container container:mx-auto flex flex-col lg:flex-row gap-4 pb-[74px] md:pb-10 relative mb-8">
       <div
-        class={clx("flex", isMobile ? "w-full max-w-[414px]" : "min-w-[287px]")}
+        class={clx("flex", isMobile ? "w-full" : "min-w-[287px]")}
       >
         <Image
           src={isMobile ? image.srcMobile : image.srcDesktop}
-          class="object-cover"
+          class="object-cover max-md:w-full"
           width={isMobile ? 414 : 287}
           height={isMobile ? 150 : 460}
           alt={image.alt}

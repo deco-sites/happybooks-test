@@ -124,7 +124,7 @@ function BannerItem(
       <Picture preload={lcp} class="w-full">
         <Source
           preload={lcp}
-          media="(max-width: 767px)"
+          media="(max-width: 768px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={mobile}
           width={sizes.mobile.width / 2}
@@ -132,7 +132,7 @@ function BannerItem(
         />
         <Source
           preload={lcp}
-          media="(min-width: 768px)"
+          media="(min-width: 769px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={desktop}
           width={sizes.desktop.width / 2}
@@ -207,7 +207,7 @@ function Dots({ images, interval = 0 }: Props) {
 function Buttons() {
   return (
     <>
-      <div class="flex items-center justify-end z-10 col-start-1 row-start-3">
+      <div class="flex items-center justify-end z-10 col-start-2 row-start-3">
         <Slider.PrevButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-[rgba(255,255,255,0.5)] border-0 outline-none">
           <Icon
             class="text-neutral-400"
@@ -217,7 +217,7 @@ function Buttons() {
           />
         </Slider.PrevButton>
       </div>
-      <div class="flex items-center justify-start z-10 col-start-3 row-start-3">
+      <div class="flex items-center justify-start z-10 col-start-4 row-start-3">
         <Slider.NextButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-[rgba(255,255,255,0.5)] border-0 outline-none">
           <Icon
             class="text-neutral-400"
@@ -284,7 +284,7 @@ function BannerCarousel(props: Props) {
       {style}
       <div
         id={id}
-        class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[calc(50vw-562px)_1fr_calc(50vw-562px)] grid-rows-[64px_1fr_48px_1fr_64px]"
+        class="grid grid-cols-[1rem_48px_1fr_48px_1rem] container:grid-cols-[0px_calc(50vw-562px)_1fr_calc(50vw-562px)_0px] grid-rows-[64px_1fr_48px_1fr_64px]"
       >
         <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
           {images?.map((image, index) => {
