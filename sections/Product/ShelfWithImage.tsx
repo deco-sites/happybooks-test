@@ -144,12 +144,12 @@ function Buttons() {
 
 function Dots({ quantity }: { quantity: number }) {
   return (
-    <ul class="flex gap-2 absolute w-full left-0 bottom-3 md:bottom-[unset] md:top-[calc(100%+28px)] justify-center [&_li]:hidden max-md:[&_li:nth-child(2n-1)]:flex md:[&_li:nth-child(5n-4)]:flex">
+    <ul class="flex gap-2 absolute w-full left-0 bottom-3 md:bottom-[unset] md:top-[calc(100%+24px)] justify-center [&_li]:hidden max-md:[&_li:nth-child(2n-1)]:flex md:[&_li:nth-child(5n-4)]:flex">
       {Array.from({ length: quantity }).map((_, index) => (
         <li class="">
           <Slider.Dot index={index}>
             <div class="py-2">
-              <div class="w-2 min-w-2 h-2 min-h-2 rounded-full group-disabled:w-7 group-disabled:min-w-7 md:group-disabled:bg-neutral-400 group-disabled:bg-secondary-400 group-disabled:border-secondary-400 bg-transparent transition-all border border-neutral-400" // style={{ animationDuration: `${interval}s` }}
+              <div class="w-2 min-w-2 h-2 min-h-2 rounded-full group-disabled:w-7 group-disabled:min-w-7 md:group-disabled:bg-neutral-400 group-disabled:bg-secondary-400 bg-transparent transition-all border border-neutral-400" // style={{ animationDuration: `${interval}s` }}
               />
             </div>
           </Slider.Dot>
