@@ -42,7 +42,7 @@ export default function HeroFlats({
           <Image
             width={374}
             height={335}
-            class="w-full lg:w-[507px] max-w-[507px] object-fit"
+            class="w-full lg:w-[507px] max-w-[507px] object-fit hover:brightness-125 transition"
             sizes="(max-width: 640px) 100vw, 30vw"
             src={image}
             alt={image}
@@ -74,10 +74,8 @@ export default function HeroFlats({
                 id={item?.id}
                 href={item?.href}
                 target={item?.href.includes("http") ? "_blank" : "_self"}
-                class={`group relative overflow-hidden rounded-full hover:bg-gradient-to-r transition-all duration-300 ease-out flex items-center justify-center px-7 h-[42px] text-neutral-100 bg-neutral-400`}
+                class={`group relative overflow-hidden rounded-full hover:bg-neutral-600 transition-all ease-out flex items-center justify-center px-7 h-[42px] text-neutral-100 bg-neutral-400`}
               >
-                <span class="ease absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform bg-white opacity-10 transition-all duration-1000 group-hover:-translate-x-40">
-                </span>
                 <span class="relative font-extrabold">
                   {item?.text}
                 </span>
