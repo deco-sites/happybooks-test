@@ -93,6 +93,10 @@
   .prose.inst-text h3 {
     @apply font-bold text-lg text-neutral-700 py-5;
   }
+  .prose.inst-text h1 + h2,
+  .prose.inst-text h1 + h3 {
+    @apply pt-0;
+  }
 
 
   
@@ -106,10 +110,10 @@
   .prose.locale-info h3 {
     @apply font-bold text-base mt-4 mb-2;
   }
-  .prose.inst-text p + p {
+  .prose.locale-info p + p {
     @apply mt-1;
   }
-  .prose.inst-text h2 + h3 {
+  .prose.locale-info h2 + h3 {
     @apply mt-0;
   }
 

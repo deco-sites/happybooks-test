@@ -79,13 +79,13 @@ export default function Benefits(
     return (
       <div
         id={id}
-        class="w-full py-5 px-4 bg-neutral-200 grid grid-cols-[48px_1fr_48px] justify-center items-center relative mb-8"
+        class="w-full py-5 px-4 bg-neutral-200 grid sm:px-8 grid-cols-[48px_1fr_48px] justify-center items-center relative mb-8"
       >
         <Slider class="carousel carousel-center w-full col-span-full row-span-full pb-[22px]">
           {benefits.map((benefit, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-full justify-center"
+              class="carousel-item w-full sm:w-1/2 justify-center"
             >
               <BenefitItem {...benefit} />
             </Slider.Item>
@@ -111,7 +111,7 @@ export default function Benefits(
 
 function Dots({ quantity }: { quantity: number }) {
   return (
-    <ul class="carousel absolute bottom-0 left-1/2 -translate-x-1/2 justify-center gap-2">
+    <ul class="carousel absolute bottom-0 left-1/2 -translate-x-1/2 sm:[&_li:nth-child(odd)]:hidden justify-center gap-2">
       {Array.from({ length: quantity }).map((_, index) => (
         <li class="carousel-item">
           <Slider.Dot index={index}>

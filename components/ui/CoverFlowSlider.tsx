@@ -22,7 +22,7 @@ function CoverFlowSlider({ coverFlowImages = [] }: Props) {
   return (
     <div class="relative w-[23rem] h-[25rem] m-auto coverflow-slide lg:ml-auto lg:mr-13">
       <Button
-        class="no-animation group/prev absolute left-0 z-10 lg:left-8 top-1/2 btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 md:!bg-[rgba(255,255,255,0.5)] hover:!bg-neutral-100 !border-neutral-400 outline-none disabled:opacity-50"
+        class="no-animation group/prev absolute left-0 z-10 lg:left-4 top-1/2 btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 md:!bg-[rgba(255,255,255,0.5)] hover:!bg-neutral-100 !border-neutral-400 outline-none disabled:opacity-50"
         onClick={() => {
           if (active <= 0) return;
           setActive((i) => i - 1);
@@ -65,7 +65,7 @@ function CoverFlowSlider({ coverFlowImages = [] }: Props) {
         </div>
       ))}
       <Button
-        class="no-animation absolute group/next z-10 right-0 lg:right-8 top-1/2 btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 md:!bg-[rgba(255,255,255,0.5)] hover:!bg-neutral-100 !border-neutral-400 outline-none disabled:opacity-50"
+        class="no-animation absolute group/next z-10 right-0 lg:right-4 top-1/2 btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 md:!bg-[rgba(255,255,255,0.5)] hover:!bg-neutral-100 !border-neutral-400 outline-none disabled:opacity-50"
         onClick={() => {
           if (active >= count - 1) return;
           setActive((i) => i + 1);
