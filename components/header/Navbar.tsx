@@ -148,7 +148,7 @@ function Navbar(
                 </span>
                 <Icon
                   id="ChevronDown"
-                  size={10}
+                  size={16}
                   strokeWidth={0.4}
                   class="text-success-400"
                 />
