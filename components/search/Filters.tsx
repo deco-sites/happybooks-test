@@ -100,7 +100,7 @@ function Filters({ filters, showClearFilters }: Props) {
                     id="ChevronUp"
                     size={24}
                     strokeWidth={1}
-                    class="rotate-180 transition-transform custom-collapse-arrow ml-auto -mr-1"
+                    class="rotate-180 transition-transform custom-collapse-arrow ml-auto -mr-2"
                   />
                 </div>
                 <div class="collapse-content !p-0 scrollbar">

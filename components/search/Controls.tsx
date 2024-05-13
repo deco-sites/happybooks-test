@@ -45,23 +45,23 @@ function SearchControls(
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col h-full divide-y overflow-y-hidden w-[240px]">
-            <div class="flex justify-between items-center mb-4">
+          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[440px] w-full">
+            <div class="flex justify-between items-center border-b border-neutral-300">
               <h3 class="px-4 py-3">
                 <span class="font-bold text-xl">Filtrar</span>
               </h3>
               <Button class="btn btn-ghost" onClick={() => open.value = false}>
-                <Icon id="XMark" size={24} strokeWidth={2} />
+                <Icon id="Close" size={24} />
               </Button>
             </div>
-            <div class="flex-grow overflow-auto">
+            <div class="flex-grow overflow-auto pt-4">
               <Filters filters={filters} showClearFilters={showClearFilters} />
             </div>
           </div>
         </>
       }
     >
-      <div class="lg:flex flex-row items-center justify-between border-b border-base-200 lg:gap-4 lg:gap-y-0 gap-y-2 lg:pb-0 pb-2 w-full grid md:grid-cols-[repeat(3,auto)] grid-cols-[repeat(2,auto)]">
+      <div class="lg:flex flex-row items-center justify-between max-lg:border-b border-base-200 lg:gap-4 lg:gap-y-0 gap-y-2 lg:pb-0 pb-2 w-full grid md:grid-cols-[repeat(3,auto)] grid-cols-[repeat(2,auto)]">
         <strong class="text-neutral-400 text-sm w-[90px]">
           {quantity ? `${quantity} Produtos` : ""}
         </strong>
