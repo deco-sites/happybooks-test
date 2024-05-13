@@ -29,7 +29,8 @@ export default function ProductActionVTEX({
     <div
       class={clx(
         "flex items-center justify-center gap-2 w-full",
-        quantitySelector && "!justify-between",
+        quantitySelector &&
+          "!justify-start lg:!justify-between !gap-6 lg:!gap-2",
       )}
     >
       {quantitySelector && (
@@ -39,7 +40,7 @@ export default function ProductActionVTEX({
         />
       )}
 
-      <div class="flex-1 max-w-[200px] md:max-w-[294px]">
+      <div class="flex-1 max-w-[294px]">
         <AddToCartButtonVtex
           eventParams={{ items: [eventItem] }}
           productID={productID}

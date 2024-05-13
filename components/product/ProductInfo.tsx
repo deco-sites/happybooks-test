@@ -22,6 +22,7 @@ import ProductActions from "deco-sites/todo-livro/components/product/Actions/Pro
 import BenefitsBadges, {
   BenefitBadge,
 } from "deco-sites/todo-livro/components/product/BenefitsBadges.tsx";
+import ProductTitle from "deco-sites/todo-livro/components/product/ProductTitle.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -34,9 +35,10 @@ interface Props {
      */
     name?: "concat" | "productGroup" | "product";
   };
+  isMobile: boolean;
 }
 
-function ProductInfo({ page, layout, benefitBadges }: Props) {
+function ProductInfo({ page, layout, benefitBadges, isMobile }: Props) {
   const platform = usePlatform();
   const id = useId();
 
@@ -83,18 +85,12 @@ function ProductInfo({ page, layout, benefitBadges }: Props) {
   return (
     <div class="flex flex-col flex-1" id={id}>
       {/* Code and name */}
-      <div class="">
-        <h1>
-          <span class="font-bold text-2xl capitalize text-neutral-700 line-clamp-2">
-            {layout?.name === "concat"
-              ? `${isVariantOf?.name} ${name}`
-              : layout?.name === "productGroup"
-              ? isVariantOf?.name
-              : name}
-          </span>
-        </h1>
-        {gtin && <span class="text-base-400 mt-2">Cód.: {gtin}</span>}
-      </div>
+      {!isMobile && (
+        <ProductTitle
+          product={product}
+          layoutName={layout?.name}
+        />
+      )}
       {/* Badges */}
       <div class="mt-4 flex gap-2 flex-wrap">
         <div class="flex items-center px-2.5 h-[26px] rounded-full text-xs font-bold text-neutral-700 bg-tertiary-200">

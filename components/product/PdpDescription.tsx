@@ -48,11 +48,11 @@ function ProductDescription({
   }
 
   return (
-    <div class="w-full max-w-container mx-auto mb-3">
+    <div class="w-full max-w-container mx-auto mb-8 lg:mb-14">
       {isMobile
         ? (
           <div>
-            <div class="bg-primary text-primary-content flex px-6 items-center font-bold h-12">
+            <div class="bg-secondary-400 text-neutral-100 flex px-6 items-center font-bold h-12">
               <span>Navegue por:</span>
             </div>
             {description && (

@@ -133,7 +133,12 @@ export default function GallerySlider(props: Props) {
             strokeWidth={0}
           />
         </Slider.PrevButton>
-        <div className="flex-1 flex flex-col">
+        <div
+          className="flex-1 flex flex-col mx-auto"
+          style={{
+            maxWidth: width,
+          }}
+        >
           <Slider
             class="carousel carousel-center gap-6 w-full border border-neutral-300 rounded-[15px]"
             style={{
@@ -168,7 +173,7 @@ export default function GallerySlider(props: Props) {
               </Slider.Item>
             ))}
           </Slider>
-          <p class="flex justify-center items-center gap-1 text-neutral-400 text-sm mt-3">
+          <p class="flex justify-center items-center gap-1 text-neutral-400 font-bold text-sm mt-3">
             <Icon id="Zoom" size={20} /> {isMobile
               ? "Clique na imagem para dar zoom"
               : "Passe o mouse para dar zoom"}

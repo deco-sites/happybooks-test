@@ -9,6 +9,7 @@ import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
 import type { SectionProps } from "deco/types.ts";
 import BrowserLog from "deco-sites/todo-livro/islands/BrowserLog.tsx";
 import { BenefitBadge } from "deco-sites/todo-livro/components/product/BenefitsBadges.tsx";
+import ProductTitle from "deco-sites/todo-livro/components/product/ProductTitle.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -32,7 +33,7 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
 }
 
 export default function ProductDetails(
-  { page, isMobile, benefitBadges }: SectionProps<typeof loader>,
+  { page, isMobile, benefitBadges, layout }: SectionProps<typeof loader>,
 ) {
   if (!page?.seo) {
     return <NotFound />;
@@ -45,6 +46,9 @@ export default function ProductDetails(
       <BrowserLog payload={page} />
       <Breadcrumb itemListElement={itemListElement} />
       <div class="w-full max-w-container px-2 container:px-0 mx-auto flex flex-col lg:flex-row lg:gap-[90px] gap-6 lg:justify-between">
+        {isMobile && (
+          <ProductTitle product={page.product} layoutName={layout?.name} />
+        )}
         <GallerySlider
           page={page}
           isMobile={isMobile}
@@ -52,6 +56,8 @@ export default function ProductDetails(
         <ProductInfo
           page={page}
           benefitBadges={benefitBadges}
+          layout={layout}
+          isMobile={isMobile}
         />
       </div>
     </div>
