@@ -52,7 +52,12 @@ function Input({
 }) {
   const id = useId();
   return (
-    <div class="flex flex-col gap-[6px] w-full relative">
+    <div
+      class={clx(
+        "flex flex-col gap-[6px] w-full relative transition-all",
+        !!error && name === "email" && "mb-1",
+      )}
+    >
       <label htmlFor={id} class="font-bold text-sm text-neutral-100">
         {label}
       </label>
