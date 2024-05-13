@@ -39,17 +39,17 @@ export default function NotFound(
 
   return (
     <div class="flex flex-col gap-8 w-full">
-      <div class="bg-secondary-100 w-full">
-        <div class="max-w-container px-2 container:px-0 mx-auto mb-12 grid grid-cols-[100px_auto] md:grid-cols-[152px_auto] max-md:gap-x-2 justify-center items-center md:items-start text-neutral-600 md:text-left text-center gap-y-9">
+      <div class="bg-secondary-100 w-full pt-6 sm:pt-0">
+        <div class="max-w-container px-2 container:px-0 mx-auto mb-6 sm:mb-12 grid grid-cols-[100px_auto] min-[769px]:grid-cols-[152px_auto] max-[769px]:gap-x-2 justify-center items-center min-[769px]:items-start text-neutral-600 min-[769px]:text-left text-center gap-y-9 gap-x-1">
           <img
             alt="Busca vazia"
             width={152}
             height={253}
             src={asset("/busca-vazia.png")}
             loading="lazy"
-            class="max-md:row-start-2 md:row-span-3 max-md:self-start md:my-auto h-auto"
+            class="max-[769px]:row-start-2 min-[769px]:row-span-3 max-[769px]:self-start my-auto h-auto"
           />
-          <div class="font-bold text-2xl text-neutral-700 max-w-[386px] max-md:col-span-2 md:col-start-2">
+          <div class="font-bold text-2xl text-neutral-700 max-w-[386px] max-[769px]:col-span-2 min-[769px]:col-start-2 max-[769px]:mx-auto">
             {term
               ? (
                 <h1>
@@ -62,24 +62,24 @@ export default function NotFound(
                   Não foram encontrados resultados para a busca
                 </h1>
               )}
-            <p class="mt-8 text-base text-neutral-600 font-normal">
+            <p class="mt-4 min-[769px]:mt-8 text-base text-neutral-600 font-normal">
               Tente seguir estas dicas e realize a busca novamente:
             </p>
           </div>
 
-          <div class="flex flex-col gap-8 max-md:row-start-2 md:col-start-2">
+          <div class="flex flex-col gap-8 max-[769px]:row-start-2 min-[769px]:col-start-2">
             <ul class="list-disc pl-4 -mt-3 text-left">
-              <li>
+              <li class="pl-1">
                 Verifique se você digitou as{" "}
                 <strong>palavras corretamente;</strong>
               </li>
-              <li>
+              <li class="pl-1">
                 Tente utilizar uma <strong>única palavra;</strong>
               </li>
-              <li>
+              <li class="pl-1">
                 Busque por <strong>termos menos específicos;</strong>
               </li>
-              <li>
+              <li class="pl-1">
                 <strong>Utilize sinônimos</strong> ao termo desejado.
               </li>
             </ul>
@@ -92,7 +92,7 @@ export default function NotFound(
             </a>
           </div>
 
-          <p class="text-sm max-w-[536px] max-md:col-span-2 md:col-start-2">
+          <p class="text-sm max-w-[536px] max-[769px]:col-span-2 min-[769px]:col-start-2">
             Se ainda não encontrar o que procura, entre em contato conosco
             através do e-mail: <strong>{email}</strong> ou pelo nosso telefone:
             {" "}
