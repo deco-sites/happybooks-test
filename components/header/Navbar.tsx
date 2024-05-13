@@ -14,10 +14,10 @@ import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { NAV_LINK_STYLE_DICT, navbarHeight } from "./constants.tsx";
 import { Buttons, Logo } from "../../components/header/Header.tsx";
-import { Navigation } from "deco-sites/todo-livro/components/header/Header.tsx";
 import Button from "deco-sites/todo-livro/components/ui/Button.tsx";
 import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
 import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
+import { HeaderNavigation } from "deco-sites/todo-livro/loaders/headerNavigation.ts";
 
 // Make it sure to render it on the server only. DO NOT render it on an island
 function Navbar(
@@ -26,7 +26,7 @@ function Navbar(
       number: string;
       href: string;
     };
-    navigation?: Navigation;
+    navigation?: HeaderNavigation;
     searchbar?: SearchbarProps;
     logo?: Logo;
     buttons?: Buttons;

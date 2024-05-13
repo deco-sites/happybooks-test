@@ -8,6 +8,7 @@ import type { SectionProps } from "deco/types.ts";
 import Alert, { AlertItem } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { SetupMicroHeader } from "deco-sites/todo-livro/islands/Header/SetupMicroHeader.tsx";
+import { HeaderNavigation } from "deco-sites/todo-livro/loaders/headerNavigation.ts";
 
 const HEADER_HEIGHT_DESKTOP = 144;
 const HEADER_HEIGHT_MOBILE = 177; //
@@ -21,67 +22,6 @@ export interface Logo {
 export interface Buttons {
   hideAccountButton?: boolean;
   hideCartButton?: boolean;
-}
-/**
- * @titleBy name
- */
-export interface CategoryItemChild {
-  name: string;
-  url: string;
-}
-/**
- * @titleBy title
- */
-export interface CategoryItem {
-  title: string;
-  url: string;
-  children: CategoryItemChild[];
-}
-export interface CategoryColumn {
-  items: CategoryItem[];
-}
-
-/**
- * @titleBy name
- */
-export interface NavItemChild {
-  name: string;
-  url: string;
-  /**
-   * @description Itens destacados terão underline em desktop, e aparecerão primeiro em mobile
-   */
-  highlight?: boolean;
-}
-
-export interface NavColumn {
-  items?: NavItemChild[];
-}
-
-/**
- * @titleBy name
- */
-export interface NavItem {
-  name: string;
-  url?: string;
-  /**
-   * @maxItems 2
-   */
-  columns: NavColumn[];
-}
-
-/**
- * @titleBy title
- */
-export interface NavigationLinkItem {
-  name: string;
-  url: string;
-  style: "primary" | "secondary" | "tertiary";
-}
-
-export interface Navigation {
-  categories: CategoryColumn[];
-  navItems: NavItem[];
-  links: NavigationLinkItem[];
 }
 
 export interface Props {
@@ -105,7 +45,7 @@ export interface Props {
    * @title Navigation
    * @description Navigation used both on mobile and desktop menus
    */
-  navigation?: Navigation;
+  navigation?: HeaderNavigation;
 
   /** @title Logo */
   logo?: Logo;

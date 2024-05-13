@@ -6,7 +6,8 @@ import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 import * as $$$2 from "./loaders/availableCategories.ts";
 import * as $$$3 from "./loaders/availableIcons.ts";
-import * as $$$4 from "./loaders/icons.ts";
+import * as $$$4 from "./loaders/headerNavigation.ts";
+import * as $$$5 from "./loaders/icons.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
 import * as $$$$$$$0 from "./matchers/canonical.ts";
@@ -78,7 +79,8 @@ const manifest = {
   "loaders": {
     "deco-sites/todo-livro/loaders/availableCategories.ts": $$$2,
     "deco-sites/todo-livro/loaders/availableIcons.ts": $$$3,
-    "deco-sites/todo-livro/loaders/icons.ts": $$$4,
+    "deco-sites/todo-livro/loaders/headerNavigation.ts": $$$4,
+    "deco-sites/todo-livro/loaders/icons.ts": $$$5,
     "deco-sites/todo-livro/loaders/Layouts/ProductCard.tsx": $$$0,
     "deco-sites/todo-livro/loaders/List/Sections.tsx": $$$1,
   },
