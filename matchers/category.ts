@@ -25,7 +25,7 @@ export interface Props {
 export default function CategoryMatcher(
   // props: Props,
   { matcher, url, applyToChildren }: Props,
-  { request }: MatchContext,
+  {}: MatchContext,
 ) {
   if (!matcher) return false;
 
@@ -35,7 +35,7 @@ export default function CategoryMatcher(
         matcher.breadcrumb.itemListElement.length - 1
       ];
 
-      return lastBreadcrumb.item &&
+      return !!lastBreadcrumb.item &&
         (applyToChildren
           ? new URL(lastBreadcrumb.item).pathname.startsWith(url)
           : new URL(lastBreadcrumb.item).pathname === url);

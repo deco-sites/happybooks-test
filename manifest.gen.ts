@@ -72,8 +72,6 @@ import * as $$$$$$56 from "./sections/Search/TextSEO.tsx";
 import * as $$$$$$57 from "./sections/Search/TextSEOMatcher.tsx";
 import * as $$$$$$58 from "./sections/Social/InstagramPosts.tsx";
 import * as $$$$$$59 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$61 from "./sections/Theme/defaultColors.ts";
-import * as $$$$$$62 from "./sections/Theme/theme.d.ts";
 import * as $$$$$$60 from "./sections/Theme/Theme.tsx";
 
 const manifest = {
@@ -150,8 +148,6 @@ const manifest = {
     "deco-sites/todo-livro/sections/Search/TextSEOMatcher.tsx": $$$$$$57,
     "deco-sites/todo-livro/sections/Social/InstagramPosts.tsx": $$$$$$58,
     "deco-sites/todo-livro/sections/Social/WhatsApp.tsx": $$$$$$59,
-    "deco-sites/todo-livro/sections/Theme/defaultColors.ts": $$$$$$61,
-    "deco-sites/todo-livro/sections/Theme/theme.d.ts": $$$$$$62,
     "deco-sites/todo-livro/sections/Theme/Theme.tsx": $$$$$$60,
   },
   "matchers": {
