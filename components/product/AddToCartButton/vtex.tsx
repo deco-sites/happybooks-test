@@ -10,15 +10,22 @@ export interface Props extends Omit<BtnProps, "onAddItem"> {
 function AddToCartButton(
   { seller, productID, eventParams, variant, quantity = 1 }: Props,
 ) {
-  const { addItems } = useCart();
-  const onAddItem = () =>
-    addItems({
+  const { addItems, cart } = useCart();
+  const onAddItem = () => {
+    const cartItem = cart.value?.items.find(
+      (cartItem) => cartItem.id === productID,
+    );
+
+    const quantityToAdd = cartItem ? quantity + cartItem.quantity : quantity;
+
+    return addItems({
       orderItems: [{
         id: productID,
         seller: seller,
-        quantity,
+        quantity: quantityToAdd,
       }],
     });
+  };
 
   return (
     <Button onAddItem={onAddItem} eventParams={eventParams} variant={variant} />

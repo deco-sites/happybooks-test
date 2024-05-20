@@ -121,7 +121,7 @@ function Footer({
       <CookieConsent {...cookie} />
       <div class="flex flex-col w-full max-w-container mx-auto md:px-6 md:gap-6 pb-3">
         <Social {...social} />
-        <div class="w-full flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-8 justify-center">
+        <div class="w-full flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8 justify-center">
           <FooterItems sections={sections} justify={false} />
           <Security items={securityItems} />
         </div>

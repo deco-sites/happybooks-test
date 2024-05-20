@@ -3,6 +3,7 @@ import { Section } from "deco/blocks/section.ts";
 import Image from "apps/website/components/Image.tsx";
 import { asset } from "$fresh/runtime.ts";
 import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
+import { renderSection } from "apps/website/pages/Page.tsx";
 
 export interface Props {
   /**
@@ -21,9 +22,9 @@ export interface Props {
    */
   term?: string;
   /**
-   *  @title Prateleira da página não encontrada
+   *  @title Seções para exibir quando não houver resultados
    */
-  notFoundShelf?: Section;
+  notFoundSections?: Section[];
 }
 
 export default function NotFound(
@@ -31,12 +32,9 @@ export default function NotFound(
     phone = "(00) 0000-0000",
     email = "atendimento@loja.com.br",
     term,
-    notFoundShelf,
+    notFoundSections,
   }: Props,
 ) {
-  const ShelfComponent = notFoundShelf?.Component;
-  const shelfProps = notFoundShelf?.props;
-
   return (
     <div class="flex flex-col gap-8 w-full">
       <div class="bg-secondary-100 w-full pt-6 sm:pt-0">
@@ -101,7 +99,7 @@ export default function NotFound(
         </div>
       </div>
 
-      {ShelfComponent && <ShelfComponent {...shelfProps} />}
+      {notFoundSections?.map((section) => renderSection(section))}
     </div>
   );
 }

@@ -163,7 +163,7 @@ function Searchbar({
       </form>
       <div
         tabIndex={0}
-        class="dropdown-content z-[1] !top-6 w-full bg-base-100 border border-solid border-success-300 border-t-0 !scale-100 pt-6 pb-2.5 xs:pb-2 data-[has-terms='false']:!opacity-0 flex flex-col text-sm"
+        class="dropdown-content z-[1] !top-6 w-full bg-base-100 border border-solid border-success-300 border-t-0 !scale-100 pt-6 pb-2.5 xs:pb-2 data-[has-content='false']:!opacity-0 flex flex-col text-sm rounded-b-[24px] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.25)]"
         data-has-products={hasProducts}
         data-has-terms={hasTerms}
         data-has-content={hasProducts || hasTerms}
@@ -209,7 +209,7 @@ function Searchbar({
           </div>
         )}
         <div
-          class={`flex flex-col overflow-y-auto mt-2.5 xs:mt-3 px-2.5 xs:px-7 mr-2.5 xs:mr-1 scrollbar max-h-[151px] xs:max-h-[163px] gap-2 xs:gap-3 scrollbar`}
+          class={`flex flex-col overflow-y-auto mt-2.5 xs:mt-3 px-2.5 xs:px-7 mr-2.5 xs:mr-1 scrollbar max-h-[151px] xs:max-h-[163px] gap-2 xs:gap-3`}
         >
           {products.map((product, index) => {
             const offer = product.offers?.offers?.[0];

@@ -47,7 +47,7 @@ export default function FooterItems(
             //   justify && "sm:justify-between"
             // }`}
             class={clx(
-              "hidden md:flex flex-row gap-6 lg:gap-8",
+              "hidden md:flex md:flex-wrap lg:flex-nowrap md:justify-center lg:justify-normal flex-row gap-6 lg:gap-8",
               justify && "sm:justify-between",
             )}
           >

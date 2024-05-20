@@ -66,7 +66,7 @@ function Input({
           id={id}
           data-error={error ? "true" : undefined}
           data-loading={loading ? "true" : undefined}
-          class={"w-full px-3 py-[11px] h-[41px] text-sm placeholder:text-neutral-400 text-neutral-500 rounded-[5px] bg-neutral-100 border border-neutral-300"}
+          class={"w-full px-3 py-[11px] h-[41px] text-sm placeholder:text-neutral-400 text-neutral-500 rounded-[5px] bg-neutral-100 border border-neutral-300 !outline-none"}
           type={type}
           placeholder={placeholder}
           name={name}
