@@ -21,6 +21,9 @@ import Security, {
 } from "deco-sites/todo-livro/components/footer/Security.tsx";
 import PoweredByAgenciaEPlus from "deco-sites/todo-livro/components/footer/PoweredByAgenciaEPlus.tsx";
 import PoweredByVTEX from "deco-sites/todo-livro/components/footer/PoweredByVTEX.tsx";
+import CookieConsent, {
+  Props as CookieProps,
+} from "deco-sites/todo-livro/components/ui/CookieConsent.tsx";
 
 export interface Props {
   social?: {
@@ -37,6 +40,8 @@ export interface Props {
 
   /** @format html */
   copyright?: string;
+
+  cookie?: CookieProps;
 }
 
 function Footer({
@@ -106,12 +111,14 @@ function Footer({
   securityItems,
   copyright,
   device,
+  cookie,
 }: SectionProps<typeof loader>) {
   const isMobile = device === "mobile";
   const isTablet = device === "tablet";
 
   const content = (
     <>
+      <CookieConsent {...cookie} />
       <div class="flex flex-col w-full max-w-container mx-auto md:px-6 md:gap-6 pb-3">
         <Social {...social} />
         <div class="w-full flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-8 justify-center">
