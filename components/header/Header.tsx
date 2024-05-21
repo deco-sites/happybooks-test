@@ -9,6 +9,8 @@ import Alert, { AlertItem } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { SetupMicroHeader } from "deco-sites/todo-livro/islands/Header/SetupMicroHeader.tsx";
 import { HeaderNavigation } from "deco-sites/todo-livro/loaders/headerNavigation.ts";
+import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
+import { ImageOrIconType } from "deco-sites/todo-livro/components/ui/ImageOrIcon.tsx";
 
 const HEADER_HEIGHT_DESKTOP = 144;
 const HEADER_HEIGHT_MOBILE = 177; //
@@ -39,6 +41,9 @@ export interface Props {
   whatsapp?: {
     number: string;
     href: string;
+    hoverTitle?: string;
+    hoverText?: string;
+    hoverIcon?: ImageOrIconType;
   };
 
   /**
@@ -71,7 +76,7 @@ function Header({
 }: SectionProps<typeof loader>) {
   const platform = usePlatform();
 
-  const isMobile = device === "mobile";
+  const isMobile = device === "mobile" || device === "tablet";
 
   const shouldShowAlerts = (alerts && alerts.length > 0) ||
     (freeShippingTarget ?? 0) > 0;
@@ -111,6 +116,24 @@ function Header({
         </div>
         <CartDrawer platform={platform} />
         {isMobile && <MenuDrawer menu={{ navigation, logo, alerts }} />}
+        <div class="fixed right-0 bottom-0 md:right-2 md:bottom-2 z-30 flex flex-col gap-4 pointer-events-none">
+          <a
+            class="btn btn-sm btn-square btn-neutral size-12 rounded-full bg-primary-400 hover:!bg-primary-500 opacity-0 invisible group-data-[micro-header='true']/header:opacity-100 group-data-[micro-header='true']/header:visible transition pointer-events-auto !border-none"
+            href="#main-header"
+          >
+            <Icon id="ChevronUp" size={24} />
+          </a>
+          {whatsapp?.href && (
+            <a
+              href={whatsapp?.href}
+              class="pointer-events-auto size-12 rounded-full bg-success-300 hover:bg-success-500 flex items-center justify-center text-neutral-100 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon id="WhatsApp" size={30} />
+            </a>
+          )}
+        </div>
       </header>
       <SetupMicroHeader rootId="main-header" threshold={140} />
     </>

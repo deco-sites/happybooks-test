@@ -15,9 +15,9 @@ function Security({ items }: { items?: SecurityItem[] }) {
   return (
     <>
       {items && items.length > 0 && (
-        <div class="flex md:flex-col justify-between lg:justify-start items-center md:items-stretch gap-4 flex-wrap md:flex-nowrap md:p-0 py-2 px-4 rounded-[10px] bg-neutral-100 md:bg-transparent md:rounded-none md:mx-0 mx-5">
+        <div class="flex md:flex-col justify-between md:justify-start items-center md:items-stretch gap-4 flex-wrap md:flex-nowrap md:p-0 py-2 px-4 rounded-[10px] bg-neutral-100 md:bg-transparent md:rounded-none mx-5 md:mx-auto lg:mx-0">
           <SectionTitle>Segurança</SectionTitle>
-          <ul class="flex justify-between gap-x-4 gap-y-2 flex-wrap md:py-2 md:px-4 md:rounded-[10px] md:bg-neutral-100 items-center">
+          <ul class="flex justify-between md:justify-start lg:justify-between gap-x-4 gap-y-2 flex-wrap md:py-2 md:px-4 md:rounded-[10px] md:bg-neutral-100 items-center">
             {items.map((item) => {
               const img = (
                 <Image

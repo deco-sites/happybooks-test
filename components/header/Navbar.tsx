@@ -18,6 +18,9 @@ import Button from "deco-sites/todo-livro/components/ui/Button.tsx";
 import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
 import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
 import { HeaderNavigation } from "deco-sites/todo-livro/loaders/headerNavigation.ts";
+import ImageOrIcon, {
+  ImageOrIconType,
+} from "deco-sites/todo-livro/components/ui/ImageOrIcon.tsx";
 
 // Make it sure to render it on the server only. DO NOT render it on an island
 function Navbar(
@@ -25,6 +28,9 @@ function Navbar(
     whatsapp?: {
       number: string;
       href: string;
+      hoverTitle?: string;
+      hoverText?: string;
+      hoverIcon?: ImageOrIconType;
     };
     navigation?: HeaderNavigation;
     searchbar?: SearchbarProps;
@@ -34,9 +40,10 @@ function Navbar(
   },
 ) {
   const platform = usePlatform();
+  const isMobile = device === "mobile" || device === "tablet";
 
   // Mobile header
-  if (device === "mobile") {
+  if (isMobile) {
     return (
       <div class="lg:hidden flex flex-col shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
         <div // style={{ height: navbarHeight }}
@@ -111,24 +118,45 @@ function Navbar(
           </div>
           <div class="flex gap-11 items-center justify-end">
             {whatsapp && (
-              <a
-                class="flex gap-2 items-center text-xs text-neutral-400"
-                href={whatsapp.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Atendimento"
-              >
-                <Icon
-                  id="WhatsApp"
-                  size={24}
-                  strokeWidth={0.4}
-                  class="text-success-300"
-                />
-                <strong>
-                  Atendimento<br />
-                  {whatsapp.number}
-                </strong>
-              </a>
+              <div class="dropdown dropdown-hover">
+                <a
+                  class="flex gap-2 items-center text-xs text-neutral-400"
+                  href={whatsapp.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Atendimento"
+                >
+                  <Icon
+                    id="WhatsApp"
+                    size={24}
+                    strokeWidth={0.4}
+                    class="text-success-300"
+                  />
+                  <strong>
+                    Atendimento<br />
+                    {whatsapp.number}
+                  </strong>
+                </a>
+                {!!whatsapp.hoverTitle && !!whatsapp.hoverText && (
+                  <div class="dropdown-content flex flex-col gap-2 text-neutral-600 py-6 px-8 bg-neutral-100 rounded-b-[10px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.25)] min-w-[250px] left-1/2 -translate-x-1/2">
+                    <strong class="font-sm text-bold">
+                      {whatsapp.hoverTitle}
+                    </strong>
+                    <div class="flex gap-1">
+                      {whatsapp.hoverIcon && (
+                        <ImageOrIcon
+                          width={16}
+                          height={16}
+                          {...whatsapp.hoverIcon}
+                        />
+                      )}
+                      <span class="text-xs text-neutral-400">
+                        {whatsapp.hoverText}
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
             )}
             {!buttons?.hideAccountButton && (
               <a

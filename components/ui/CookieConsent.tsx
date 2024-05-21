@@ -70,16 +70,16 @@ function CookieConsent(props: Props) {
         <button
           type="button"
           data-icon-cc
-          class={`transform-gpu translate-y-[200%] transition fixed bottom-0 lg:left-2 lg:bottom-2 size-[50px] rounded-full flex items-center justify-center text-neutral-100 bg-tertiary-400 z-50 lg:flex`}
+          class={`transform-gpu translate-y-[200%] transition fixed bottom-0 md:left-2 md:bottom-2 size-[50px] rounded-full flex items-center justify-center text-neutral-100 bg-tertiary-400 z-50 md:flex`}
         >
           <Icon id="Cookie" size={30} />
         </button>
         <div
           data-content-cc
-          class={`transform-gpu translate-y-[200%] transition fixed bottom-0 lg:bottom-2 lg:left-2 w-screen z-50 lg:flex pointer-events-none`}
+          class={`transform-gpu translate-y-[200%] transition fixed bottom-0 md:bottom-2 md:left-2 w-screen z-50 md:flex pointer-events-none`}
         >
           <div
-            class={`p-4 lg:px-10 lg:py-6 flex flex-col gap-5 bg-neutral-600 rounded-[10px] pointer-events-auto`}
+            class={`p-4 md:px-10 md:py-6 flex flex-col gap-5 bg-neutral-600 rounded-[10px] pointer-events-auto`}
           >
             <div
               class={`flex-auto flex flex-col gap-4`}

@@ -38,7 +38,7 @@ export default function ShelfWithImage(
   }
 
   return (
-    <div class="max-w-container container:mx-auto flex flex-col lg:flex-row gap-4 pb-[74px] md:pb-10 relative mb-8">
+    <div class="max-w-container container:mx-auto flex flex-col md:flex-row gap-4 pb-[74px] md:pb-10 relative mb-8">
       <div
         class={clx("flex", isMobile ? "w-full" : "min-w-[287px]")}
       >
@@ -50,38 +50,39 @@ export default function ShelfWithImage(
           alt={image.alt}
         />
       </div>
-      <div
-        id={id}
-        class={clx(
-          "w-full grid px-2 md:px-0 md:relative",
-          "grid-cols-[0px_1fr_0px]",
-          // "px-0 md:px-5",
-        )}
-      >
-        <Slider class="carousel sm:carousel-end gap-4 row-start-2 row-end-5">
-          {products?.map((product, index) => (
-            <Slider.Item
-              index={index}
-              class={clx(
-                "carousel-item w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]",
-              )}
-            >
-              <ProductCard
-                product={product}
-                itemListName={image.alt}
-                layout={cardLayout}
-                platform={platform}
+      <div class="w-full px-2 md:px-0 md:relative">
+        <div
+          id={id}
+          class={clx(
+            "w-full grid md:relative",
+            "grid-cols-[0px_1fr_0px]",
+            // "px-0 md:px-5",
+          )}
+        >
+          <Slider class="carousel sm:carousel-end gap-4 row-start-2 row-end-5">
+            {products?.map((product, index) => (
+              <Slider.Item
                 index={index}
-              />
-            </Slider.Item>
-          ))}
-        </Slider>
+                class={clx(
+                  "carousel-item w-[calc((100%-16px)/2)] xl:w-[calc((100%-3*16px)/4)]",
+                )}
+              >
+                <ProductCard
+                  product={product}
+                  itemListName={image.alt}
+                  layout={cardLayout}
+                  platform={platform}
+                  index={index}
+                />
+              </Slider.Item>
+            ))}
+          </Slider>
 
-        <Buttons />
+          <Buttons />
 
-        <Dots quantity={products.length} />
-        {
-          /* <div class="relative block z-10 col-start-1 row-start-3">
+          <Dots quantity={products.length} />
+          {
+            /* <div class="relative block z-10 col-start-1 row-start-3">
           <Slider.PrevButton class="absolute w-12 h-12 flex justify-center items-center">
             <Icon size={24} id="ChevronLeft" strokeWidth={3} class="w-5" />
           </Slider.PrevButton>
@@ -91,25 +92,26 @@ export default function ShelfWithImage(
             <Icon size={24} id="ChevronRight" strokeWidth={3} />
           </Slider.NextButton>
         </div> */
-        }
+          }
 
-        <SliderJS rootId={id} infinite />
-        <SendEventOnView
-          id={id}
-          event={{
-            name: "view_item_list",
-            params: {
-              item_list_name: image.alt,
-              items: products.map((product, index) =>
-                mapProductToAnalyticsItem({
-                  index,
-                  product,
-                  ...(useOffer(product.offers)),
-                })
-              ),
-            },
-          }}
-        />
+          <SliderJS rootId={id} infinite />
+          <SendEventOnView
+            id={id}
+            event={{
+              name: "view_item_list",
+              params: {
+                item_list_name: image.alt,
+                items: products.map((product, index) =>
+                  mapProductToAnalyticsItem({
+                    index,
+                    product,
+                    ...(useOffer(product.offers)),
+                  })
+                ),
+              },
+            }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -144,7 +146,7 @@ function Buttons() {
 
 function Dots({ quantity }: { quantity: number }) {
   return (
-    <ul class="flex gap-2 absolute w-full left-0 bottom-3 md:bottom-[unset] md:top-[calc(100%+24px)] justify-center [&_li]:hidden max-md:[&_li:nth-child(2n-1)]:flex md:[&_li:nth-child(5n-4)]:flex">
+    <ul class="flex gap-2 absolute w-full left-0 bottom-3 md:bottom-[unset] md:top-[calc(100%+24px)] justify-center [&_li]:hidden max-lg:[&_li:nth-child(2n-1)]:flex lg:[&_li:nth-child(5n-4)]:flex">
       {Array.from({ length: quantity }).map((_, index) => (
         <li class="">
           <Slider.Dot index={index}>

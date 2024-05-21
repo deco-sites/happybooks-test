@@ -14,6 +14,7 @@ export type AvailableIcons =
   | "ChevronLeft"
   | "ChevronRight"
   | "ChevronUp"
+  | "Clock"
   | "Close"
   | "Cookie"
   | "CreditCards"

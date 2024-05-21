@@ -94,6 +94,13 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
       return;
     }
+    console.log({
+      index,
+
+      left: item.offsetLeft - root.offsetLeft,
+      item: item.offsetLeft,
+      root: root.offsetLeft,
+    });
 
     slider.scrollTo({
       top: 0,
@@ -122,6 +129,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
     const isShowingLast = indices[indices.length - 1] === items.length - 1;
     const pageIndex = Math.floor(indices[0] / itemsPerPage);
+    console.log({ itemsPerPage, pageIndex });
 
     goToItem(isShowingLast ? 0 : (pageIndex + 1) * itemsPerPage);
   };

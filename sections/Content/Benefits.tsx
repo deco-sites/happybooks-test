@@ -73,7 +73,7 @@ export default function Benefits(
   } = props;
   const id = useId();
 
-  const isMobile = device === "mobile";
+  const isMobile = device === "mobile" || device === "tablet";
 
   if (isMobile) {
     return (

@@ -51,7 +51,7 @@ const MosaicColumn = ({ banner }: { banner: BannerType }) => {
             height={449}
           />
           <img
-            class="rounded-[10px] hover:scale-105 transition-transform duration-300 w-full lg:max-w-[261px]"
+            class="rounded-[10px] hover:scale-105 transition-transform duration-300 w-full md:max-w-[261px]"
             sizes="(max-width: 640px) 100vw, 25vw"
             src={banner.banner.mobile}
             alt={banner.banner.alt}
@@ -66,7 +66,7 @@ const MosaicColumn = ({ banner }: { banner: BannerType }) => {
   const [banner1, banner2] = banner.banners;
 
   return (
-    <div class="flex gap-2 lg:gap-4 lg:flex-col">
+    <div class="flex gap-2 lg:gap-4 md:flex-col">
       <a href={banner1.href} class="flex overflow-hidden rounded-[10px]">
         <Picture>
           <Source
@@ -82,7 +82,7 @@ const MosaicColumn = ({ banner }: { banner: BannerType }) => {
             height={216}
           />
           <img
-            class="rounded-[10px] hover:scale-105 transition-transform duration-300 w-full lg:max-w-[325px]"
+            class="rounded-[10px] hover:scale-105 transition-transform duration-300 w-full md:max-w-[325px]"
             sizes="(max-width: 640px) 100vw, 25vw"
             src={banner1.mobile}
             alt={banner1.alt}
@@ -106,7 +106,7 @@ const MosaicColumn = ({ banner }: { banner: BannerType }) => {
             height={216}
           />
           <img
-            class="rounded-[10px] hover:scale-105 transition-transform duration-300 w-full lg:max-w-[325px]"
+            class="rounded-[10px] hover:scale-105 transition-transform duration-300 w-full md:max-w-[325px]"
             sizes="(max-width: 640px) 100vw, 25vw"
             src={banner2.mobile}
             alt={banner2.alt}
@@ -121,7 +121,7 @@ const MosaicColumn = ({ banner }: { banner: BannerType }) => {
 
 export const BannerMosaic = ({ banners }: Props) => {
   return (
-    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4 max-w-[440px] lg:max-w-container mx-auto w-full mb-8 px-2 lg:px-0">
+    <div class="flex flex-col md:flex-row gap-2 lg:gap-4 max-w-[440px] md:max-w-container mx-auto w-full mb-8 px-2 lg:px-0">
       {banners.map((banner) => <MosaicColumn banner={banner} />)}
     </div>
   );

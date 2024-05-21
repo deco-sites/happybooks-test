@@ -51,7 +51,7 @@ function AlertI({ icon, text, href }: AlertItem) {
 function Alert({ alerts = [], device, freeShippingTarget }: Props) {
   const platform = usePlatform();
 
-  const isMobile = device === "mobile";
+  const isMobile = device === "mobile" || device === "tablet";
 
   const shouldShowAlerts = !isMobile && alerts.length > 0;
   const shouldShowFreeShipping = (freeShippingTarget ?? 0) > 0;
