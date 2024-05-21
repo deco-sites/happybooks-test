@@ -8,6 +8,13 @@
   html {
     font-family: var(--font-family);
     line-height: normal;
+    scroll-behavior: smooth;
+  }
+
+  /* Evita scroll horizontal em mobile */
+  body {
+    width: 100%;
+    overflow-x: hidden;
   }
 
   mark {
