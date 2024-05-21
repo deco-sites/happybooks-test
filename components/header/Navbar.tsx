@@ -221,7 +221,7 @@ function Navbar(
                           <a
                             title={subItem.title}
                             href={subItem.url}
-                            class="text-lg text-secondary-400 font-bold mb-2 text-nowrap truncate"
+                            class="text-lg text-secondary-400 font-bold mb-2 text-nowrap"
                           >
                             {subItem.title}
                           </a>
