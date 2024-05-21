@@ -9,13 +9,14 @@ export interface Props {
 }
 
 export function loader(props: Props, req: Request) {
+  const isEmpty = !props.page?.products?.length;
+
   if (
-    props.page && !props.page.breadcrumb.itemListElement.length &&
-    props.page.pageInfo.pageTypes?.includes("Search")
+    !props.page || !props.page.breadcrumb.itemListElement.length &&
+      props.page.pageInfo.pageTypes?.includes("Search")
   ) {
     const url = new URL(req.url);
     const term = url.searchParams.get("q");
-    const isEmpty = props.page.products?.length === 0;
 
     return {
       page: {
@@ -37,7 +38,10 @@ export function loader(props: Props, req: Request) {
     };
   }
 
-  return props;
+  return {
+    ...props,
+    isNotFound: isEmpty ? true : undefined,
+  };
 }
 
 export default function BreadcrumbSection(
