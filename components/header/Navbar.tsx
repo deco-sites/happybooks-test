@@ -212,15 +212,16 @@ function Navbar(
               <div class="rounded-full w-full bg-primary-500 transition-all opacity-0 group-hover:opacity-100 h-2 scale-0 group-hover:scale-100" />
               <div class="dropdown-content top-full max-w-container bg-base-100 rounded-b-[20px] py-[38px] shadow-[0px_42px_12px_0px_rgba(0,0,0,0.00),0px_27px_11px_0px_rgba(0,0,0,0.01),0px_15px_9px_0px_rgba(0,0,0,0.05),0px_7px_7px_0px_rgba(0,0,0,0.09),0px_2px_4px_0px_rgba(0,0,0,0.10),0px_0px_0px_0px_rgba(0,0,0,0.10)]">
                 <ul
-                  class={`px-[110px] mr-1 max-h-[316px] flex gap-14 overflow-y-auto overflow-x-hidden scrollbar`}
+                  class={`px-[64px] mr-1 max-h-[316px] flex gap-10 overflow-y-auto overflow-x-hidden scrollbar`}
                 >
                   {navigation?.categories?.map((item) => (
-                    <li class="flex flex-col gap-[14px]">
+                    <li class="flex flex-col gap-[14px] max-w-[260px]">
                       {item.items.map((subItem) => (
                         <div class="flex flex-col">
                           <a
+                            title={subItem.title}
                             href={subItem.url}
-                            class="text-lg text-secondary-400 font-bold mb-2 text-nowrap"
+                            class="text-lg text-secondary-400 font-bold mb-2 text-nowrap truncate"
                           >
                             {subItem.title}
                           </a>
@@ -229,7 +230,7 @@ function Navbar(
                               <li class="flex">
                                 <a
                                   href={child.url}
-                                  class="text-sm text-neutral-700 hover:font-bold before-bold hover:underline transition-all text-nowrap"
+                                  class="text-sm text-neutral-700 hover:font-bold before-bold hover:underline transition-all text-nowrap truncate"
                                   title={child.name}
                                 >
                                   {child.name}
