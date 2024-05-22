@@ -1,6 +1,7 @@
 import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
 import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
+import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
 
 export interface Props {
   page: ProductDetailsPage | null;
@@ -8,6 +9,11 @@ export interface Props {
    * @title Especificações a serem exibidas
    */
   specificationsToShow?: string[];
+  /**
+   * @title Label
+   * @description Label da imagem a ser mostrada na descrição
+   */
+  imageLabel?: string;
 }
 
 export function loader(props: Props, _req: Request, ctx: AppContext) {
@@ -18,6 +24,7 @@ function ProductDescription({
   page,
   isMobile,
   specificationsToShow,
+  imageLabel,
 }: ReturnType<typeof loader>) {
   if (page === null) {
     throw new Error("Missing Product Details Page Info");
@@ -47,6 +54,29 @@ function ProductDescription({
     return null;
   }
 
+  const image = imageLabel
+    ? product.image?.find((img) =>
+      img.alternateName?.toLowerCase() === imageLabel?.toLowerCase()
+    )
+    : undefined;
+
+  const descriptionContent = (
+    <div class="flex flex-col md:flex-row gap-8 items-center">
+      {image?.url && (
+        <CustomImage
+          src={image.url}
+          factors={[1]}
+          width={270}
+          height={270}
+          loading="lazy"
+          fit="contain"
+          alt={product.name}
+        />
+      )}
+      <div>{description}</div>
+    </div>
+  );
+
   return (
     <div class="w-full max-w-container mx-auto mb-8 lg:mb-14">
       {isMobile
@@ -72,7 +102,7 @@ function ProductDescription({
                   />
                 </div>
                 <div class="collapse-content px-5 text-neutral-500">
-                  {description}
+                  {descriptionContent}
                 </div>
               </div>
             )}
@@ -184,7 +214,7 @@ function ProductDescription({
             </div>
             <div class="pt-6">
               <div class="group-has-[#description:checked]:block hidden text-neutral-500 px-8">
-                {description}
+                {descriptionContent}
               </div>
               {
                 // Only show specification tab if there are properties to show

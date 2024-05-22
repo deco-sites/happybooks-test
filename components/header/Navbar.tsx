@@ -73,6 +73,7 @@ function Navbar(
             >
               <CustomImage
                 class="object-contain mb-4"
+                loading="eager"
                 src={logo.src}
                 alt={logo.alt}
                 width={logo.width || 100}
@@ -105,6 +106,7 @@ function Navbar(
                     class="object-contain"
                     src={logo.src}
                     alt={logo.alt}
+                    loading="eager"
                     width={logo.width || 100}
                     height={logo.height || 13}
                     factors={[1]}
