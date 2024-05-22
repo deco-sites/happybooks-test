@@ -9,7 +9,7 @@ function ProductTitle(
   const { gtin, isVariantOf, name } = product;
 
   return (
-    <div class="">
+    <div class="flex flex-col gap-2">
       <h1>
         <span class="font-bold text-2xl capitalize text-neutral-700 line-clamp-2">
           {layoutName === "concat"
