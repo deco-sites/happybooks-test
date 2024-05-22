@@ -67,17 +67,17 @@ export default function NotFound(
 
           <div class="flex flex-col gap-8 max-[769px]:row-start-2 min-[769px]:col-start-2">
             <ul class="list-disc pl-4 -mt-3 text-left">
-              <li class="pl-1">
+              <li class="">
                 Verifique se você digitou as{" "}
                 <strong>palavras corretamente;</strong>
               </li>
-              <li class="pl-1">
+              <li class="">
                 Tente utilizar uma <strong>única palavra;</strong>
               </li>
-              <li class="pl-1">
+              <li class="">
                 Busque por <strong>termos menos específicos;</strong>
               </li>
-              <li class="pl-1">
+              <li class="">
                 <strong>Utilize sinônimos</strong> ao termo desejado.
               </li>
             </ul>
