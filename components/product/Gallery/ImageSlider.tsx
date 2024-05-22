@@ -12,12 +12,16 @@ import {
   getSrcSet,
 } from "apps/website/components/Image.tsx";
 import { Head } from "$fresh/runtime.ts";
+import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
+import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
 
 export interface Props {
   /** @title Integration */
   page: ProductDetailsPage | null;
   isMobile: boolean;
 }
+
+const THUMBS_LIMIT = 4;
 
 function SliderImage(props: ZoomableImageProps) {
   const { preload } = props;
@@ -83,6 +87,7 @@ export default function GallerySlider(props: Props) {
   const width = 550;
   const height = 550;
   const aspectRatio = `${width} / ${height}`;
+  const isAboveThumbsLimit = images.length > THUMBS_LIMIT;
 
   return (
     <div
@@ -105,27 +110,55 @@ export default function GallerySlider(props: Props) {
         )
         : ( */
       }
-      <ul class="carousel carousel-center gap-3 flex-col min-w-[100px] max-lg:hidden ">
-        {images.map((img, index) => (
-          <li class="carousel-item max-w-[100px] sm:max-w-[100px]">
-            <Slider.Dot index={index}>
-              <Image
-                style={{ aspectRatio }}
-                class="group-disabled:border-primary-400 opacity-50 group-disabled:opacity-100 group-disabled:border-2 border border-neutral-300 object-cover w-full h-full transition rounded-[10px]"
-                width={100}
-                height={100}
-                src={img.url!}
-                alt={img.alternateName}
-              />
-            </Slider.Dot>
-          </li>
-        ))}
-      </ul>
+      <div
+        class={clx(
+          "max-lg:hidden grid grid-cols-1 grid-rows-1 gap-3 justify-items-center",
+          isAboveThumbsLimit && "!grid-rows-[2.5rem_auto_2.5rem]",
+        )}
+      >
+        {isAboveThumbsLimit && (
+          <Slider.PrevButton class="btn btn-circle w-10 min-w-10 h-10 min-h-10 !bg-neutral-200 hover:!bg-neutral-100 border-0 outline-none disabled:select-none !rotate-90">
+            <Icon
+              class="text-neutral-400"
+              size={17}
+              id="ChevronLeft"
+              strokeWidth={0}
+            />
+          </Slider.PrevButton>
+        )}
+        <ul class="carousel carousel-vertical carousel-center gap-3 flex-col min-w-[100px] h-[436px]">
+          {images.map((img, index) => (
+            <li class="carousel-item max-w-[100px] sm:max-w-[100px]">
+              <Slider.Dot index={index}>
+                <CustomImage
+                  style={{ aspectRatio }}
+                  class="group-disabled:border-primary-400 opacity-50 group-disabled:opacity-100 group-disabled:border-2 border border-neutral-300 object-cover w-full h-full transition rounded-[10px]"
+                  factors={[1]}
+                  width={100}
+                  height={100}
+                  src={img.url!}
+                  alt={img.alternateName}
+                />
+              </Slider.Dot>
+            </li>
+          ))}
+        </ul>
+        {isAboveThumbsLimit && (
+          <Slider.NextButton class="btn btn-circle w-10 min-w-10 h-10 min-h-10 !bg-neutral-200 hover:!bg-neutral-100 border-0 outline-none disabled:select-none !rotate-90">
+            <Icon
+              class="text-neutral-400"
+              size={17}
+              id="ChevronRight"
+              strokeWidth={0}
+            />
+          </Slider.NextButton>
+        )}
+      </div>
       {/* )} */}
 
       {/* Image Slider */}
       <div class="lg:flex items-center gap-1 relative lg:px-6 px-3 lg:ml-[90px]">
-        <Slider.PrevButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 hover:!bg-neutral-100 border-0 outline-none absolute left-0 top-1/2 !-translate-y-1/2 z-10">
+        <Slider.PrevButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 hover:!bg-neutral-100 border-0 outline-none absolute left-0 top-1/2 !-translate-y-1/2 z-10 disabled:select-none">
           <Icon
             class="text-neutral-400"
             size={17}
@@ -149,7 +182,7 @@ export default function GallerySlider(props: Props) {
             {images.map((img, index) => (
               <Slider.Item
                 index={index}
-                class="carousel-item w-full flex justify-center"
+                class="carousel-item w-full flex justify-center select-none"
               >
                 <SliderImage
                   type={isMobile ? "click" : "hover"}
@@ -180,7 +213,7 @@ export default function GallerySlider(props: Props) {
           </p>
         </div>
 
-        <Slider.NextButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 hover:!bg-neutral-100 border-0 outline-none absolute top-1/2 right-0 !-translate-y-1/2 z-10">
+        <Slider.NextButton class="btn btn-circle w-12 min-w-12 h-12 min-h-12 !bg-neutral-200 hover:!bg-neutral-100 border-0 outline-none absolute top-1/2 right-0 !-translate-y-1/2 z-10 disabled:select-none">
           <Icon
             class="text-neutral-400"
             size={17}

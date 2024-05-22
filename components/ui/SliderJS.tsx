@@ -50,8 +50,12 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   const root = document.getElementById(rootId);
   const slider = root?.querySelector(`[${ATTRIBUTES["data-slider"]}]`);
   const items = root?.querySelectorAll(`[${ATTRIBUTES["data-slider-item"]}]`);
-  const prev = root?.querySelector(`[${ATTRIBUTES['data-slide="prev"']}]`);
-  const next = root?.querySelector(`[${ATTRIBUTES['data-slide="next"']}]`);
+  const prevButtons = root?.querySelectorAll(
+    `[${ATTRIBUTES['data-slide="prev"']}]`,
+  );
+  const nextButtons = root?.querySelectorAll(
+    `[${ATTRIBUTES['data-slide="next"']}]`,
+  );
   const dots = root?.querySelectorAll(`[${ATTRIBUTES["data-dot"]}]`);
 
   if (!root || !slider || !items || items.length === 0) {
@@ -94,13 +98,6 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
       return;
     }
-    console.log({
-      index,
-
-      left: item.offsetLeft - root.offsetLeft,
-      item: item.offsetLeft,
-      root: root.offsetLeft,
-    });
 
     slider.scrollTo({
       top: 0,
@@ -129,7 +126,6 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
     const isShowingLast = indices[indices.length - 1] === items.length - 1;
     const pageIndex = Math.floor(indices[0] / itemsPerPage);
-    console.log({ itemsPerPage, pageIndex });
 
     goToItem(isShowingLast ? 0 : (pageIndex + 1) * itemsPerPage);
   };
@@ -149,16 +145,24 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
         if (!infinite) {
           if (index === 0) {
             if (item.isIntersecting) {
-              prev?.setAttribute("disabled", "");
+              prevButtons?.forEach((button) =>
+                button.setAttribute("disabled", "")
+              );
             } else {
-              prev?.removeAttribute("disabled");
+              prevButtons?.forEach((button) =>
+                button.removeAttribute("disabled")
+              );
             }
           }
           if (index === items.length - 1) {
             if (item.isIntersecting) {
-              next?.setAttribute("disabled", "");
+              nextButtons?.forEach((button) =>
+                button.setAttribute("disabled", "")
+              );
             } else {
-              next?.removeAttribute("disabled");
+              nextButtons?.forEach((button) =>
+                button.removeAttribute("disabled")
+              );
             }
           }
         }
@@ -172,8 +176,12 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     dots?.item(it).addEventListener("click", () => goToItem(it));
   }
 
-  prev?.addEventListener("click", onClickPrev);
-  next?.addEventListener("click", onClickNext);
+  prevButtons?.forEach((button) =>
+    button.addEventListener("click", onClickPrev)
+  );
+  nextButtons?.forEach((button) =>
+    button.addEventListener("click", onClickNext)
+  );
 
   const timeout = interval && setInterval(onClickNext, interval);
 
@@ -183,8 +191,12 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
       dots?.item(it).removeEventListener("click", () => goToItem(it));
     }
 
-    prev?.removeEventListener("click", onClickPrev);
-    next?.removeEventListener("click", onClickNext);
+    prevButtons?.forEach((button) =>
+      button.removeEventListener("click", onClickPrev)
+    );
+    nextButtons?.forEach((button) =>
+      button.removeEventListener("click", onClickNext)
+    );
 
     observer.disconnect();
 
