@@ -82,6 +82,10 @@ function ProductInfo({ page, layout, benefitBadges, isMobile }: Props) {
     )
     : 0;
 
+  const differentials = isVariantOf?.additionalProperty?.find(
+    (prop) => prop.name === "Diferenciais",
+  )?.value?.replace(/\r\n/g, "\n").split("\n") ?? [];
+
   return (
     <div class="flex flex-col flex-1" id={id}>
       {/* Code and name */}
@@ -160,7 +164,13 @@ function ProductInfo({ page, layout, benefitBadges, isMobile }: Props) {
             {/* Benefits */}
             <div class="mt-4 p-4 w-full rounded-[10px] bg-[#F9F9F9]">
               <ul class="list-disc flex flex-col gap-2.5 pl-4">
-                <li class="list-item font-bold text-neutral-500 text-sm">
+                {differentials.map((differential) => (
+                  <li class="list-item font-bold text-neutral-500 text-sm">
+                    {differential}
+                  </li>
+                ))}
+                {
+                  /* <li class="list-item font-bold text-neutral-500 text-sm">
                   Trabalha Inteligência Emocional
                 </li>
                 <li class="list-item font-bold text-neutral-500 text-sm">
@@ -168,7 +178,8 @@ function ProductInfo({ page, layout, benefitBadges, isMobile }: Props) {
                 </li>
                 <li class="list-item font-bold text-neutral-500 text-sm">
                   Companheiro perfeito para o<br /> desenvolvimento do seu filho
-                </li>
+                </li> */
+                }
               </ul>
             </div>
             {/* Sku Selector */}
@@ -190,7 +201,7 @@ function ProductInfo({ page, layout, benefitBadges, isMobile }: Props) {
             {!!benefitBadges?.length && (
               <div class="">
                 <BenefitsBadges
-                  additionalProperty={additionalProperty}
+                  additionalProperty={isVariantOf?.additionalProperty}
                   badges={benefitBadges}
                 />
               </div>
