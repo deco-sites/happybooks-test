@@ -162,26 +162,17 @@ function ProductInfo({ page, layout, benefitBadges, isMobile }: Props) {
               )}
             </div>
             {/* Benefits */}
-            <div class="mt-4 p-4 w-full rounded-[10px] bg-[#F9F9F9]">
-              <ul class="list-disc flex flex-col gap-2.5 pl-4">
-                {differentials.map((differential) => (
-                  <li class="list-item font-bold text-neutral-500 text-sm">
-                    {differential}
-                  </li>
-                ))}
-                {
-                  /* <li class="list-item font-bold text-neutral-500 text-sm">
-                  Trabalha Inteligência Emocional
-                </li>
-                <li class="list-item font-bold text-neutral-500 text-sm">
-                  Valores Familiares
-                </li>
-                <li class="list-item font-bold text-neutral-500 text-sm">
-                  Companheiro perfeito para o<br /> desenvolvimento do seu filho
-                </li> */
-                }
-              </ul>
-            </div>
+            {!!differentials.length && (
+              <div class="mt-4 p-4 w-full rounded-[10px] bg-[#F9F9F9]">
+                <ul class="list-disc flex flex-col gap-2.5 pl-4">
+                  {differentials.map((differential) => (
+                    <li class="list-item font-bold text-neutral-500 text-sm">
+                      {differential}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {/* Sku Selector */}
             {
               /* <div class="mt-4 sm:mt-6">
