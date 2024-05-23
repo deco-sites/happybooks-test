@@ -29,7 +29,7 @@ export type Props =
 
 const FACTORS = [1, 2];
 
-type FitOptions = "contain" | "cover";
+export type FitOptions = "contain" | "cover";
 
 export const getOptimizedMediaUrl = ({
   originalSrc,
@@ -109,7 +109,7 @@ const CustomImage = forwardRef<HTMLImageElement, Props>((props, ref) => {
   const isSingleFactor = (props.factors ?? FACTORS).length <= 1;
 
   const linkProps = {
-    imagesrcset: srcSet,
+    imagesrcset: isSingleFactor ? undefined : srcSet,
     imagesizes: props.sizes,
     fetchpriority: props.fetchPriority,
     media: props.media,

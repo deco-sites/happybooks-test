@@ -9,6 +9,10 @@ import { useId } from "$store/sdk/useId.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import {
+  CustomPicture,
+  CustomSource,
+} from "deco-sites/todo-livro/components/ui/CustomPicture.tsx";
 
 /**
  * @title {{ alt }} ({{ href }})
@@ -121,22 +125,24 @@ function BannerItem(
       aria-label={alt}
       class="flex relative overflow-y-hidden w-full"
     >
-      <Picture preload={lcp} class="w-full">
-        <Source
+      <CustomPicture preload={lcp} class="w-full">
+        <CustomSource
           preload={lcp}
           media="(max-width: 768px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={mobile}
-          width={sizes.mobile.width / 2}
-          height={sizes.mobile.height / 2}
+          factors={[0.6, 1]}
+          width={sizes.mobile.width}
+          height={sizes.mobile.height}
         />
-        <Source
+        <CustomSource
           preload={lcp}
           media="(min-width: 769px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={desktop}
-          width={sizes.desktop.width / 2}
-          height={sizes.desktop.height / 2}
+          factors={[0.6, 1]}
+          width={sizes.desktop.width}
+          height={sizes.desktop.height}
         />
         <img
           class={clx(
@@ -144,7 +150,7 @@ function BannerItem(
             sizes.mobile.preserveHeight &&
               "max-md:h-[var(--banner-height-mobile)]",
             sizes.desktop.preserveHeight &&
-              "md:h-[var(--banner-height-desktop)]",
+              "md:h-[var(--banner-height-desktop)] min-[1920px]:!h-auto",
           )}
           style={{}}
           loading={lcp ? "eager" : "lazy"}
@@ -153,7 +159,7 @@ function BannerItem(
           height={sizes.desktop.height}
           alt={alt}
         />
-      </Picture>
+      </CustomPicture>
     </a>
   );
 }
