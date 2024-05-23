@@ -144,6 +144,11 @@
       translateX(calc(var(--direction) * -13rem));
     transition: all 0.3s ease-out;
   }
+
+  .truck-icon::before {
+    font-family: 'fontello';
+    content: '\e800';
+  }
 }
 
 @layer components {

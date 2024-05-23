@@ -23,7 +23,7 @@ function FreeShippingProgressBar({
   const missingValue = target - total;
   const reachedFreeShipping = missingValue <= 0;
 
-  const valuePercentage = Math.floor((total / target) * 100);
+  const valuePercentage = ((total / target) * 100).toFixed(2);
 
   useEffect(() => {
     ref.current?.animate(
@@ -80,14 +80,19 @@ function FreeShippingProgressBar({
       {total >= 0 && (
         <span
           class={clx(
-            "absolute inset-0 text-neutral-600 flex items-center justify-center gap-x-1 text-sm",
-            layout === "header" && "xl:right-[calc(50vw-610px)]",
+            "absolute w-full inset-0 text-transparent flex items-center justify-center gap-x-1 text-sm !bg-clip-text transition-all",
+            layout === "header" && "xl:pr-[calc(50vw-610px)]",
           )}
+          style={{
+            background:
+              `linear-gradient(to right, white ${valuePercentage}%, oklch(var(--neutral-600)) 0)`,
+          }}
         >
           {total === 0
             ? (
-              <span class="text-neutral-600 flex items-center justify-center gap-x-2 text-sm">
-                <Icon id="Truck" size={28} />
+              <span class="flex items-center justify-center gap-x-2 text-sm">
+                {/* <Icon id="Truck" size={28} /> */}
+                <span class="truck-icon text-[28px]" />
                 <span>
                   Falta apenas{" "}
                   <strong>{formatPrice(target, currency, locale)}</strong>{" "}
@@ -98,15 +103,17 @@ function FreeShippingProgressBar({
             : reachedFreeShipping
             ? (
               <span class="text-white flex items-center justify-center gap-x-2 text-sm">
-                <Icon id="Truck" size={28} />
+                {/* <Icon id="Truck" size={28} /> */}
+                <span class="truck-icon text-[28px]" />
                 <span>
                   Aproveite para comprar, o frete é grátis!
                 </span>
               </span>
             )
             : (
-              <span class="text-neutral-600 flex items-center justify-center gap-x-2 text-sm">
-                <Icon id="Truck" size={28} />
+              <span class="flex items-center justify-center gap-x-2 text-sm">
+                {/* <Icon id="Truck" size={28} class="" /> */}
+                <span class="truck-icon text-[28px]" />
                 <span>
                   Falta apenas{" "}
                   <strong>{formatPrice(missingValue, currency, locale)}</strong>

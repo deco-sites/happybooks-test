@@ -21,6 +21,15 @@ export default defineApp(async (_req, ctx) => {
         {/* Enable View Transitions API */}
         <meta name="view-transition" content="same-origin" />
 
+        <style
+          type="text/css"
+          dangerouslySetInnerHTML={{
+            __html: `@font-face{font-family:'fontello';src:url('${
+              asset("/fontello.woff2")
+            }') format('woff2');font-display: block;font-weight: normal;font-style:normal}`,
+          }}
+        />
+
         {/* Tailwind v3 CSS file */}
         <link
           href={asset(`/styles.css?revision=${revision}`)}
