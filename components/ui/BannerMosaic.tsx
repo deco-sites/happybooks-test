@@ -6,18 +6,14 @@ export interface Props {
 }
 
 export interface BannerSingle {
-  /**
-   * @readonly
-   */
-  type: "single";
+  /** @hide */
+  readonly type: "single";
   banner: Banner;
 }
 
 export interface BannerDouble {
-  /**
-   * @readonly
-   */
-  type: "double";
+  /** @hide */
+  readonly type: "double";
   /**
    * @maxItems 2
    */

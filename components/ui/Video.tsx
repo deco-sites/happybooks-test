@@ -6,27 +6,21 @@ import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
 
 /** @title From YouTube */
 export interface YoutubeVideo {
-  /**
-   * @hide
-   */
+  /** @hide */
   readonly type: "youtube";
   id: string;
 }
 
 /** @title From URL */
 export interface UrlVideo {
-  /**
-   * @hide
-   */
+  /** @hide */
   readonly type: "url";
   src: string;
 }
 
 /** @title Upload (25MB max) */
 export interface UploadVideo {
-  /**
-   * @hide
-   */
+  /** @hide */
   readonly type: "upload";
   src: VideoWidget;
 }

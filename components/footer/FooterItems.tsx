@@ -5,6 +5,7 @@ import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
 export type Item = { label: string; href: string };
 
 export interface ListSection {
+  /** @hide */
   readonly kind: "list";
 
   desktopMarginRight?: number;
@@ -12,6 +13,7 @@ export interface ListSection {
 }
 
 export interface TextSection {
+  /** @hide */
   readonly kind: "text";
 
   /** @format html */
