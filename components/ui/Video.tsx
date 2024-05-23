@@ -1,28 +1,31 @@
 import { ImageWidget, VideoWidget } from "apps/admin/widgets.ts";
 import { useSignal } from "@preact/signals";
-import Image from "apps/website/components/Image.tsx";
 import VideoDeco from "apps/website/components/Video.tsx";
 import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
+import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
 
+/** @title From YouTube */
 export interface YoutubeVideo {
   /**
-   * @readonly
+   * @hide
    */
   readonly type: "youtube";
   id: string;
 }
 
+/** @title From URL */
 export interface UrlVideo {
   /**
-   * @readonly
+   * @hide
    */
   readonly type: "url";
   src: string;
 }
 
+/** @title Upload (25MB max) */
 export interface UploadVideo {
   /**
-   * @readonly
+   * @hide
    */
   readonly type: "upload";
   src: VideoWidget;
@@ -30,14 +33,23 @@ export interface UploadVideo {
 
 export interface Props {
   title: string;
+
+  /**
+   * @title Largura
+   * @default 1012
+   */
+  width?: number;
+
+  /**
+   * @title Altura
+   * @default 443
+   */
+  height?: number;
   thumbnail: ImageWidget;
   video: YoutubeVideo | UrlVideo | UploadVideo;
 }
 
-const WIDTH = 1012;
-const HEIGHT = 443;
-
-function Video({ title, thumbnail, video }: Props) {
+function Video({ title, thumbnail, video, width = 1012, height = 443 }: Props) {
   const open = useSignal(false);
 
   return (
@@ -50,7 +62,7 @@ function Video({ title, thumbnail, video }: Props) {
           <div
             class="w-full mx-auto"
             style={{
-              maxWidth: `${WIDTH}px`,
+              maxWidth: `${width}px`,
             }}
           >
             {video.type === "youtube"
@@ -59,14 +71,16 @@ function Video({ title, thumbnail, video }: Props) {
                   alt={``}
                   aria-label={``}
                   style={{
-                    aspectRatio: `${WIDTH} / ${HEIGHT}`,
-                    maxWidth: `${WIDTH}px`,
+                    aspectRatio: `${width} / ${height}`,
+                    maxWidth: `${width}px`,
                   }}
-                  width={WIDTH}
-                  height={HEIGHT}
+                  width={width}
+                  height={height}
                   loading="lazy"
-                  src={`https://www.youtube.com/embed/${video.id}?autoplay=1`}
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  frameBorder="0"
+                  src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`}
+                  allow="fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   class="w-full h-auto"
                 />
               )
@@ -74,11 +88,11 @@ function Video({ title, thumbnail, video }: Props) {
                 <VideoDeco
                   src={video.src}
                   style={{
-                    aspectRatio: `${WIDTH} / ${HEIGHT}`,
-                    maxWidth: `${WIDTH}px`,
+                    aspectRatio: `${width} / ${height}`,
+                    maxWidth: `${width}px`,
                   }}
-                  width={WIDTH}
-                  height={HEIGHT}
+                  width={width}
+                  height={height}
                   loading="lazy"
                   controls
                   autoPlay
@@ -92,19 +106,21 @@ function Video({ title, thumbnail, video }: Props) {
             onClick={() => open.value = true}
             class="w-full relative mx-auto group cursor-pointer"
             style={{
-              maxWidth: `${WIDTH}px`,
+              maxWidth: `${width}px`,
             }}
           >
-            <Image
+            <CustomImage
               style={{
-                aspectRatio: `${WIDTH} / ${HEIGHT}`,
-                maxWidth: `${WIDTH}px`,
+                aspectRatio: `${width} / ${height}`,
+                maxWidth: `${width}px`,
               }}
               class="w-full"
-              width={WIDTH}
-              height={HEIGHT}
+              width={width}
+              height={height}
               src={thumbnail}
               alt={title}
+              factors={[0.5, 1]}
+              loading="lazy"
             />
             <Icon
               id="Play"
