@@ -190,7 +190,7 @@ function ProductInfo({ page, layout, benefitBadges, isMobile }: Props) {
               />
             </div>
             {!!benefitBadges?.length && (
-              <div class="">
+              <div class="mt-4">
                 <BenefitsBadges
                   additionalProperty={isVariantOf?.additionalProperty}
                   badges={benefitBadges}

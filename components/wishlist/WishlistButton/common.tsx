@@ -30,7 +30,7 @@ function ButtonCommon({
   return (
     <Button
       class={clx(
-        "!bg-transparent !border-none !outline-none min-h-[unset] min-w-[unset] w-[unset] h-[unset] !p-0 group",
+        "!bg-transparent !border-none !outline-none min-h-[unset] min-w-[unset] w-[unset] h-[unset] !p-0 group !shadow-none",
         variant === "icon" ? "gap-2" : "gap-1",
       )}
       loading={fetching.value}
