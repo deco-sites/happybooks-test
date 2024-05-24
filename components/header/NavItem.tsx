@@ -64,7 +64,7 @@ function NavItem({ item }: { item: Navigation["navItems"][number] }) {
       data-has-children={hasChildren ? "true" : undefined}
       class="dropdown dropdown-hover h-full flex flex-col group"
     >
-      {label}
+      {url ? <a class="h-full flex flex-col" href={url}>{label}</a> : label}
       <div class="dropdown-content min-w-[138px] top-full left-1/2 -translate-x-1/2 bg-base-100 rounded-b-[20px] pt-[18px] pb-7 shadow-[0px_42px_12px_0px_rgba(0,0,0,0.00),0px_27px_11px_0px_rgba(0,0,0,0.01),0px_15px_9px_0px_rgba(0,0,0,0.05),0px_7px_7px_0px_rgba(0,0,0,0.09),0px_2px_4px_0px_rgba(0,0,0,0.10),0px_0px_0px_0px_rgba(0,0,0,0.10)]">
         <ul
           class={`px-6 mr-1 max-h-[316px] flex gap-8 overflow-y-auto overflow-x-hidden scrollbar`}
