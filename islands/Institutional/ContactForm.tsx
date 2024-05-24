@@ -4,12 +4,15 @@ import type { JSX } from "preact";
 
 interface InputProps {
   id: string;
+  name?: string;
   placeholder: string;
   label: string;
   type?: "text" | "email";
 }
 
-function Input({ id, placeholder, label, type = "text" }: InputProps) {
+function Input(
+  { id, name = id, placeholder, label, type = "text" }: InputProps,
+) {
   return (
     <div class="w-full relative">
       <div class="flex w-full mb-2 justify-between items-center">
@@ -24,6 +27,7 @@ function Input({ id, placeholder, label, type = "text" }: InputProps) {
       <input
         required
         type={type}
+        name={name}
         id={`fc_${id}`}
         class="h-11 w-full font-normal text-base text-neutral-600 placeholder:text-neutral-400 bg-transparent border-[2px] focus:outline-neutral-200 border-neutral-200 rounded p-3"
         placeholder={placeholder}
@@ -55,7 +59,7 @@ function ContactForm({ form = { submitText: "Enviar" } }: Props) {
     const name = (e.currentTarget.elements.namedItem("name") as RadioNodeList)
       ?.value;
     const message =
-      (e.currentTarget.elements.namedItem("name") as RadioNodeList)
+      (e.currentTarget.elements.namedItem("message") as RadioNodeList)
         ?.value;
 
     const data = {
@@ -89,10 +93,10 @@ function ContactForm({ form = { submitText: "Enviar" } }: Props) {
       <div class="container-center flex flex-col mt-7">
         {succeeded.value
           ? (
-            <div class="text-gray-600 w-full flex flex-col justify-center items-center">
+            <div class="text-neutral-600 w-full flex flex-col justify-center items-center">
               <span class="my-4">Formulário enviado com sucesso</span>
               <button
-                class="my-4 uppercase font-bold rounded-[5px] bg-primary-500 text-neutral-100 w-full max-w-[350px] flex items-center justify-center h-10"
+                class="my-4 w-full rounded-full bg-secondary-400 font-bold text-neutral-100 h-[40px] disabled:bg-disabled-btn disabled:cursor-pointer max-w-[350px]"
                 onClick={() => window.location.reload()}
               >
                 Enviar Novo Formulário
@@ -121,7 +125,7 @@ function ContactForm({ form = { submitText: "Enviar" } }: Props) {
                     </span>
                     <textarea
                       required
-                      id="message"
+                      id="fc_message"
                       name="message"
                       placeholder={"Digite sua mensagem"}
                       class="w-full font-normal text-base text-neutral-600 placeholder:text-neutral-400 bg-transparent border-[2px] rounded border-neutral-200 py-2 px-4"
