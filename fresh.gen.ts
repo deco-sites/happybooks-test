@@ -25,6 +25,7 @@ import * as $Header_FreeShippingProgressBar from "./islands/Header/FreeShippingP
 import * as $Header_MenuDrawer from "./islands/Header/MenuDrawer.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Header_SetupMicroHeader from "./islands/Header/SetupMicroHeader.tsx";
+import * as $Institutional_ContactForm from "./islands/Institutional/ContactForm.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
 import * as $ProductActions_vtex from "./islands/ProductActions/vtex.tsx";
@@ -68,6 +69,7 @@ const manifest = {
     "./islands/Header/MenuDrawer.tsx": $Header_MenuDrawer,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
     "./islands/Header/SetupMicroHeader.tsx": $Header_SetupMicroHeader,
+    "./islands/Institutional/ContactForm.tsx": $Institutional_ContactForm,
     "./islands/Newsletter.tsx": $Newsletter,
     "./islands/OutOfStock.tsx": $OutOfStock,
     "./islands/ProductActions/vtex.tsx": $ProductActions_vtex,
