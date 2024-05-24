@@ -1,8 +1,8 @@
 import { ImageWidget, VideoWidget } from "apps/admin/widgets.ts";
 import { useSignal } from "@preact/signals";
 import VideoDeco from "apps/website/components/Video.tsx";
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
-import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
+import CustomImage from "deco-sites/happybooks-test/components/ui/CustomImage.tsx";
 
 /** @title From YouTube */
 export interface YoutubeVideo {

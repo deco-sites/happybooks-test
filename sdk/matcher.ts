@@ -1,5 +1,5 @@
 import { Matcher } from "deco/blocks/matcher.ts";
-import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
+import { AppContext } from "deco-sites/happybooks-test/apps/site.ts";
 
 export interface Matchable {
   /** @title Regra de aplicação do conteúdo */

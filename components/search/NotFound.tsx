@@ -2,7 +2,7 @@ import Icon from "$store/components/ui/Icon.tsx";
 import { Section } from "deco/blocks/section.ts";
 import Image from "apps/website/components/Image.tsx";
 import { asset } from "$fresh/runtime.ts";
-import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
+import CustomImage from "deco-sites/happybooks-test/components/ui/CustomImage.tsx";
 import { renderSection } from "apps/website/pages/Page.tsx";
 
 export interface Props {

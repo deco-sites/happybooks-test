@@ -8,7 +8,7 @@ export interface Props {
   matcher: PLPLoader | PDPLoader;
   /**
    * @format dynamic-options
-   * @options deco-sites/todo-livro/loaders/availableCategories.ts
+   * @options deco-sites/happybooks-test/loaders/availableCategories.ts
    */
   url: string;
 

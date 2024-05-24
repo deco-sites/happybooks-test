@@ -8,11 +8,11 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import { clx } from "deco-sites/happybooks-test/sdk/clx.ts";
 import {
   CustomPicture,
   CustomSource,
-} from "deco-sites/todo-livro/components/ui/CustomPicture.tsx";
+} from "deco-sites/happybooks-test/components/ui/CustomPicture.tsx";
 
 /**
  * @title {{ alt }} ({{ href }})

@@ -1,6 +1,6 @@
 import { ImageWidget } from "apps/admin/widgets.ts";
 import { Product } from "apps/commerce/types.ts";
-import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
+import CustomImage from "deco-sites/happybooks-test/components/ui/CustomImage.tsx";
 
 const MAX_BADGES = 4;
 

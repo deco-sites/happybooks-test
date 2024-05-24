@@ -1,5 +1,5 @@
 import { ImageWidget } from "apps/admin/widgets.ts";
-import SectionTitle from "deco-sites/todo-livro/components/footer/SectionTitle.tsx";
+import SectionTitle from "deco-sites/happybooks-test/components/footer/SectionTitle.tsx";
 import Image from "apps/website/components/Image.tsx";
 
 /** @title {{name}} */

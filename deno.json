@@ -1,6 +1,6 @@
 {
   "imports": {
-    "deco-sites/todo-livro/": "./",
+    "deco-sites/happybooks-test/": "./",
     "$store/": "./",
     "$islands/": "./islands/",
     "$sdk/": "./sdk/",
@@ -28,7 +28,7 @@
     "lint": "deno fmt && deno lint",
     "install": "deno eval 'import \"deco/scripts/apps/install.ts\"'",
     "uninstall": "deno eval 'import \"deco/scripts/apps/uninstall.ts\"'",
-    "bundle": "deno eval 'import \"deco/scripts/apps/bundle.ts\"' deco-sites/todo-livro",
+    "bundle": "deno eval 'import \"deco/scripts/apps/bundle.ts\"' deco-sites/happybooks-test",
     "cache_clean": "rm deno.lock; deno cache -r main.ts",
     "build": "deno run -A dev.ts build",
     "preview": "deno run -A main.ts",

@@ -1,5 +1,5 @@
 import Avatar from "../../components/ui/Avatar.tsx";
-import ClearSearchFilters from "deco-sites/todo-livro/islands/ClearSearchFilters.tsx";
+import ClearSearchFilters from "deco-sites/happybooks-test/islands/ClearSearchFilters.tsx";
 import { formatPrice } from "../../sdk/format.ts";
 import type {
   Filter,
@@ -8,7 +8,7 @@ import type {
   ProductListingPage,
 } from "apps/commerce/types.ts";
 import { parseRange } from "apps/commerce/utils/filters.ts";
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
 
 interface Props {
   filters: ProductListingPage["filters"];

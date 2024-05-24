@@ -4,7 +4,7 @@ import Button from "../../components/ui/Button.tsx";
 import { formatPrice } from "../../sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
 import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
 
 export interface Props {
   items: Array<SKU>;

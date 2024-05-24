@@ -1,4 +1,4 @@
-import { usePlatform } from "deco-sites/todo-livro/sdk/usePlatform.tsx";
+import { usePlatform } from "deco-sites/happybooks-test/sdk/usePlatform.tsx";
 import { AnalyticsItem, PropertyValue } from "apps/commerce/types.ts";
 import AddToCartButtonVtex from "./vtex.tsx";
 import AddToCartButtonWake from "./wake.tsx";
@@ -7,8 +7,8 @@ import AddToCartButtonVNDA from "./vnda.tsx";
 import AddToCartButtonShopify from "./shopify.tsx";
 import AddToCartButtonNuvemshop from "./nuvemshop.tsx";
 import { useSignal } from "@preact/signals";
-import QuantitySelector from "deco-sites/todo-livro/components/ui/QuantitySelector.tsx";
-import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import QuantitySelector from "deco-sites/happybooks-test/components/ui/QuantitySelector.tsx";
+import { clx } from "deco-sites/happybooks-test/sdk/clx.ts";
 
 export interface Props {
   variant?: "plp" | "pdp";

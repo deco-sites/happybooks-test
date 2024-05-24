@@ -3,7 +3,7 @@ import { MatchContext } from "deco/blocks/matcher.ts";
 export interface Props {
   /**
    * @format dynamic-options
-   * @options deco-sites/todo-livro/loaders/availableCategories.ts
+   * @options deco-sites/happybooks-test/loaders/availableCategories.ts
    */
   url: string;
 

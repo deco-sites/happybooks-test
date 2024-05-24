@@ -1,9 +1,9 @@
 import ImageOrIcon, {
   ImageOrIconType,
-} from "deco-sites/todo-livro/components/ui/ImageOrIcon.tsx";
-import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
+} from "deco-sites/happybooks-test/components/ui/ImageOrIcon.tsx";
+import { AppContext } from "deco-sites/happybooks-test/apps/site.ts";
 import type { SectionProps } from "deco/types.ts";
-import { useId } from "deco-sites/todo-livro/sdk/useId.ts";
+import { useId } from "deco-sites/happybooks-test/sdk/useId.ts";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import Icon from "$store/components/ui/Icon.tsx";

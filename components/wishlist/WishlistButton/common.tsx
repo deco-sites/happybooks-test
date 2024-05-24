@@ -2,7 +2,7 @@ import { useSignal } from "@preact/signals";
 import Icon from "../../../components/ui/Icon.tsx";
 import Button from "../../../components/ui/Button.tsx";
 import { sendEvent } from "../../../sdk/analytics.tsx";
-import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import { clx } from "deco-sites/happybooks-test/sdk/clx.ts";
 
 export interface Props {
   productID: string;

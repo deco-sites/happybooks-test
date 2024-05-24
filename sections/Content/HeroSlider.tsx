@@ -1,6 +1,6 @@
-import InstitucionalText from "deco-sites/todo-livro/sections/Institutional/InstitutionalText.tsx";
+import InstitucionalText from "deco-sites/happybooks-test/sections/Institutional/InstitutionalText.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
-import CoverFlowSlider from "deco-sites/todo-livro/islands/CoverFlowSlider.tsx";
+import CoverFlowSlider from "deco-sites/happybooks-test/islands/CoverFlowSlider.tsx";
 
 export interface ImageItem {
   src: ImageWidget;

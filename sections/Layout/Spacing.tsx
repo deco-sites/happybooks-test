@@ -1,4 +1,4 @@
-import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
+import { AppContext } from "deco-sites/happybooks-test/apps/site.ts";
 
 export function loader(props: Props, req: Request, ctx: AppContext) {
   return {

@@ -1,6 +1,6 @@
 import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
-import SectionTitle from "deco-sites/todo-livro/components/footer/SectionTitle.tsx";
-import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import SectionTitle from "deco-sites/happybooks-test/components/footer/SectionTitle.tsx";
+import { clx } from "deco-sites/happybooks-test/sdk/clx.ts";
 
 export type Item = { label: string; href: string };
 

@@ -1,8 +1,8 @@
 import Icon from "$store/components/ui/Icon.tsx";
-import SectionTitle from "deco-sites/todo-livro/components/footer/SectionTitle.tsx";
+import SectionTitle from "deco-sites/happybooks-test/components/footer/SectionTitle.tsx";
 import ImageOrIcon, {
   ImageOrIconType,
-} from "deco-sites/todo-livro/components/ui/ImageOrIcon.tsx";
+} from "deco-sites/happybooks-test/components/ui/ImageOrIcon.tsx";
 
 /** @title {{ name }} */
 export interface PaymentItem {

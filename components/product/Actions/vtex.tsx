@@ -1,8 +1,8 @@
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import AddToCartButtonVtex from "../AddToCartButton/vtex.tsx";
 import { useSignal } from "@preact/signals";
-import QuantitySelector from "deco-sites/todo-livro/components/ui/QuantitySelector.tsx";
-import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import QuantitySelector from "deco-sites/happybooks-test/components/ui/QuantitySelector.tsx";
+import { clx } from "deco-sites/happybooks-test/sdk/clx.ts";
 
 export interface Props {
   variant?: "plp" | "pdp";

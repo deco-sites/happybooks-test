@@ -1,5 +1,5 @@
 import type { SectionProps } from "deco/types.ts";
-import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
+import { AppContext } from "deco-sites/happybooks-test/apps/site.ts";
 import FooterItems, {
   FooterSection,
 } from "../../components/footer/FooterItems.tsx";
@@ -12,18 +12,18 @@ import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
 import {
   BackgroundDesktop,
   BackgroundMobile,
-} from "deco-sites/todo-livro/components/footer/Background.tsx";
+} from "deco-sites/happybooks-test/components/footer/Background.tsx";
 import DeliveryOptions, {
   DeliveryOption,
-} from "deco-sites/todo-livro/components/footer/DeliveryOptions.tsx";
+} from "deco-sites/happybooks-test/components/footer/DeliveryOptions.tsx";
 import Security, {
   SecurityItem,
-} from "deco-sites/todo-livro/components/footer/Security.tsx";
-import PoweredByAgenciaEPlus from "deco-sites/todo-livro/components/footer/PoweredByAgenciaEPlus.tsx";
-import PoweredByVTEX from "deco-sites/todo-livro/components/footer/PoweredByVTEX.tsx";
+} from "deco-sites/happybooks-test/components/footer/Security.tsx";
+import PoweredByAgenciaEPlus from "deco-sites/happybooks-test/components/footer/PoweredByAgenciaEPlus.tsx";
+import PoweredByVTEX from "deco-sites/happybooks-test/components/footer/PoweredByVTEX.tsx";
 import CookieConsent, {
   Props as CookieProps,
-} from "deco-sites/todo-livro/components/ui/CookieConsent.tsx";
+} from "deco-sites/happybooks-test/components/ui/CookieConsent.tsx";
 
 export interface Props {
   social?: {

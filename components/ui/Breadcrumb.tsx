@@ -1,6 +1,6 @@
 import type { BreadcrumbList } from "apps/commerce/types.ts";
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
-import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
+import { clx } from "deco-sites/happybooks-test/sdk/clx.ts";
 
 interface Props {
   itemListElement: BreadcrumbList["itemListElement"];

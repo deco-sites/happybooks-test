@@ -1,4 +1,4 @@
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
 
 const OPTIONS = [
   {

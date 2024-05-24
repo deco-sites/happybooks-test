@@ -8,11 +8,11 @@ import { useOffer } from "../../sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
-import BrowserLog from "deco-sites/todo-livro/islands/BrowserLog.tsx";
-import Pagination from "deco-sites/todo-livro/components/search/Pagination.tsx";
+import BrowserLog from "deco-sites/happybooks-test/islands/BrowserLog.tsx";
+import Pagination from "deco-sites/happybooks-test/components/search/Pagination.tsx";
 import NotFound, {
   Props as NotFoundProps,
-} from "deco-sites/todo-livro/components/search/NotFound.tsx";
+} from "deco-sites/happybooks-test/components/search/NotFound.tsx";
 
 export type Format = "Show More" | "Pagination";
 

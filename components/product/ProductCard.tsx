@@ -10,8 +10,8 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import { relative } from "../../sdk/url.ts";
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
-import ProductActions from "deco-sites/todo-livro/components/product/Actions/ProductActions.tsx";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
+import ProductActions from "deco-sites/happybooks-test/components/product/Actions/ProductActions.tsx";
 
 export interface Layout {
   basics?: {

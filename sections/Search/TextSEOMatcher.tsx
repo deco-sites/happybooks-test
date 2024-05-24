@@ -1,4 +1,4 @@
 export {
   default,
   loader,
-} from "deco-sites/todo-livro/components/search/TextSEOMatcher.tsx";
+} from "deco-sites/happybooks-test/components/search/TextSEOMatcher.tsx";

@@ -1,7 +1,7 @@
 import ImageOrIcon, {
   ImageOrIconType,
 } from "$store/components/ui/ImageOrIcon.tsx";
-import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import { clx } from "deco-sites/happybooks-test/sdk/clx.ts";
 
 /** @title {{ name }} */
 export interface SocialItem {

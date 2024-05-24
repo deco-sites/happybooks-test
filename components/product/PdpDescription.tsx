@@ -1,7 +1,7 @@
 import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
-import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
-import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
+import { AppContext } from "deco-sites/happybooks-test/apps/site.ts";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
+import CustomImage from "deco-sites/happybooks-test/components/ui/CustomImage.tsx";
 
 export interface Props {
   page: ProductDetailsPage | null;

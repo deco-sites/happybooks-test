@@ -1,9 +1,9 @@
 import type { Props as TextSEOProps } from "./TextSEO.tsx";
 import { TextSeo } from "./TextSEO.tsx";
 import { Matcher } from "deco/blocks/matcher.ts";
-import { filterByMatcher } from "deco-sites/todo-livro/sdk/matcher.ts";
+import { filterByMatcher } from "deco-sites/happybooks-test/sdk/matcher.ts";
 import type { SectionProps } from "deco/types.ts";
-import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
+import { AppContext } from "deco-sites/happybooks-test/apps/site.ts";
 
 export interface MatcherItem extends TextSEOProps {
   /** @title Regra de aplicação do conteúdo */

@@ -1,1 +1,1 @@
-export { default } from "deco-sites/todo-livro/components/search/TextSEO.tsx";
+export { default } from "deco-sites/happybooks-test/components/search/TextSEO.tsx";

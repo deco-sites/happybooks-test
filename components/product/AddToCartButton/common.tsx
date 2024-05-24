@@ -3,7 +3,7 @@ import { useState } from "preact/hooks";
 import Button from "../../../components/ui/Button.tsx";
 import { sendEvent } from "../../../sdk/analytics.tsx";
 import { useUI } from "../../../sdk/useUI.ts";
-import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import { clx } from "deco-sites/happybooks-test/sdk/clx.ts";
 
 export interface Props {
   /** @description: sku name */

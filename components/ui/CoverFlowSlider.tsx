@@ -1,7 +1,7 @@
 import Image from "apps/website/components/Image.tsx";
 import { useState } from "preact/hooks";
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
-import Button from "deco-sites/todo-livro/components/ui/Button.tsx";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
+import Button from "deco-sites/happybooks-test/components/ui/Button.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface ImageItem {

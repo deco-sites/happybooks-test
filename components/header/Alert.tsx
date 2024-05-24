@@ -1,8 +1,8 @@
 import ImageOrIcon, {
   ImageOrIconType,
-} from "deco-sites/todo-livro/components/ui/ImageOrIcon.tsx";
-import { usePlatform } from "deco-sites/todo-livro/sdk/usePlatform.tsx";
-import FreeShippingProgressBar from "deco-sites/todo-livro/islands/Header/FreeShippingProgressBar.tsx";
+} from "deco-sites/happybooks-test/components/ui/ImageOrIcon.tsx";
+import { usePlatform } from "deco-sites/happybooks-test/sdk/usePlatform.tsx";
+import FreeShippingProgressBar from "deco-sites/happybooks-test/islands/Header/FreeShippingProgressBar.tsx";
 import { Device } from "apps/website/matchers/device.ts";
 
 /** @titleBy text */

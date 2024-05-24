@@ -2,9 +2,9 @@ import { invoke } from "../../runtime.ts";
 import { clx } from "../../sdk/clx.ts";
 import { Signal, useSignal } from "@preact/signals";
 import type { JSX } from "preact";
-import { useId } from "deco-sites/todo-livro/sdk/useId.ts";
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
-import Button from "deco-sites/todo-livro/components/ui/Button.tsx";
+import { useId } from "deco-sites/happybooks-test/sdk/useId.ts";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
+import Button from "deco-sites/happybooks-test/components/ui/Button.tsx";
 
 export interface Input {
   /**

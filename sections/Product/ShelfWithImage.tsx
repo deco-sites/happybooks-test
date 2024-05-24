@@ -1,19 +1,19 @@
 import type { Product } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
-import Slider from "deco-sites/todo-livro/components/ui/Slider.tsx";
-import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
-import { useId } from "deco-sites/todo-livro/sdk/useId.ts";
-import { usePlatform } from "deco-sites/todo-livro/sdk/usePlatform.tsx";
+import { AppContext } from "deco-sites/happybooks-test/apps/site.ts";
+import Slider from "deco-sites/happybooks-test/components/ui/Slider.tsx";
+import { clx } from "deco-sites/happybooks-test/sdk/clx.ts";
+import { useId } from "deco-sites/happybooks-test/sdk/useId.ts";
+import { usePlatform } from "deco-sites/happybooks-test/sdk/usePlatform.tsx";
 import ProductCard, {
   Layout as cardLayout,
 } from "../../components/product/ProductCard.tsx";
 import Icon from "../../components/ui/Icon.tsx";
-import SliderJS from "deco-sites/todo-livro/islands/SliderJS.tsx";
-import { SendEventOnView } from "deco-sites/todo-livro/components/Analytics.tsx";
+import SliderJS from "deco-sites/happybooks-test/islands/SliderJS.tsx";
+import { SendEventOnView } from "deco-sites/happybooks-test/components/Analytics.tsx";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import { useOffer } from "deco-sites/todo-livro/sdk/useOffer.ts";
+import { useOffer } from "deco-sites/happybooks-test/sdk/useOffer.ts";
 
 export interface Props {
   products: Product[] | null;

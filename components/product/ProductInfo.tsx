@@ -16,13 +16,13 @@ import { usePlatform } from "../../sdk/usePlatform.tsx";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductSelector from "./ProductVariantSelector.tsx";
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
 import AddToCartButton from "$islands/AddToCartButton/AddToCartButton.tsx";
-import ProductActions from "deco-sites/todo-livro/components/product/Actions/ProductActions.tsx";
+import ProductActions from "deco-sites/happybooks-test/components/product/Actions/ProductActions.tsx";
 import BenefitsBadges, {
   BenefitBadge,
-} from "deco-sites/todo-livro/components/product/BenefitsBadges.tsx";
-import ProductTitle from "deco-sites/todo-livro/components/product/ProductTitle.tsx";
+} from "deco-sites/happybooks-test/components/product/BenefitsBadges.tsx";
+import ProductTitle from "deco-sites/happybooks-test/components/product/ProductTitle.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;

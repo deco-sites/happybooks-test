@@ -7,11 +7,11 @@ import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import Pagination, {
   PaginationProps,
-} from "deco-sites/todo-livro/components/search/Pagination.tsx";
+} from "deco-sites/happybooks-test/components/search/Pagination.tsx";
 import TotalPagesSelector, {
   TotalPagesSelectorProps,
-} from "deco-sites/todo-livro/components/search/TotalPagesSelector.tsx";
-import OrderBy from "deco-sites/todo-livro/components/search/OrderBy.tsx";
+} from "deco-sites/happybooks-test/components/search/TotalPagesSelector.tsx";
+import OrderBy from "deco-sites/happybooks-test/components/search/OrderBy.tsx";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "sortOptions">

@@ -1,5 +1,5 @@
 import { allowCorsFor } from "deco/mod.ts";
-import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
+import { AppContext } from "deco-sites/happybooks-test/apps/site.ts";
 
 interface Category {
   id: number;

@@ -12,8 +12,8 @@ import {
   getSrcSet,
 } from "apps/website/components/Image.tsx";
 import { Head } from "$fresh/runtime.ts";
-import CustomImage from "deco-sites/todo-livro/components/ui/CustomImage.tsx";
-import { clx } from "deco-sites/todo-livro/sdk/clx.ts";
+import CustomImage from "deco-sites/happybooks-test/components/ui/CustomImage.tsx";
+import { clx } from "deco-sites/happybooks-test/sdk/clx.ts";
 
 export interface Props {
   /** @title Integration */

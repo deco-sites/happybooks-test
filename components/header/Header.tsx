@@ -7,10 +7,10 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { SectionProps } from "deco/types.ts";
 import Alert, { AlertItem } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
-import { SetupMicroHeader } from "deco-sites/todo-livro/islands/Header/SetupMicroHeader.tsx";
-import { HeaderNavigation } from "deco-sites/todo-livro/loaders/headerNavigation.ts";
-import Icon from "deco-sites/todo-livro/components/ui/Icon.tsx";
-import { ImageOrIconType } from "deco-sites/todo-livro/components/ui/ImageOrIcon.tsx";
+import { SetupMicroHeader } from "deco-sites/happybooks-test/islands/Header/SetupMicroHeader.tsx";
+import { HeaderNavigation } from "deco-sites/happybooks-test/loaders/headerNavigation.ts";
+import Icon from "deco-sites/happybooks-test/components/ui/Icon.tsx";
+import { ImageOrIconType } from "deco-sites/happybooks-test/components/ui/ImageOrIcon.tsx";
 
 const HEADER_HEIGHT_DESKTOP = 144;
 const HEADER_HEIGHT_MOBILE = 177; //

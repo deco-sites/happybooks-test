@@ -1,4 +1,4 @@
-import { usePlatform } from "deco-sites/todo-livro/sdk/usePlatform.tsx";
+import { usePlatform } from "deco-sites/happybooks-test/sdk/usePlatform.tsx";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import ProductActionVTEX from "$islands/ProductActions/vtex.tsx";
 

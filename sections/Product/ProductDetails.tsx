@@ -3,13 +3,13 @@ import ImageGallerySlider from "../../components/product/Gallery/ImageSlider.tsx
 import ProductInfo from "../../components/product/ProductInfo.tsx";
 import NotFound from "../../sections/Product/NotFound.tsx";
 import { LoadingFallback as BreadcrumbLoadingFallback } from "../../sections/Search/Breadcrumb.tsx";
-import Breadcrumb from "deco-sites/todo-livro/components/ui/Breadcrumb.tsx";
-import GallerySlider from "deco-sites/todo-livro/components/product/Gallery/ImageSlider.tsx";
-import { AppContext } from "deco-sites/todo-livro/apps/site.ts";
+import Breadcrumb from "deco-sites/happybooks-test/components/ui/Breadcrumb.tsx";
+import GallerySlider from "deco-sites/happybooks-test/components/product/Gallery/ImageSlider.tsx";
+import { AppContext } from "deco-sites/happybooks-test/apps/site.ts";
 import type { SectionProps } from "deco/types.ts";
-import BrowserLog from "deco-sites/todo-livro/islands/BrowserLog.tsx";
-import { BenefitBadge } from "deco-sites/todo-livro/components/product/BenefitsBadges.tsx";
-import ProductTitle from "deco-sites/todo-livro/components/product/ProductTitle.tsx";
+import BrowserLog from "deco-sites/happybooks-test/islands/BrowserLog.tsx";
+import { BenefitBadge } from "deco-sites/happybooks-test/components/product/BenefitsBadges.tsx";
+import ProductTitle from "deco-sites/happybooks-test/components/product/ProductTitle.tsx";
 
 export interface Props {
   /** @title Integration */
